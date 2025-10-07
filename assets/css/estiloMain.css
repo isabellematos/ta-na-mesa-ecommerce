@@ -1,0 +1,235 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Roboto+Condensed:wght@400;700&display=swap');
+
+:root {
+    --dark-bg: #1a1a1a;
+    --primary-color: #ff3366;
+    --light-text: #ffffff;
+    --gray-text: #cccccc;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: var(--dark-bg);
+    color: var(--light-text); 
+    margin: 0;
+    
+}
+
+.main-content {
+    background-color: var(--dark-bg);
+    background-image: url('../img/escamasFundo.png');
+    background-repeat: repeat;
+    background-size: 500px;
+    min-height: calc(100vh - 100px); 
+    padding-bottom: 40px; 
+    box-sizing: border-box;
+}
+
+/* Banner Principal */
+.hero-banner {
+    position: relative;
+    padding-top: 70px;
+}
+
+.banner-image {
+    position: relative;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    border-bottom-left-radius: 65px;
+    border-bottom-right-radius: 65px;
+    overflow: hidden;
+}
+
+.banner-image img {
+    width: 100%;
+    display: block;
+    height: auto; 
+    
+}
+
+.banner-title {
+    position: absolute;
+    top: 35%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    color: var(--light-text);
+    font-size: 4.5rem; 
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Instrument Serif', serif; 
+    text-align: center;
+    line-height: 1.2;
+}
+
+.scroll-down-container {
+    text-align: center;
+    
+    margin-top: -37.5px;
+    
+    position: relative;
+    z-index: 10;
+}
+
+.scroll-down-button img {
+    width: 75px;
+    height: 75px;
+    cursor: pointer;
+    box-shadow: 0 0 0 5px #252525; 
+    border-radius: 50%;
+}
+/* Seção do Filtro */
+.filter-bar {
+    background-color: #333;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    color: var(--light-text);
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.filter-line {
+    width: 100%;
+    height: 2px; 
+    background-image: url('../img/linhaBranca.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    margin: 10px 0 20px 0; 
+}
+
+.filter-title {
+    font-size: 1.2rem;
+    font-weight: bold; 
+}
+
+
+.filter-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+
+.filter-group {
+    display: flex;
+    width: 30%;
+    align-items: center; 
+    gap: 10px; 
+}
+
+
+
+
+.filter-category {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.category-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+
+
+/* Seção da Loja */
+.store {
+    padding: 0 50px 50px 50px;
+    background-color: var(--dark-bg);
+    background-image: url('../img/escamasFundo.png');
+    background-repeat: repeat;
+    background-size: 500px;
+    margin-top: 30 px; 
+}
+
+/* Barra de Filtro */
+.filter-bar {
+    background-color: #1E1E1E;
+    padding: 20px;
+    border-radius: 20px;
+    margin-bottom: 30px;
+    color: var(--light-text);
+    margin-top: 0;
+
+
+}
+
+.products-section {
+  margin-bottom: 60px;
+}
+
+/* Só controla imagens de produto */
+.product-image {
+    width: 120px;
+    height: 120px;
+    border-radius: 8px;
+    border: 3px solid #000;
+    object-fit: contain;
+    margin: 10px auto;  
+    display: block;
+}
+
+/* Remove ou adapta o genérico */
+.product-card img:not(.product-image) {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    /* 1. Ajustar o menu de navegação */
+   .navbar-content {
+        flex-direction: column; 
+        gap: 20px;
+    }
+
+    .nav-links {
+        flex-direction: column; 
+        gap: 10px;
+        text-align: center;
+    }
+
+    /* 2. Centralizar o logo e ações do usuário */
+    .logo, .user-actions {
+        margin: 0 auto; 
+    }
+
+    /* 3. Ajustar a barra de filtro */
+    .filter-bar {
+        padding: 15px; 
+    }
+
+    .filter-row {
+        flex-direction: column; 
+        gap: 15px;
+    }
+
+
+    .filter-category {
+        flex-direction: column; 
+        gap: 10px;
+    }
+
+    .category-buttons {
+        justify-content: center; 
+        flex-wrap: wrap; 
+    }
+}
+
+    /* 4. Mudar a largura da imagem do produto para se adaptar */
+    .product-image {
+        width: 100px !important;
+        height: 100px !important;
+    }
