@@ -1,0 +1,13 @@
+/* components/organisms/footer.css */
+.footer {
+    background-color: #000;
+    text-align: center;
+    padding: 10px;
+    font-size: 0.8rem;
+    color: var(--gray-text);
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+}
