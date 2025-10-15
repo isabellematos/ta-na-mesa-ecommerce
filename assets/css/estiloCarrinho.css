@@ -1,0 +1,46 @@
+/* assets/css/estiloCarrinho.css */
+:root {
+    --dark-bg: #1a1a1a;
+    --primary-color: #CD004A; /* Cor rosa/vermelho principal */
+    --light-text: #ffffff;
+    --gray-text: #cccccc;
+}
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: var(--dark-bg);
+    background-image: url('../img/escamasFundo.png');
+    background-repeat: repeat;
+    background-size: 500px;
+    color: var(--light-text);
+    margin: 0;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 100px; /* Espaço para o header fixo */
+}
+
+.caminho h3 {
+    font-size: 1rem;
+    color: var(--gray-text);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Garante que o footer fique no fim da página */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* altura mínima da tela */
+}
+
+main {
+    flex: 1; /* faz o main ocupar o espaço disponível */
+}
