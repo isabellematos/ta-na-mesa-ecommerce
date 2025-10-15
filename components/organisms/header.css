@@ -1,0 +1,73 @@
+
+
+/* Header e Navbar */
+.header {
+    background-color: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+.navbar {
+    display: flex;
+    justify-content: center;
+    background-image: url('../../assets/img/Image2.png'); 
+    background-size: cover;
+    background-repeat: no-repeat;
+    padding: 10px 0;
+}
+
+.navbar-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    width: 100%;
+    max-width: 1400px;
+}
+
+.logo {
+    margin-right: 20px;
+}
+
+.user-actions {
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+
+.navbar .logo img {
+    height: 40px;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    padding: 0;
+}
+
+.nav-links a {
+    color: var(--light-text);
+    text-decoration: none;
+    font-weight: bold;
+    padding-bottom: 5px;
+    background-image: url('../../assets/img/Image2.png'); 
+    background-size: 100% 2px;
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    transition: all 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: var(--light-text);
+}
+
+.nav-links a.active-link {
+    background-image: url('../../assets/img/Image3.png'); 
+    color: var(--light-text);
+}
+.user-actions img {
+    height: 25px;
+    margin-left: 20px;
+}
