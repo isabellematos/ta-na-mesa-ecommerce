@@ -1,0 +1,17 @@
+/* Organismo que define o layout das colunas de checkout */
+.checkout-container {
+    display: flex;
+    gap: 30px;
+    align-items: flex-start;
+    background-color: #1E1E1E; /* Fundo sólido para a área de informações */
+    padding: 30px;
+    border-radius: 10px;
+}
+
+.personal-info-column,
+.address-info-column {
+    flex: 1; /* Faz as duas colunas terem o mesmo tamanho */
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaço entre os itens dentro de cada coluna */
+}
