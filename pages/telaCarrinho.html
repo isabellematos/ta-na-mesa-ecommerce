@@ -1,0 +1,127 @@
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrinho de Compras</title>
+
+    <link rel="stylesheet" href="../assets/css/estiloCarrinho.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../components/organisms/header.css">
+    <link rel="stylesheet" href="../components/organisms/footer.css">
+    <link rel="stylesheet" href="../components/atoms/button.css">
+
+    <link rel="stylesheet" href="../components/organisms/cart-layout.css">
+    <link rel="stylesheet" href="../components/molecules/cart-item.css">
+    <link rel="stylesheet" href="../components/molecules/order-summary.css">
+</head>
+<header class="header">
+        <nav class="navbar">
+            <div class="navbar-content">
+                <div class="logo">
+                    <img src="../assets/img/logoDaora.png" alt="Logo Ta Na Mesa">
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Suas mesas</a></li>
+                    <li><a href="#">Mesas</a></li>
+                    <li><a href="#">Cadastro de mesas</a></li>
+                    <li><a href="#" class="active-link">Loja</a></li>
+                </ul>
+                <div class="user-actions">
+                    <a href="#"><img src="../assets/img/user-icon.png" alt="Perfil do usuário"></a>
+                    <a href="#"><img src="../assets/img/Shopping cart.png" alt="Carrinho de compras"></a>
+                </div>
+            </div>
+        </nav>
+    </header>
+<main class="main-content">
+    <div class="main-container">
+        <div class="caminho">
+            <h3>Home > Carrinho de Compras</h3>
+        </div>
+
+        <div class="cart-container">
+            <div class="cart-items-column">
+    
+    <div class="cart-item">
+        <input type="checkbox" checked>
+        <div class="cart-item-image-container">
+            <button class="cart-item-delete">
+    <img src="../assets/img/iconeLixo.png" alt="Excluir item">
+</button>
+            <img src="../assets/img/image 33.png" alt="Dados de RPG" class="cart-item-image">
+        </div>
+        <div class="cart-item-details">
+            <h4>Dados para Jogos</h4>
+            <p>Marca: Genérico</p>
+            <p>Ref: M5621</p>
+            <p class="cart-item-price">R$ 33,90</p>
+        </div>
+        <div class="quantity-controls">
+            <button class="quantity-btn">-</button>
+            <span class="quantity-value">1</span>
+            <button class="quantity-btn">+</button>
+        </div>
+    </div>
+
+    <div class="cart-item">
+        <input type="checkbox" checked>
+        <div class="cart-item-image-container">
+            <button class="cart-item-delete">
+    <img src="../assets/img/iconeLixo.png" alt="Excluir item">
+</button>
+            <img src="../assets/img/image 1.png" alt="Dados de RPG" class="cart-item-image">
+        </div>
+        <div class="cart-item-details">
+            <h4>Dados para Jogos</h4>
+            <p>Marca: Genérico</p>
+            <p>Ref: M5622</p>
+            <p class="cart-item-price">R$ 47,99</p>
+        </div>
+        <div class="quantity-controls">
+            <button class="quantity-btn">-</button>
+            <span class="quantity-value">1</span>
+            <button class="quantity-btn">+</button>
+        </div>
+    </div>
+
+    <button class="buy-button" style="background-color: transparent; border: 1px solid #555; margin-top: 20px;">Escolher mais produtos</button>
+</div>
+
+            <div class="summary-column">
+    <div class="order-summary">
+        <div class="frete-info">
+            <h4>Frete</h4>
+            <p>Informe o CEP e veja se tem <a href="#">FRETE GRÁTIS</a> na sua região!</p>
+            <p><strong>São Paulo - SP</strong></p>
+            <p>Avenida Eusébio Stevaux 4455</p>
+            <p><a href="#">Compre mais R$100 e ganhe FRETE GRÁTIS!</a></p>
+        </div>
+        <hr style="border-color: #444; margin: 20px 0;">
+        <h4>Resumo do pedido</h4>
+        <div class="summary-line">
+            <span>Subtotal</span>
+            <span>R$ 81,89</span>
+        </div>
+        <div class="summary-line">
+            <span>Frete</span>
+            <span>R$ 10,00</span>
+        </div>
+        <div class="summary-total">
+            <span>Total do pedido</span>
+            <span>R$ 91,89</span>
+        </div>
+        <button class="buy-button" style="width: 100%; margin-top: 20px;">Finalizar compra</button>
+    </div>
+</div>
+        </div>
+    </div>
+</main>
+<footer class="footer">
+        <div class="footer-content">
+            <p>&copy; direitos reservados 2025</p>
+            <p>Este site foi desenvolvido por Isabelle de Matos, Laís Lívia, Luana Miyashiro, Maria Vivielle, Malu
+                Araujo, Yasmin Carolina</p>
+        </div>
+    </footer>
