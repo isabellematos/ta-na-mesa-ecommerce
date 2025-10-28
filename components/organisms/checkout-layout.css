@@ -1,17 +1,51 @@
 /* Organismo que define o layout das colunas de checkout */
 .checkout-container {
     display: flex;
-    gap: 30px;
+    gap: 40px; /* Mantém o espaço maior entre as colunas */
     align-items: flex-start;
-    background-color: #1E1E1E; /* Fundo sólido para a área de informações */
+    background-color: #1E1E1E;
     padding: 30px;
     border-radius: 10px;
 }
 
 .personal-info-column,
 .address-info-column {
-    flex: 1; /* Faz as duas colunas terem o mesmo tamanho */
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 15px; /* Espaço entre os itens dentro de cada coluna */
+    gap: 15px;
+}
+
+.personal-info-column {
+     position: relative; /* Necessário para o ::after funcionar */
+     padding-right: 20px; /* Adiciona espaço para a direita da coluna esquerda */
+}
+
+.address-info-column {
+    padding-left: 20px; /* Adiciona espaço para a esquerda da coluna direita */
+}
+
+
+/* Estilizando os títulos das colunas */
+.personal-info-column h4,
+.address-info-column h4 {
+    color: var(--primary-color);
+    font-size: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+/* === NOVA REGRA PARA A LINHA VERTICAL === */
+.personal-info-column::after {
+    content: ""; /* Obrigatório */
+    position: absolute;
+    top: 0;
+    /* Coloca a linha na borda direita, mas dentro do padding que adicionamos */
+    right: 0;
+    bottom: 0;
+    width: 2px; /* Largura da sua imagem/linha */
+    background-image: url('../../assets/img/linhaBranca.png');
+    background-repeat: repeat-y; /* Repete verticalmente */
+    background-position: center center;
+    /* background-size: cover; */ /* Ajuste se necessário */
 }
