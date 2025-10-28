@@ -4,8 +4,20 @@
     align-items: center;
     gap: 15px;
     padding: 20px 0;
-    border-bottom: 1px solid #444;
+    background-image: url('../../assets/img/linhaBranca.png'); /* Caminho da imagem */
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 90% 2px; 
+    padding-bottom: 22px; 
 }
+
+/* Garante que o último item NÃO tenha a linha */
+.cart-item:last-child {
+    background-image: none;
+    padding-bottom: 20px; 
+    border-bottom: none; 
+}
+
 
 .cart-item:last-child {
     border-bottom: none; /* Remove a linha do último item */
