@@ -38,3 +38,16 @@ input::placeholder {
     box-sizing: border-box;
     height: 38px; 
 }
+
+.input-dark {
+    background-color: var(--dark-input-bg, #333);
+    border: 1px solid var(--border-color, #444);
+    color: var(--light-text);
+    font-style: normal;
+    font-weight: 400;
+}
+
+.input-dark::placeholder {
+    color: #777;
+    font-style: normal;
+}

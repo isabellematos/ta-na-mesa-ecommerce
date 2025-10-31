@@ -24,3 +24,11 @@
     font-weight: 700;
     margin-bottom: 5px; 
 }
+
+.label-dark {
+    color: var(--gray-text);
+    font-size: 0.9rem;
+    font-weight: normal;
+    text-transform: none;
+    margin-bottom: 5px;
+}

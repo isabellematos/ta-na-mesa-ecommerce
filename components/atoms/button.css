@@ -91,3 +91,50 @@
 .buy-button:hover {
     background-color: #CD004A;
 }
+
+/* --- Variantes de Botões de Pagamento --- */
+.payment-tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--gray-text);
+    padding: 10px 15px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: bold;
+    font-family: 'Roboto Condensed', sans-serif;
+    border-bottom: 3px solid transparent;
+    transform: translateY(1px); /* Alinha com a borda de baixo */
+}
+
+.payment-tab-btn.active {
+    color: var(--primary-color);
+    border-bottom-color: var(--primary-color);
+}
+
+.btn-pix, .btn-pix-copy, .btn-apply-coupon {
+    font-family: 'Roboto Condensed', sans-serif;
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-pix, .btn-apply-coupon {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border: none;
+}
+.btn-pix:hover, .btn-apply-coupon:hover {
+    background-color: #e5295c;
+}
+
+.btn-pix-copy {
+    background-color: var(--dark-input-bg, #333); /* Usa variável ou fallback */
+    color: var(--gray-text);
+    border: 1px solid var(--border-color, #444);
+}
+.btn-pix-copy:hover {
+    background-color: #444;
+}
