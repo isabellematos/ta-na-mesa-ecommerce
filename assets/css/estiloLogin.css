@@ -1,0 +1,92 @@
+:root {
+    --dark-bg: #22252A;
+    --dark-pattern: #2A2E33;
+    --text-color: #F8F8F8;
+    --input-bg: #EAEAEA;
+    --btn-primary: #3486F5;
+    --btn-hover: #2974D4;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--dark-bg);
+    color: var(--text-color);
+}
+
+.login-container {
+    display: flex;
+    height: 100vh;
+}
+
+.login-image {
+    flex: 1;
+     background-image: url('../img/imagemFundo.png'); 
+    background-size: cover;
+    background-position: center;
+}
+
+.login-form-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+
+    /* Fundo escuro + escamas juntos */
+    background: var(--dark-bg) url('../img/escamasFundo.png') repeat;
+    background-size: 500px;
+}
+.logo {
+    width: 150px;
+    margin-bottom: 40px;
+}
+
+.login-form {
+    width: 100%;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+
+
+.signup-link {
+    text-align: center;
+    font-size: 14px;
+}
+
+.signup-link a {
+    color: var(--btn-primary);
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+/* ------------------- */
+/* Design Responsivo (Mobile First) */
+/* ------------------- */
+
+@media (max-width: 768px) {
+    .login-image {
+        display: none;
+    }
+
+    .login-form-container {
+        width: 100%;
+    }
+}
