@@ -1,0 +1,25 @@
+/* --- Molécula para os formulários de Login e Cadastro --- */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 5px; 
+    margin-bottom: 15px; 
+}
+
+
+/* --- Molécula para os Filtros da Tela Inicial --- */
+
+.filter-group {
+    display: flex;
+    width: 30%;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Container que agrupa o input/select e o botão de resetar */
+.input-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}

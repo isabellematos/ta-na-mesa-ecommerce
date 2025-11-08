@@ -1,0 +1,51 @@
+/* components/molecules/personal-info.css */
+.info-field {
+    display: flex;
+    align-items: center; /* Alinha ícone e texto verticalmente */
+    gap: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #444;
+}
+
+.info-field img {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0; /* Impede que o ícone achate */
+}
+
+.info-field-text h5 {
+    margin: 0 0 4px 0; /* Adiciona um espacinho embaixo */
+    font-size: 0.8rem;
+    color: var(--gray-text);
+    text-transform: uppercase;
+    font-weight: normal; /* Deixa a fonte mais fina */
+}
+
+.info-field-text p {
+    margin: 0;
+    font-size: 1rem;
+}
+
+/* Novo estilo para o checkbox */
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    cursor: pointer;
+}
+
+/* Esconde o checkbox padrão */
+.checkbox-container input[type="checkbox"] {
+    display: none;
+}
+
+/* Cria a caixinha personalizada */
+.checkbox-container .checkmark {
+    width: 20px;
+    height: 20px;
+    background-color: var(--primary-color);
+    border-radius: 4px;
+    display: inline-block;
+}
