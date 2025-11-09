@@ -12,5 +12,4 @@ Route::get('/create-user',[UserController::class,'create'])->name('user.create')
 Route::post('/store-user',[UserController::class,'store'])->name('user.store');
 
 Route::prefix('auth')->group(function(){
-    Route::get('/login', [\App\Http\Controllers\auth\LoginController::class, 'login'])->name('login');
-});
+Route::get('/login', [LoginController::class, 'login'])->name('login');});

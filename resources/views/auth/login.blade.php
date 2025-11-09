@@ -32,7 +32,7 @@
     <button type="submit" class="btn-login">Entrar</button>
 
     <p class="signup-link">
-        NÃO TEM CADASTRO? <a href="#">CADASTRE-SE</a>
+        NÃO TEM CADASTRO? <a href="{{ route('register') }}">CADASTRE-SE</a>
     </p>
 </form>
         </div>
