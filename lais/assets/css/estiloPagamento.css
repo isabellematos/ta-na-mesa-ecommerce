@@ -1,0 +1,272 @@
+/* assets/css/estiloPagamento.css */
+:root {
+    --dark-bg: #1a1a1a;
+    --primary-color: #CD004A; /* Cor rosa/vermelho principal */
+    --light-text: #ffffff;
+    --gray-text: #cccccc;
+    --dark-component-bg: #1E1E1E; /* Fundo dos containers */
+    --dark-element-bg: #2c2c2c; /* Fundo de elementos menores */
+    --dark-input-bg: #333; /* Fundo dos inputs */
+    --border-color: #444;
+}
+
+body {
+    font-family: 'Roboto Condensed', sans-serif;
+    background-color: var(--dark-bg);
+    background-image: url('../img/escamasFundo.png');
+    background-repeat: repeat;
+    background-size: 500px;
+    color: var(--light-text);
+    margin: 0;
+}
+
+.main-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    padding-top: 100px; /* Espaço para o header fixo */
+}
+
+.caminho h3 {
+    font-size: 1rem;
+    color: var(--gray-text);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+}
+
+/* Garante que o footer fique no fim da página */
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* altura mínima da tela */
+}
+
+main {
+    flex: 1; /* faz o main ocupar o espaço disponível */
+}
+
+/* --- ESTILOS ESPECÍFICOS DA PÁGINA DE PAGAMENTO --- */
+
+/* Coluna da Esquerda */
+
+.shipping-address-box {
+    background-color: var(--dark-element-bg);
+    border-radius: 8px;
+    padding: 15px 20px;
+    margin-bottom: 20px;
+}
+
+.shipping-address-box h5 {
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 1rem;
+    color: var(--light-text);
+}
+
+.shipping-address-box p {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    line-height: 1.4;
+    margin-bottom: 10px;
+}
+
+.shipping-address-box a {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.shipping-title {
+    font-size: 1rem;
+    color: var(--light-text);
+    margin-bottom: 10px;
+}
+
+.shipping-options-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.shipping-options-list li {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    background-color: var(--dark-element-bg);
+    padding: 15px 20px;
+    border-radius: 8px;
+    border: 1px solid var(--dark-element-bg);
+    cursor: pointer;
+    transition: border-color 0.2s;
+}
+
+.shipping-options-list li:has(input:checked) {
+    border-color: var(--primary-color);
+}
+
+.shipping-options-list input[type="radio"] {
+    accent-color: var(--primary-color);
+    width: 18px;
+    height: 18px;
+}
+
+.shipping-options-list label {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.shipping-options-list label strong {
+    font-size: 1rem;
+    color: var(--light-text);
+}
+
+.shipping-options-list label span {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+}
+
+.shipping-options-list .shipping-price {
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: var(--light-text);
+}
+
+.order-summary .summary-installments {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    text-align: right;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
+/* Coluna da Direita */
+
+.payment-methods {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.payment-tab-buttons {
+    display: flex;
+    border-bottom: 1px solid var(--border-color);
+}
+
+
+.payment-tab-content {
+    display: none;
+    padding-top: 20px;
+    color: var(--gray-text);
+    font-size: 0.9rem;
+}
+
+.payment-tab-content.active {
+    display: block;
+}
+
+.pix-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+
+/* Formulário de Cartão */
+/* Sobrescrevendo o átomo de input para o fundo escuro */
+.payment-methods .form-group input,
+.coupon-form input {
+    background-color: var(--dark-input-bg);
+    border: 1px solid var(--border-color);
+    color: var(--light-text);
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    padding: 12px;
+}
+
+.payment-methods .form-group input::placeholder {
+    color: #777;
+    font-style: normal;
+}
+
+/* Sobrescrevendo o átomo de label */
+.payment-methods .form-group label {
+    color: var(--gray-text);
+    font-size: 0.9rem;
+    font-weight: normal;
+    text-transform: none;
+    margin-bottom: 5px;
+}
+
+.card-form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+}
+
+.payment-conditions-link {
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+/* Cupom */
+.coupon-form {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 10px;
+}
+
+.coupon-form input {
+    flex-grow: 1;
+    font-size: 1rem;
+    font-style: normal;
+    text-transform: uppercase;
+}
+
+.coupon-success {
+    font-size: 0.9rem;
+    color: #4CAF50; /* Verde sucesso */
+    font-weight: bold;
+}
+
+/* Placeholder Detalhes do Pagamento */
+.payment-details-placeholder {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+.payment-details-placeholder div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.9rem;
+    color: var(--gray-text);
+}
+.payment-details-placeholder .bar {
+    width: 150px;
+    height: 20px;
+    background-color: #333;
+    border-radius: 4px;
+}
+.payment-details-placeholder .total {
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--light-text);
+    margin-top: 5px;
+    padding-top: 5px;
+    border-top: 1px solid var(--border-color);
+}
