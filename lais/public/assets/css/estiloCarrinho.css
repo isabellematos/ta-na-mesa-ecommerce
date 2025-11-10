@@ -5,7 +5,6 @@
     --light-text: #ffffff;
     --gray-text: #cccccc;
 }
-
 body {
     font-family: 'Roboto Condensed', sans-serif;
     background-color: var(--dark-bg);
