@@ -63,7 +63,7 @@
 						value="{{old('imagemPerfil')}}" required>
 				</div> -->
  
-				<button type="submit" class="btn-cadastro">CADASTRE-SE</button>
+				<button type="submit" class="btn-cadastro" a href="login">CADASTRE-SE</a></button>
 				<p class="login-link">JÁ TEM CADASTRO? <a href="login">VOLTE AQUI!</a></p>
 			</form>
 		</div>
