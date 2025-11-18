@@ -16,7 +16,13 @@
         <div class="login-image"></div>
         <div class="login-form-container">
             <img src="{{ asset('/assets/img/logoDaora.png') }}" alt="Logo Tá na Mesa" class="logo"> 
-            
+            @if ($errors->any())
+    <div class="alert alert-danger" style="color: red; margin-bottom: 10px;">
+        @foreach ($errors->all() as $error)
+            <p>{{ $error }}</p>
+        @endforeach
+    </div>
+@endif
         <form class="login-form" action="/login" method="POST">
             @csrf 
             <div class="form-group">
@@ -29,7 +35,7 @@
             <input type="password" id="password" name="password" placeholder="********" required>
         </div>                
 
-        <button type="submit" class="btn-login">Entrar<a href="dashboard"></button>
+        <button type="submit" class="btn-login">Entrar<a href="dashboard"></a></button>
 
         <p class="signup-link">
             NÃO TEM CADASTRO? <a href="register">CADASTRE-SE</a>

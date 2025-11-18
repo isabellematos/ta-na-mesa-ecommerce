@@ -184,7 +184,7 @@
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; direitos reservados 2025</p>
-            <p>Este site foi desenvolvido por Maria Vivielle, Malu Araujo, Lais, Luana Miyashiro, Isabelle Matos e Yasmin ;</p>
+            <p>Este site foi desenvolvido por Isabelle Matos, Laís Lívia, Luana Miyashiro, Maria Vivielle, Malu Araujo e Yasmin Carolina</p>
         </div>
     </footer>
 
