@@ -29,11 +29,13 @@ body {
     box-sizing: border-box;
 }
 
+
 /* Banner Principal */
 .hero-banner {
     position: relative;
     padding-top: 70px;
 }
+
 
 .banner-image {
     position: relative;
@@ -95,6 +97,7 @@ body {
     box-shadow: 0 0 0 5px #252525; 
     border-radius: 50%;
 }
+
 /* Seção do Filtro */
 .filter-bar {
     background-color: #333;
@@ -145,8 +148,6 @@ body {
 }
 
 
-
-
 .filter-category {
     display: flex;
     align-items: center;
@@ -159,9 +160,8 @@ body {
 }
 
 
-
 /* Seção da Loja */
-.store {
+.store  {
     padding: 0 50px 50px 50px;
     background-color: var(--dark-bg);
     background-image: url('../img/escamasFundo.png');
@@ -243,9 +243,6 @@ body {
         flex-wrap: wrap; 
     }
 
-    .seller-infos {
-        padding: 15px;
-    }
 
     .seller-info-content {
         flex-direction: column;
@@ -260,11 +257,6 @@ body {
     
     .seller-photo {
         margin-left: 0;
-    }
-
-    .seller-fields {
-        width: 100%;
-        margin-right: 0;
     }
 
     .field-row {
@@ -292,35 +284,18 @@ body {
 
     /* informações do vendedor */
 
-.seller-infos {
-    background-color: #1E1E1E;
-    padding: 10px;
-    border-radius: 20px;
-
-    width: calc(100% - 100px);
-    max-width: 1750px;
-    margin: 60px auto 40px auto;
-    
-    color: var(--light-text);
-    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
-}
 
 .seller-infos h2, .seller-ads h2 {
-    margin-left: 100px;
+    color: var(--primary-color);
     font-size: 2rem;
     text-align: left;
     margin-bottom: 20px;
 }
 
-.seller-ads h2{
-    color: var(--primary-color);
-    margin-bottom: 30px;
-}
-
 .seller-info-content {
     justify-content: space-between;
     display: flex;
-    gap: 200px;
+    gap: 100px;
 }
 
 .seller-photo{
@@ -334,7 +309,7 @@ body {
     object-fit: cover;
 }
 
-.seller-fields, .seller-ads {
+.seller-fields {
     margin-right: 100px;
     flex: 1;
     display: flex;
@@ -418,7 +393,7 @@ body {
     font-weight: bold;
 }
 
-.seller-ads {
+.seller-ads, .seller-infos {
     background-color: #1E1E1E;
     padding: 10px !important;
     border-radius: 20px;
@@ -448,4 +423,146 @@ body {
     width: 200px;
     text-align: center;
     margin: 30px auto 0 auto;
+}
+
+/* MODAL */
+
+.modal-overlay {
+    display: none; 
+    
+    position: fixed; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-color: rgba(0, 0, 0, 0.9); 
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 550px;
+    box-shadow: 0 5px 25px rgba(255, 51, 102, 0.5);
+    position: relative;
+}
+
+.modal-content h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
+}
+
+.modal-close-btn:hover {
+    background-color: #ff6699;
+}
+
+.modal-form-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 5px 15px;
+    align-items: center;
+}
+
+.modal-form-grid label {
+    text-align: right;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: var(--gray-text);
+    height:20px;
+    width: 50%;
+}
+
+.modal-input,
+.modal-input-textarea,
+.modal-btn-upload,
+.modal-form-grid select {
+    border: 1px solid #555;
+    padding: 8px;
+    border-radius: 5px;
+    color: var(--dark-bg);
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+.modal-input {
+    font-size: 12px;
+}
+
+
+.modal-input-textarea {
+    grid-column: 2; 
+    height: 40px;
+    resize: none;
+    color: var(--dark-bg);
+    font-size: 12px;
+}
+
+.modal-form-grid label[for="modal-descricao"] {
+    align-self: flex-start; 
+    padding-top: 8px;
+    height: 50px;
+}
+
+.modal-btn-upload {
+    background-color: #555;
+    cursor: pointer;
+    text-align: center;
+    font-weight: normal;
+    transition: background-color 0.2s;
+}
+
+.modal-btn-upload:hover {
+    background-color: #666;
+}
+
+.modal-btn-primary {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    width: 80%;
+    margin: 30px auto 0 auto; 
+    transition: background-color 0.3s;
+}
+
+.modal-btn-primary:hover {
+    background-color: #cc2952;
 }

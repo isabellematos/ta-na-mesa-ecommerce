@@ -37,7 +37,7 @@
         <section class="hero-banner">
             <div class="banner-image">
                 <img src="../assets/img/Banner perfil.png" alt="Banner com personagens de RPG">
-                <h1 class="banner-title-seller">Seu perfil</h1>
+                <h1 class="banner-title-seller">Seu perfil - Lojista</h1>
             </div>
 
             <div class="scroll-down-container">
@@ -46,7 +46,10 @@
                 </a>
             </div>
 
-<section id="profile-seller-infos" class="seller-infos">
+
+<section id="store-section" class="store">
+
+    <section id="profile-seller-infos" class="seller-infos">
     <h2>Suas informações</h2>
 
     <div class="seller-info-content">
@@ -67,7 +70,7 @@
 
             <div class="field-row">
                 <label>Link para contato:</label>
-                <input type="url" value="#">
+                <input type="url">
             </div>
 
             <div class="field-row">
@@ -84,13 +87,11 @@
     </div>
 </section>
 
-
-<section id="seller-salesAds" class="seller-ads">
+    <section id="seller-salesAds" class="seller-ads">
 
 
     <h2 class="sellers-title">Seus anuncios</h2>
 
-                <section id="store-section" class="store">
                 <div class="filter-bar">
                     <div class="filter-header">
                         <p class="filter-title">Filtro</p>
@@ -134,12 +135,102 @@
                         </div>
                     </div>
                 </div>
-            </section>
-
-            <button onclick="" class="btn-ads">Adicionar novo anuncio</button>
+            <button class="btn-ads" id="openModalButton">Adicionar novo anuncio</button>
         </section>
+</section>
 
 
+
+<!-- MODAL -->
+
+<div id="productModal" class="modal-overlay">
+    <div class="modal-content">
+        <button class="modal-close-btn">&times;</button>
+        
+        <h2>Insira informações sobre o produto</h2>
+        
+        <div class="modal-form-grid">
+            
+            <label for="modal-nome">Nome:</label>
+            <input type="text" id="modal-nome" placeholder="Nome do produto" class="modal-input-textarea">
+
+            <label for="modal-preco">Preço:</label>
+            <input type="text" id="modal-preco" placeholder="R$ 0,00" class="modal-input-textarea">
+
+            <label for="modal-qtd">Quantidade:</label>
+            <input type="number" id="modal-qtd" class="modal-input">
+            
+            <label for="modal-tags">Tags:</label>
+            <input type="text" id="modal-tags" placeholder="Ex: Miniaturas, DnD, MESA" class="modal-input-textarea">
+
+            <label>Foto do produto:</label>
+            <button class="modal-btn-upload">Escolher Imagem</button>
+            
+            <label for="modal-variacao">Variação:</label>
+            <select id="modal-variacao" class="modal-input">
+                <option>Escolher variação</option>
+            </select>
+
+            <label for="modal-categoria">Categoria:</label>
+            <select id="modal-categoria" class="modal-input">
+                <option>Escolher categoria</option>
+            </select>
+            
+            <label for="modal-descricao">Descrição:</label>
+            <textarea id="modal-descricao" placeholder="Informações sobre o produto" class="modal-input-textarea"></textarea>
+            
+        </div>
+        
+        <button class="modal-btn-primary">Criar Anúncio!</button>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('productModal');
+        const openModalBtn = document.getElementById('openModalButton');
+        
+        if (!modal) {
+            console.error("Erro: Elemento modal com ID 'productModal' não encontrado.");
+            return;
+        }
+
+        const closeBtn = modal.querySelector('.modal-close-btn');
+
+        function openModal() {
+            modal.style.display = 'flex';
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+        }
+
+        if (openModalBtn) {
+            openModalBtn.addEventListener('click', openModal);
+        } else {
+             console.warn("Erro, verificar botao.");
+        }
+        
+        if (closeBtn) {
+             closeBtn.addEventListener('click', closeModal);
+        }
+
+        modal.addEventListener('click', (event) => {
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+        
+        closeModal(); 
+
+    });
+</script>
 
 </body>
 </html>
