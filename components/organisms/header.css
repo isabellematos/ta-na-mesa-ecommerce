@@ -71,3 +71,10 @@
     height: 25px;
     margin-left: 20px;
 }
+.user-actions a {
+    text-decoration: inherit;
+    color: inherit;
+}
+.user-actions .perfilLojista{
+    margin-left: 25px;
+}

@@ -63,6 +63,22 @@ body {
     line-height: 1.2;
 }
 
+/* altera algumas informacoes só na pag do vendedor*/
+
+.banner-title-seller{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--light-text);
+    font-size: 4.5rem; 
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Instrument Serif', serif; 
+    text-align: center;
+    line-height: 1.2;
+}
+
+
 .scroll-down-container {
     text-align: center;
     
@@ -226,6 +242,46 @@ body {
         justify-content: center; 
         flex-wrap: wrap; 
     }
+
+    .seller-infos {
+        padding: 15px;
+    }
+
+    .seller-info-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+    
+    .seller-infos h2 {
+        text-align: center;
+        margin-left: 0;
+    }
+    
+    .seller-photo {
+        margin-left: 0;
+    }
+
+    .seller-fields {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .field-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .field-row label {
+        width: 100%;
+        text-align: left;
+    }
+    
+    .seller-save-btn {
+        justify-content: center;
+    }
+
 }
 
     /* 4. Mudar a largura da imagem do produto para se adaptar */
@@ -233,3 +289,163 @@ body {
         width: 100px !important;
         height: 100px !important;
     }
+
+    /* informações do vendedor */
+
+.seller-infos {
+    background-color: #1E1E1E;
+    padding: 10px;
+    border-radius: 20px;
+
+    width: calc(100% - 100px);
+    max-width: 1750px;
+    margin: 60px auto 40px auto;
+    
+    color: var(--light-text);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.seller-infos h2, .seller-ads h2 {
+    margin-left: 100px;
+    font-size: 2rem;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.seller-ads h2{
+    color: var(--primary-color);
+    margin-bottom: 30px;
+}
+
+.seller-info-content {
+    justify-content: space-between;
+    display: flex;
+    gap: 200px;
+}
+
+.seller-photo{
+    margin-left: 100px;
+}
+
+.seller-photo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.seller-fields, .seller-ads {
+    margin-right: 100px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.field-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.field-row label {
+    width: 150px;
+    text-align: right;
+    font-weight: bold;
+}
+
+/* INPUTS E TEXTAREA */
+.seller-fields input[type="url"],
+.seller-fields .textarea-wrapper,
+.seller-fields .input-upload-container {
+    flex: 1;
+}
+
+/* Estilo para simular o input e textarea cinza claro */
+.seller-fields input[type="url"],
+.seller-fields textarea {
+    background-color: #B5B5B5;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* TEXTAREA WRAPPER (Para estilizar o fundo) */
+.textarea-wrapper {
+    background-color: #B5B5B5;
+    border-radius: 5px;
+}
+
+/* UPLOAD/INPUT FILE */
+.input-upload-container {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 0;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.btn-upload {
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    height: 100%;
+}
+
+/* BOTÃO DE SALVAR */
+.seller-save-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.seller-save-btn .btn-primary {
+    background-color: #ff3366;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.seller-ads {
+    background-color: #1E1E1E;
+    padding: 10px !important;
+    border-radius: 20px;
+    height: auto;
+    padding-bottom: 30px;
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    width: calc(100% - 100px);
+    max-width: 1750px;
+    margin: 60px auto 40px auto;
+    
+    color: var(--light-text);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.4);
+}
+
+.seller-ads .btn-ads {
+    background-color: #ff3366;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 200px;
+    text-align: center;
+    margin: 30px auto 0 auto;
+}
