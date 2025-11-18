@@ -15,9 +15,12 @@
     <link rel="stylesheet" href="../components/organisms/header.css">
     <link rel="stylesheet" href="../components/organisms/footer.css">
     <link rel="stylesheet" href="../components/organisms/checkout-layout.css">
-    <link rel="stylesheet" href="../components/organisms/shipping-options-list.css"> <link rel="stylesheet" href="../components/organisms/payment-section.css"> <link rel="stylesheet" href="../components/molecules/order-summary.css">
+    <link rel="stylesheet" href="../components/organisms/shipping-options-list.css">
+    <link rel="stylesheet" href="../components/organisms/payment-section.css">
+    <link rel="stylesheet" href="../components/molecules/order-summary.css">
     <link rel="stylesheet" href="../components/molecules/form-group.css">
-    <link rel="stylesheet" href="../components/molecules/shipping.css"> <link rel="stylesheet" href="../components/atoms/button.css">
+    <link rel="stylesheet" href="../components/molecules/shipping.css">
+    <link rel="stylesheet" href="../components/atoms/button.css">
     <link rel="stylesheet" href="../components/atoms/input.css">
     <link rel="stylesheet" href="../components/atoms/label.css">
 </head>
@@ -51,20 +54,21 @@
             </div>
 
             <div class="checkout-container">
-                
+
                 <div class="personal-info-column">
                     <h4>Formas de envio</h4>
-                    
-                    <div class="shipping-address-box"> <h5>Seu endereço de entrega</h5>
+
+                    <div class="shipping-address-box">
+                        <h5>Seu endereço de entrega</h5>
                         <p>Rua dos Bobos, nº 0<br>São Paulo - SP<br>CEP: 00000-000</p>
                         <a href="#">Editar endereço</a>
                     </div>
 
                     <h5 class="shipping-title">Selecione uma forma de envio:</h5>
-                    
-                    <ul class="shipping-options-list"> 
-                        
-                        <li class="shipping-option-item"> 
+
+                    <ul class="shipping-options-list">
+
+                        <li class="shipping-option-item">
                             <input type="radio" name="envio" id="correios" checked>
                             <label for="correios">
                                 <strong>Correios</strong>
@@ -72,8 +76,8 @@
                             </label>
                             <span class="shipping-price">R$ 10,20</span>
                         </li>
-                        
-                        <li class="shipping-option-item"> 
+
+                        <li class="shipping-option-item">
                             <input type="radio" name="envio" id="jadlog">
                             <label for="jadlog">
                                 <strong>Jadlog</strong>
@@ -113,9 +117,10 @@
 
                 <div class="address-info-column">
                     <h4>Métodos de pagamento</h4>
-                    
-                    <div class="payment-methods"> 
-                        <div class="payment-tab-buttons"> <button class="payment-tab-btn active" data-tab="pix">PIX - 3% DE DESCONTO</button>
+
+                    <div class="payment-methods">
+                        <div class="payment-tab-buttons"> <button class="payment-tab-btn active" data-tab="pix">PIX - 3%
+                                DE DESCONTO</button>
                             <button class="payment-tab-btn" data-tab="cartao">CARTÃO</button>
                             <button class="payment-tab-btn" data-tab="boleto">BOLETO</button>
                         </div>
@@ -131,15 +136,19 @@
                             <p>Pagamento confirmado em até 2h.</p>
                             <div class="form-group">
                                 <label for="card-number" class="label-dark">Informe o número do cartão:</label>
-                                <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000" class="input-dark">
+                                <input type="text" id="card-number" name="card-number" placeholder="0000 0000 0000 0000"
+                                    class="input-dark">
                             </div>
-                            <div class="card-form-grid"> <div class="form-group">
+                            <div class="card-form-grid">
+                                <div class="form-group">
                                     <label for="card-expiry" class="label-dark">Vencimento:</label>
-                                    <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/AAAA" class="input-dark">
+                                    <input type="text" id="card-expiry" name="card-expiry" placeholder="MM/AAAA"
+                                        class="input-dark">
                                 </div>
                                 <div class="form-group">
                                     <label for="card-cvv" class="label-dark">CVV:</label>
-                                    <input type="text" id="card-cvv" name="card-cvv" placeholder="000" class="input-dark">
+                                    <input type="text" id="card-cvv" name="card-cvv" placeholder="000"
+                                        class="input-dark">
                                 </div>
                             </div>
                             <a href="#" class="payment-conditions-link">Clique para ver as condições de parcelamento</a>
@@ -151,7 +160,7 @@
                     </div>
 
                     <h4>Aplicar cupom de desconto</h4>
-                    
+
                     <div class="coupon-form">
                         <input type="text" placeholder="KITTYDEVS" value="KITTYDEVS" class="input-dark">
                         <button class="btn-apply-coupon">APLICAR</button>
@@ -159,8 +168,8 @@
                     <p class="coupon-success">Cupom aplicado com sucesso! 15% OFF</p>
 
                     <h4>Detalhes de Pagamento</h4>
-                    
-                    <div class="payment-details-placeholder"> 
+
+                    <div class="payment-details-placeholder">
                         <div><span>Total dos produtos</span><span class="bar"></span></div>
                         <div><span>Total do frete</span><span class="bar"></span></div>
                         <div><span>Parcelas</span><span class="bar"></span></div>
@@ -176,7 +185,7 @@
     </main>
 
     <footer class="footer">
-       </footer>
+    </footer>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -204,4 +213,5 @@
     </footer>
 
 </body>
+
 </html>
