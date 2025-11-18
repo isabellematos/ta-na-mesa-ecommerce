@@ -21,5 +21,9 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin/tag', [TagController::class, 'index']);
 
+Route::get('/initial', function () {
+    return view('auth.initial_page');
+})->name('initial');
+
 
 require __DIR__.'/auth.php';
