@@ -188,6 +188,8 @@ body {
     border-radius: 8px;
 }
 
+
+
 @media (max-width: 768px) {
     /* 1. Ajustar o menu de navegação */
    .navbar-content {
