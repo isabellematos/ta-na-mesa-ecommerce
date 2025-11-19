@@ -35,7 +35,7 @@
             <input type="password" id="password" name="password" placeholder="********" required>
         </div>                
 
-        <button type="submit" class="btn-login">Entrar<a href="dashboard"></a></button>
+        <button type="submit" class="btn-login">Entrar</button>
 
         <p class="signup-link">
             NÃO TEM CADASTRO? <a href="register">CADASTRE-SE</a>

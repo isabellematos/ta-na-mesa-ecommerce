@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="{{ asset('components/atoms/button.css') }}">
 	<link rel="stylesheet" href="{{ asset('components/atoms/input.css') }}">
 	<link rel="stylesheet" href="{{ asset('components/atoms/label.css') }}">
-	<link rel="stylesheet" href=".../asset/components/atoms/label.css">
 
 <body>
 	<div class="container">
@@ -56,6 +55,16 @@
 					<input type="password" name="password_confirmation" id="password_confirmation" placeholder="********" required>
                     <span>{{$errors->first('password_confirmation')}}</span>
 				</div>
+
+				<div class="form-group">
+					<label for="tipo">Você é lojista?</label>
+					<select id="tipo" name="tipo" required>
+						<option value="" disabled selected hidden>Selecione</option>
+						<option value="sim">Sim</option>
+						<option value="nao">Não</option>
+					</select>
+				</div>
+
                 
 				<!-- <div class="form-group">
 					<label>Imagem de perfil</label>
@@ -63,7 +72,7 @@
 						value="{{old('imagemPerfil')}}" required>
 				</div> -->
  
-				<button type="submit" class="btn-cadastro" a href="login">CADASTRE-SE</a></button>
+				<button type="submit" class="btn-cadastro">CADASTRE-SE</button>
 				<p class="login-link">JÁ TEM CADASTRO? <a href="login">VOLTE AQUI!</a></p>
 			</form>
 		</div>
@@ -73,30 +82,30 @@
 	</div>
 
 	<script>
-		const form = document.querySelector('form');
-		const senha = document.getElementById('senha');
-		const confirma = document.getElementById('confirmaSenha');
+    const form = document.querySelector('form');
+    const senha = document.getElementById('password');
+    const confirma = document.getElementById('password_confirmation');
 
-		form.addEventListener('submit', function (e) {
-			if (senha.value !== confirma.value) {
-				e.preventDefault();
-				confirma.setCustomValidity("As senhas não coincidem.");
-				confirma.reportValidity();
-			} else {
-				confirma.setCustomValidity("");
-			}
-		});
+    form.addEventListener('submit', function (e) {
+        if (senha.value !== confirma.value) {
+            e.preventDefault();
+            confirma.setCustomValidity("As senhas não coincidem.");
+            confirma.reportValidity();
+        } else {
+            confirma.setCustomValidity("");
+        }
+    });
 
-		senha.addEventListener('input', () => {
-			confirma.setCustomValidity("");
-		});
+    senha.addEventListener('input', () => {
+        confirma.setCustomValidity("");
+    });
 
-		confirma.addEventListener('input', () => {
-			if (senha.value === confirma.value) {
-				confirma.setCustomValidity("");
-			}
-		});
-	</script>
+    confirma.addEventListener('input', () => {
+        if (senha.value === confirma.value) {
+            confirma.setCustomValidity("");
+        }
+    });
+</script>
 
 </body>
 </html> 
