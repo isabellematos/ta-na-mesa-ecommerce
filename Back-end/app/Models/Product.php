@@ -6,16 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    
+
     protected $fillable = [
         'name',
         'price',
         'units',
         'image1',
-        'image2',
         'category_id',
         'description',
-        'user_id', 
+        'user_id',
     ];
 
     public function Tags(){

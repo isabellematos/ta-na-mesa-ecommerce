@@ -7,16 +7,17 @@
     --gray-text: #cccccc;
 }
 
-html, body {
-  height: 100%;
+html,
+body {
+    height: 100%;
 }
 
 body {
     font-family: 'Roboto Condensed', sans-serif;
     background-color: var(--dark-bg);
-    color: var(--light-text); 
+    color: var(--light-text);
     margin: 0;
-    
+
 }
 
 .main-content {
@@ -24,16 +25,18 @@ body {
     background-image: url('../img/escamasFundo.png');
     background-repeat: repeat;
     background-size: 500px;
-    min-height: calc(100vh - 100px); 
-    padding-bottom: 40px; 
+    min-height: calc(100vh - 100px);
+    padding-bottom: 40px;
     box-sizing: border-box;
 }
+
 
 /* Banner Principal */
 .hero-banner {
     position: relative;
     padding-top: 70px;
 }
+
 
 .banner-image {
     position: relative;
@@ -46,8 +49,8 @@ body {
 .banner-image img {
     width: 100%;
     display: block;
-    height: auto; 
-    
+    height: auto;
+
 }
 
 .banner-title {
@@ -56,18 +59,34 @@ body {
     left: 40%;
     transform: translate(-50%, -50%);
     color: var(--light-text);
-    font-size: 4.5rem; 
+    font-size: 4.5rem;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-    font-family: 'Instrument Serif', serif; 
+    font-family: 'Instrument Serif', serif;
+    text-align: center;
+    line-height: 1.2;
+}
+
+/* altera algumas informacoes só na pag do vendedor e comprador*/
+
+.banner-title-seller,
+.banner-title-buyer {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--light-text);
+    font-size: 4.5rem;
+    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+    font-family: 'Instrument Serif', serif;
     text-align: center;
     line-height: 1.2;
 }
 
 .scroll-down-container {
     text-align: center;
-    
+
     margin-top: -37.5px;
-    
+
     position: relative;
     z-index: 10;
 }
@@ -76,9 +95,10 @@ body {
     width: 75px;
     height: 75px;
     cursor: pointer;
-    box-shadow: 0 0 0 5px #252525; 
+    box-shadow: 0 0 0 5px #252525;
     border-radius: 50%;
 }
+
 /* Seção do Filtro */
 .filter-bar {
     background-color: #333;
@@ -92,24 +112,24 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    
+
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
 
 .filter-line {
     width: 100%;
-    height: 2px; 
+    height: 2px;
     background-image: url('../img/linhaBranca.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
-    margin: 10px 0 20px 0; 
+    margin: 10px 0 20px 0;
 }
 
 .filter-title {
     font-size: 1.2rem;
-    font-weight: bold; 
+    font-weight: bold;
 }
 
 
@@ -124,11 +144,9 @@ body {
 .filter-group {
     display: flex;
     width: 30%;
-    align-items: center; 
-    gap: 10px; 
+    align-items: center;
+    gap: 10px;
 }
-
-
 
 
 .filter-category {
@@ -143,7 +161,6 @@ body {
 }
 
 
-
 /* Seção da Loja */
 .store {
     padding: 0 50px 50px 50px;
@@ -151,7 +168,7 @@ body {
     background-image: url('../img/escamasFundo.png');
     background-repeat: repeat;
     background-size: 500px;
-    margin-top: 30 px; 
+    margin-top: 30 px;
 }
 
 /* Barra de Filtro */
@@ -167,7 +184,7 @@ body {
 }
 
 .products-section {
-  margin-bottom: 60px;
+    margin-bottom: 60px;
 }
 
 /* Só controla imagens de produto */
@@ -177,7 +194,7 @@ body {
     border-radius: 8px;
     border: 3px solid #000;
     object-fit: contain;
-    margin: 10px auto;  
+    margin: 10px auto;
     display: block;
 }
 
@@ -188,50 +205,510 @@ body {
     border-radius: 8px;
 }
 
-
-
 @media (max-width: 768px) {
+
     /* 1. Ajustar o menu de navegação */
-   .navbar-content {
-        flex-direction: column; 
+    .navbar-content {
+        flex-direction: column;
         gap: 20px;
     }
 
     .nav-links {
-        flex-direction: column; 
+        flex-direction: column;
         gap: 10px;
         text-align: center;
     }
 
     /* 2. Centralizar o logo e ações do usuário */
-    .logo, .user-actions {
-        margin: 0 auto; 
+    .logo,
+    .user-actions {
+        margin: 0 auto;
     }
 
     /* 3. Ajustar a barra de filtro */
     .filter-bar {
-        padding: 15px; 
+        padding: 15px;
     }
 
     .filter-row {
-        flex-direction: column; 
+        flex-direction: column;
         gap: 15px;
     }
 
 
     .filter-category {
-        flex-direction: column; 
+        flex-direction: column;
         gap: 10px;
     }
 
     .category-buttons {
-        justify-content: center; 
-        flex-wrap: wrap; 
+        justify-content: center;
+        flex-wrap: wrap;
     }
+
+
+    .seller-info-content,
+    .buyer-info-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+    }
+
+    .seller-infos h2,
+    .buyer-infos h2 {
+        text-align: center;
+        margin-left: 0;
+    }
+
+    .seller-photo,
+    .buyer-photo {
+        margin-left: 0;
+    }
+
+    .field-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+
+    .field-row label {
+        width: 100%;
+        text-align: left;
+    }
+
+    .seller-save-btn,
+    .buyer-save-btn {
+        justify-content: center;
+    }
+
 }
 
-    /* 4. Mudar a largura da imagem do produto para se adaptar */
-    .product-image {
-        width: 100px !important;
-        height: 100px !important;
-    }
+/* 4. Mudar a largura da imagem do produto para se adaptar */
+.product-image {
+    width: 100px !important;
+    height: 100px !important;
+}
+
+/* informações do vendedor e comprador */
+
+
+.seller-infos h2,
+.seller-ads h2,
+.buyer-infos h2,
+.buyer-shopped h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.seller-info-content,
+.buyer-info-content {
+    justify-content: space-between;
+    display: flex;
+    gap: 100px;
+}
+
+.seller-photo,
+.buyer-photo {
+    margin-left: 100px;
+}
+
+.seller-photo img,
+.buyer-photo img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.seller-fields,
+.buyer-fields {
+    margin-right: 100px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.field-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.field-row label {
+    width: 150px;
+    text-align: right;
+    font-weight: bold;
+}
+
+.seller-fields input[type="url"],
+.seller-fields .textarea-wrapper,
+.seller-fields .input-upload-container,
+.buyer-fields input[type="url"],
+.buyer-fields .textarea-wrapper,
+.buyer-fields .input-upload-container {
+    flex: 1;
+}
+
+.seller-fields input[type="url"],
+.seller-fields textarea,
+.buyer-fields input[type="url"],
+.buyer-fields textarea {
+    background-color: #B5B5B5;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    color: #333;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.textarea-wrapper {
+    background-color: #B5B5B5;
+    border-radius: 5px;
+}
+
+.input-upload-container {
+    display: flex;
+    align-items: center;
+    background-color: #333;
+    padding: 0;
+    border-radius: 5px;
+    height: 40px;
+}
+
+.btn-upload {
+    background-color: #333;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 0.9em;
+    height: 100%;
+}
+
+.seller-save-btn,
+.buyer-save-btn {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+}
+
+.seller-save-btn .btn-primary,
+.buyer-save-btn .btn-primary {
+    background-color: #ff3366;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.seller-ads,
+.seller-infos,
+.buyer-shopped,
+.buyer-infos {
+    background-color: #1E1E1E;
+    padding: 10px !important;
+    border-radius: 20px;
+    height: auto;
+    padding-bottom: 30px;
+
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
+    width: calc(100% - 100px);
+    max-width: 1750px;
+    margin: 60px auto 40px auto;
+
+    color: var(--light-text);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+}
+
+.seller-ads .btn-ads,
+.buyer-shopped .btn-ads {
+    background-color: #ff3366;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    width: 200px;
+    text-align: center;
+    margin: 30px auto 0 auto;
+}
+
+/* MODAL VENDEDOR */
+
+.modal-overlay {
+    display: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-color: rgba(0, 0, 0, 0.9);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+}
+
+.modal-content {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    padding: 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 550px;
+    box-shadow: 0 5px 25px rgba(255, 51, 102, 0.5);
+    position: relative;
+}
+
+.modal-content h2 {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 25px;
+}
+
+.modal-close-btn {
+    position: absolute;
+    top: -15px;
+    right: -15px;
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border: none;
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    font-size: 1.5rem;
+    cursor: pointer;
+    line-height: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    transition: background-color 0.3s;
+}
+
+.modal-close-btn:hover {
+    background-color: #ff6699;
+}
+
+.modal-form-grid {
+    display: grid;
+    grid-template-columns: 100px 1fr;
+    gap: 5px 15px;
+    align-items: center;
+}
+
+.modal-form-grid label {
+    text-align: right;
+    font-weight: bold;
+    font-size: 0.95rem;
+    color: var(--gray-text);
+    height: 20px;
+    width: 50%;
+}
+
+.modal-input,
+.modal-input-textarea,
+.modal-btn-upload,
+.modal-form-grid select {
+    border: 1px solid #555;
+    padding: 8px;
+    border-radius: 5px;
+    color: var(--dark-bg);
+    width: 100%;
+    box-sizing: border-box;
+    height: 40px;
+}
+
+.modal-input {
+    font-size: 12px;
+}
+
+
+.modal-input-textarea {
+    grid-column: 2;
+    height: 40px;
+    resize: none;
+    color: var(--dark-bg);
+    font-size: 12px;
+}
+
+.modal-form-grid label[for="modal-descricao"] {
+    align-self: flex-start;
+    padding-top: 8px;
+    height: 50px;
+}
+
+.modal-btn-upload {
+    background-color: #555;
+    cursor: pointer;
+    text-align: center;
+    font-weight: normal;
+    transition: background-color 0.2s;
+}
+
+.modal-btn-upload:hover {
+    background-color: #666;
+}
+
+.modal-btn-primary {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    border: none;
+    padding: 12px 25px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.1rem;
+    display: block;
+    width: 80%;
+    margin: 30px auto 0 auto;
+    transition: background-color 0.3s;
+}
+
+.modal-btn-primary:hover {
+    background-color: #cc2952;
+}
+
+/* MODAL COMPRADOR */
+
+.modal-content-details {
+    max-width: 650px;
+    padding: 30px 40px;
+    text-align: left;
+}
+
+.modal-title-details {
+    font-size: 1.8rem;
+    color: var(--light-text);
+    margin-bottom: 25px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 10px;
+}
+
+.order-details-info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.order-details-info h3 {
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    margin-top: 0;
+    margin-bottom: 5px;
+    font-family: 'Instrument Serif', serif;
+}
+
+.order-details-info p {
+    margin: 0 0 15px 0;
+    color: var(--gray-text);
+}
+
+.status-section {
+    text-align: right;
+}
+
+
+.status-delivered {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #4CAF50;
+    margin-top: 15px !important;
+}
+
+.product-summary {
+    background-color: #2b2b2b;
+    padding: 20px;
+    border-radius: 8px;
+}
+
+.product-title-details {
+    font-size: 1.5rem;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 20px;
+    font-family: 'Instrument Serif', serif;
+}
+
+.product-info-row {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+}
+
+.product-image-details img {
+    width: 120px;
+    height: 120px;
+    border-radius: 5px;
+    object-fit: cover;
+    border: 1px solid #555;
+}
+
+.product-description-details {
+    flex: 1;
+}
+
+.product-description-details p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: var(--gray-text);
+}
+
+.product-btnActions {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    margin-top: 15px;
+    width: 50px;
+}
+
+.btn-action {
+    flex: 1;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 0.9rem;
+    width: 100px;
+    gap: 10px;
+
+    transition: background-color 0.2s;
+}
+
+.btn-details {
+    background-color: #555;
+    color: var(--light-text);
+}
+
+.btn-details:hover {
+    background-color: #666;
+}
+
+.btn-cancel {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+}
+
+.btn-cancel:hover {
+    background-color: #cc2952;
+}
