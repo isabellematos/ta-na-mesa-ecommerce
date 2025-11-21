@@ -31,7 +31,8 @@
                     <li><a href="#" class="active-link">Loja</a></li>
                 </ul>
                 <div class="user-actions">
-                    <a href="#"><img src="../assets/img/user-icon.png" alt="Perfil do usuário"></a>
+                    <a href="{{ route('dashboard') }}">
+                        <img src="{{ asset('assets/img/user-icon.png') }}" alt="Perfil do usuário"></a>
                     <a href="#"><img src="../assets/img/Shopping cart.png" alt="Carrinho de compras"></a>
                 </div>
             </div>
