@@ -87,7 +87,7 @@
                 </section>
 
                 <section id="seller-salesAds" class="seller-ads">
-                    <h2 class="sellers-title">Seus anuncios</h2>
+                    <h2 class="sellers-title">Seus anúncios</h2>
 
                     <div class="filter-bar">
                         <div class="filter-header">
@@ -107,33 +107,23 @@
                                 </div>
                             </div>
                             <div class="filter-group">
-                                <label for="sistema">Sistema:</label>
+                                <label for="sistema">Nome:</label>
                                 <div class="input-container">
                                     <select id="sistema"></select>
                                     <button class="btn-reset-group">Resetar</button>
                                 </div>
                             </div>
                             <div class="filter-group">
-                                <label for="localizacao">Localização:</label>
+                                <label for="localizacao">Categoria:</label>
                                 <div class="input-container">
                                     <select id="localizacao"></select>
                                     <button class="btn-reset-group">Resetar</button>
                                 </div>
                             </div>
                         </div>
-                        <div class="filter-category">
-                            <label>Categoria:</label>
-                            <div class="category-buttons">
-                                <button class="btn-category active">Fantasia</button>
-                                <button class="btn-category">Terror</button>
-                                <button class="btn-category">Medieval</button>
-                                <button class="btn-category">Aventura</button>
-                                <button class="btn-category">Investigação</button>
-                            </div>
-                        </div>
                     </div>
 
-                    <button class="btn-ads" id="openModalButton">Adicionar novo anuncio</button>
+                    <button class="btn-ads" id="openModalButton">Adicionar novo anúncio</button>
                 </section>
             </section>
 
@@ -181,7 +171,7 @@
                 </div>
             </div>
         </section>
-        
+
  <!--Listagem de itens-->
             <table>
             <thead>
