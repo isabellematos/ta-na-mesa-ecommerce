@@ -86,99 +86,40 @@
     </div>
 </div>
                     <div class="filter-category">
-                        <label>Categoria:</label>
-                        <div class="category-buttons">
-                            <button class="btn-category active">Fantasia</button>
-                            <button class="btn-category">Terror</button>
-                            <button class="btn-category">Medieval</button>
-                            <button class="btn-category">Aventura</button>
-                            <button class="btn-category">Investigação</button>
-                        </div>
-                    </div>
+    <label>Categoria:</label>
+    <div class="category-buttons">
+        <button type="button" class="btn-category active" onclick="selectCategory(this)">Todos</button>
+        
+        <button type="button" class="btn-category" onclick="selectCategory(this)">Para sua mesa</button>
+        <button type="button" class="btn-category" onclick="selectCategory(this)">Vestir</button>
+        <button type="button" class="btn-category" onclick="selectCategory(this)">Ler</button>
+        <button type="button" class="btn-category" onclick="selectCategory(this)">Decoração</button>
+    </div>
+</div>
                 </div>
             </section>
         </section>
 
         <div class="product-grid">
+    @foreach($products as $product)
+        <div class="product-card">
+            <div class="card-header">
+                <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}" class="product-image">
+            </div>
+            
+            <button class="favorite-btn" aria-label="Adicionar aos favoritos">
+                <img src="{{ asset('assets/img/coracaoBotao.png') }}" alt="Favoritar" class="heart-img">
+            </button>
 
-  <div class="product-card">
-    <div class="card-header">
-        <img src="../assets/img/image 33.png" alt="Dados de RPG vermelhos" class="product-image">
-    </div>
-    <button class="favorite-btn" aria-label="Adicionar aos favoritos">
-        <img src="../assets/img/coracaoBotao.png" alt="Favoritar" class="heart-img">
-    </button>
+            <h3 class="product-title">{{ $product->name }}</h3>
 
-    <h3 class="product-title">Conjunto de Dados Poliédricos</h3>
-    <p class="product-description">para RPG DND MTG Jogo de Tabuleiro de RPG</p>
-    <span class="product-price">R$ 33,99</span>
-    <button class="buy-button">COMPRAR</button>
-</div>
+            <p class="product-description">{{ Str::limit($product->description, 50) }}</p>
 
-    <div class="product-card">
-    <button class="favorite-btn" aria-label="Adicionar aos favoritos">
-        <img src="../assets/img/coracaoBotao.png" alt="Favoritar" class="heart-img">
-    </button>
-    <div class="card-header">
-        <img src="../assets/img/image 1.png" alt="Dados de RPG pretos" class="product-image">
-    </div>
-    <h3 class="product-title">Conjunto de Dados Poliédricos</h3>
-    <p class="product-description">para RPG DND MTG Jogo de Tabuleiro de RPG</p>
-    <span class="product-price">R$ 47,99</span>
-    <button class="buy-button">COMPRAR</button>
-</div>
+            <span class="product-price">R$ {{ number_format($product->price, 2, ',', '.') }}</span>
 
-    <div class="product-card">
-    <button class="favorite-btn" aria-label="Adicionar aos favoritos">
-        <img src="../assets/img/coracaoBotao.png" alt="Favoritar" class="heart-img">
-    </button>
-    <div class="card-header">
-        <img src="../assets/img/image 1.png" alt="Dados de RPG pretos" class="product-image">
-    </div>
-    <h3 class="product-title">Conjunto de Dados Poliédricos</h3>
-    <p class="product-description">para RPG DND MTG Jogo de Tabuleiro de RPG</p>
-    <span class="product-price">R$ 47,99</span>
-    <button class="buy-button">COMPRAR</button>
-</div>
-
-    <div class="product-card">
-    <button class="favorite-btn" aria-label="Adicionar aos favoritos">
-        <img src="../assets/img/coracaoBotao.png" alt="Favoritar" class="heart-img">
-    </button>
-    <div class="card-header">
-        <img src="../assets/img/image 1.png" alt="Dados de RPG pretos" class="product-image">
-    </div>
-    <h3 class="product-title">Conjunto de Dados Poliédricos</h3>
-    <p class="product-description">para RPG DND MTG Jogo de Tabuleiro de RPG</p>
-    <span class="product-price">R$ 47,99</span>
-    <button class="buy-button">COMPRAR</button>
-</div>
-
-    <div class="product-card">
-    <button class="favorite-btn" aria-label="Adicionar aos favoritos">
-        <img src="../assets/img/coracaoBotao.png" alt="Favoritar" class="heart-img">
-    </button>
-    <div class="card-header">
-        <img src="../assets/img/image 1.png" alt="Dados de RPG pretos" class="product-image">
-    </div>
-    <h3 class="product-title">Conjunto de Dados Poliédricos</h3>
-    <p class="product-description">para RPG DND MTG Jogo de Tabuleiro de RPG</p>
-    <span class="product-price">R$ 47,99</span>
-    <button class="buy-button">COMPRAR</button>
-</div>
-    <div class="product-card">
-    <button class="favorite-btn" aria-label="Adicionar aos favoritos">
-        <img src="../assets/img/coracaoBotao.png" alt="Favoritar" class="heart-img">
-    </button>
-    <div class="card-header">
-        <img src="../assets/img/image 1.png" alt="Dados de RPG pretos" class="product-image">
-    </div>
-    <h3 class="product-title">Conjunto de Dados Poliédricos</h3>
-    <p class="product-description">para RPG DND MTG Jogo de Tabuleiro de RPG</p>
-    <span class="product-price">R$ 47,99</span>
-    <button class="buy-button">COMPRAR</button>
-</div>
-
+            <button class="buy-button">COMPRAR</button>
+        </div>
+    @endforeach
     </div>
     </main>
 <div class="footer-spacer"></div>
@@ -188,6 +129,43 @@
             <p>Este site foi desenvolvido por Isabelle Matos, Laís Lívia, Luana Miyashiro, Maria Vivielle, Malu Araujo e Yasmin Carolina</p>
         </div>
     </footer>
+
+    <style>
+    .btn-category {
+        background-color: transparent; 
+        border: 1px solid #ccc; 
+        color: #ccc; 
+        padding: 8px 16px;
+        border-radius: 20px; 
+        cursor: pointer;
+        transition: all 0.3s ease; 
+    }
+
+    .btn-category:hover {
+        background-color: rgba(255, 255, 255, 0.2); 
+        border-color: #fff;
+        color: #fff;
+    }
+
+    .btn-category.active {
+        background-color: #fff !important; 
+        color: #000 !important;
+        border-color: #fff !important;
+        font-weight: bold;
+    }
+</style>
+
+<script>
+    function selectCategory(selectedButton) {
+        const buttons = document.querySelectorAll('.btn-category');
+        
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        selectedButton.classList.add('active');
+        
+        console.log("Categoria selecionada: " + selectedButton.innerText);
+    }
+</script>
 
 </body>
 </html>

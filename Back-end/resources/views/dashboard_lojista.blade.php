@@ -341,6 +341,13 @@
 </div>
     </main>
 
+    <footer class="footer">
+        <div class="footer-content">
+            <p>&copy; direitos reservados 2025</p>
+            <p>Este site foi desenvolvido por Isabelle Matos, Laís Lívia, Luana Miyashiro, Maria Vivielle, Malu Araujo e Yasmin Carolina</p>
+        </div>
+    </footer>
+
     <!-- Script para abrir/fechar o modal -->
     <script>
         document.addEventListener('DOMContentLoaded', function () {
