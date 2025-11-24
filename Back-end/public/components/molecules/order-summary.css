@@ -39,3 +39,11 @@
     padding-top: 10px;
     border-top: 1px solid #444;
 }
+
+.order-summary .summary-installments {
+    font-size: 0.9rem;
+    color: var(--gray-text);
+    text-align: right;
+    margin-top: 10px;
+    line-height: 1.4;
+}

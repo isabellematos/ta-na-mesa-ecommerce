@@ -43,15 +43,22 @@
                     </a>
                 </div>
                 <div class="user-actions">
-                    <a href="#">
-                        <img src="{{ Auth::user()->imagemPerfil ? asset('storage/'.Auth::user()->imagemPerfil) : asset('assets/img/gatoMago.jpg') }}" 
-                             alt="Perfil do usuário" 
-                             style="width: 50px; height: 50px; object-fit: cover; border-radius: 50%;">
+                    <a href="{{ route('profile.edit') }}">
+                        @if(Auth::user()->imagemPerfil)
+                            <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}" 
+                                 alt="Perfil do usuário" 
+                                 style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;"
+                                 onerror="this.onerror=null; this.src='{{ asset('assets/img/user-icon.png') }}';">
+                        @else
+                            <img src="{{ asset('assets/img/user-icon.png') }}" 
+                                 alt="Perfil do usuário" 
+                                 style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;">
+                        @endif
                     </a>
 
-                    <form method="POST" action="{{ route('logout') }}">
+                    <form method="POST" action="{{ route('logout') }}" style="display: inline; margin-left: 15px;">
                         @csrf
-                        <button type="submit" class="perfilLojista" style="background:none; border:none; cursor:pointer; font-family:inherit; font-size:inherit; color:inherit; margin-left: 10px;">
+                        <button type="submit" style="background:none; border:none; cursor:pointer; font-family:inherit; font-size:inherit; color:white; text-decoration:none;">
                             Sair
                         </button>
                     </form>
@@ -74,7 +81,11 @@
                     <h2>Suas informações</h2>
                     <div class="seller-info-content">
                         <div class="seller-photo">
-                            <img src="{{ Auth::user()->imagemPerfil ? asset('storage/'.Auth::user()->imagemPerfil) : asset('assets/img/gatoMago.jpg') }}" alt="Foto do vendedor">
+                            <img id="profile-preview-lojista" 
+                                 src="{{ Auth::user()->imagemPerfil ? asset('storage/'.Auth::user()->imagemPerfil).'?v='.time() : asset('assets/img/user-icon.png') }}" 
+                                 alt="Foto do vendedor"
+                                 style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;"
+                                 onerror="this.onerror=null; this.src='{{ asset('assets/img/user-icon.png') }}';">
                         </div>
                         
                         <form class="seller-fields" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
@@ -84,7 +95,7 @@
                             <div class="field-row">
                                 <label>Foto de perfil:</label>
                                 <div class="input-upload-container">
-                                    <input type="file" id="profile-upload" name="imagemPerfil" style="display: none;">
+                                    <input type="file" id="profile-upload" name="imagemPerfil" style="display: none;" accept="image/*" onchange="previewImageLojista(event)">
                                     <button type="button" class="btn-upload" onclick="document.getElementById('profile-upload').click()">FAÇA O UPLOAD</button>
                                 </div>
                             </div>
@@ -350,6 +361,17 @@
 
     <!-- Script para abrir/fechar o modal -->
     <script>
+        function previewImageLojista(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    document.getElementById('profile-preview-lojista').src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+            }
+        }
+
         document.addEventListener('DOMContentLoaded', function () {
             const modal = document.getElementById('productModal');
             const openModalBtn = document.getElementById('openModalButton');

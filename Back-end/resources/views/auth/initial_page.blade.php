@@ -24,16 +24,38 @@
                 <div class="logo">
                     <img src="../assets/img/logoDaora.png" alt="Logo Ta Na Mesa">
                 </div>
-                <ul class="nav-links">
-                    <li><a href="#">Suas mesas</a></li>
-                    <li><a href="#">Mesas</a></li>
-                    <li><a href="#">Cadastro de mesas</a></li>
-                    <li><a href="#" class="active-link">Loja</a></li>
-                </ul>
                 <div class="user-actions">
-                    <a href="{{ route('dashboard') }}">
-                        <img src="{{ asset('assets/img/user-icon.png') }}" alt="Perfil do usuário"></a>
-                    <a href="#"><img src="../assets/img/Shopping cart.png" alt="Carrinho de compras"></a>
+                    <a href="{{ route('cart.index') }}">
+                        <img src="{{ asset('assets/img/Shopping cart.png') }}" alt="Carrinho de compras" style="width: 30px; height: 30px;">
+                    </a>
+                    @auth
+                        <a href="{{ route('profile.edit') }}">
+                            @if(Auth::user()->imagemPerfil)
+                                <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}" 
+                                     alt="Perfil do usuário" 
+                                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;"
+                                     onerror="this.onerror=null; this.src='{{ asset('assets/img/user-icon.png') }}';">
+                            @else
+                                <img src="{{ asset('assets/img/user-icon.png') }}" 
+                                     alt="Perfil do usuário" 
+                                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;">
+                            @endif
+                        </a>
+                    @else
+                        <a href="{{ route('login') }}">
+                            <img src="{{ asset('assets/img/user-icon.png') }}" 
+                                 alt="Perfil do usuário"
+                                 style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                        </a>
+                    @endauth
+                    <a href="{{ route('logout') }}" 
+                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                       style="color: white; text-decoration: none; margin-left: 15px;">
+                        Sair
+                    </a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        @csrf
+                    </form>
                 </div>
             </div>
         </nav>
@@ -53,71 +75,91 @@
             </div>
 
             <section id="store-section" class="store">
-                <div class="filter-bar">
-                    <div class="filter-header">
-                        <p class="filter-title">Filtro</p>
-                        <div class="filter-actions">
-                            <button class="btn-reset">Resetar</button>
-                            <button class="btn-apply">Aplicar</button>
+                <form method="GET" action="{{ route('initial') }}" id="filter-form">
+                    <div class="filter-bar-modern">
+                        <div class="filter-header-modern">
+                            <span class="filter-icon">🔍</span>
+                            <h3 class="filter-title-modern">Filtro</h3>
+                            <div class="filter-actions-modern">
+                                <button type="button" class="btn-reset-modern" onclick="resetFilters()">Resetar</button>
+                                <button type="submit" class="btn-apply-modern">Aplicar</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-content-modern">
+                            <div class="filter-group-modern">
+                                <label for="data">Data:</label>
+                                <select name="data" id="data" class="filter-select-modern">
+                                    <option value="">Selecione</option>
+                                    <option value="hoje">Hoje</option>
+                                    <option value="semana">Esta semana</option>
+                                    <option value="mes">Este mês</option>
+                                </select>
+                                <button type="button" class="btn-reset-field" onclick="document.getElementById('data').value=''">Resetar</button>
+                            </div>
+
+                            <div class="filter-divider"></div>
+
+                            <div class="filter-group-modern">
+                                <label for="nome">Nome:</label>
+                                <input type="text" name="search" id="nome" class="filter-input-modern" placeholder="Buscar produto..." value="{{ request('search') }}">
+                                <button type="button" class="btn-reset-field" onclick="document.getElementById('nome').value=''">Resetar</button>
+                            </div>
+
+                            <div class="filter-divider"></div>
+
+                            <div class="filter-group-modern">
+                                <label for="categoria">Categoria:</label>
+                                <select name="category_id" id="categoria" class="filter-select-modern">
+                                    <option value="">Todas</option>
+                                    @foreach(\App\Models\Category::all() as $category)
+                                        <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                            {{ $category->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button type="button" class="btn-reset-field" onclick="document.getElementById('categoria').value=''">Resetar</button>
+                            </div>
+                        </div>
+
+                        <div class="filter-tags-section">
+                            <label class="tags-label">Tags:</label>
+                            <div class="tags-buttons">
+                                <button type="button" class="tag-btn active" data-tag="todos" onclick="event.preventDefault(); selectTag(this, '');">Vestir</button>
+                                <button type="button" class="tag-btn" data-tag="mesa" onclick="event.preventDefault(); selectTag(this, 'mesa');">Mesa</button>
+                                <button type="button" class="tag-btn" data-tag="dados" onclick="event.preventDefault(); selectTag(this, 'dados');">Dados</button>
+                                <button type="button" class="tag-btn" data-tag="miniaturas" onclick="event.preventDefault(); selectTag(this, 'miniaturas');">Miniaturas</button>
+                                <button type="button" class="tag-btn" data-tag="livros" onclick="event.preventDefault(); selectTag(this, 'livros');">Livros</button>
+                            </div>
+                            <input type="hidden" name="tag" id="tag-input" value="">
                         </div>
                     </div>
-                     <div class="filter-line"></div>
-<div class="filter-row">
-    <div class="filter-group">
-        <label for="data">Data:</label>
-        <div class="input-container">
-            <input type="date" id="data">
-            <button class="btn-reset-group">Resetar</button>
-        </div>
-    </div>
-    <div class="filter-group">
-        <label for="sistema">Sistema:</label>
-        <div class="input-container">
-            <select id="sistema"></select>
-            <button class="btn-reset-group">Resetar</button>
-        </div>
-    </div>
-    <div class="filter-group">
-        <label for="localizacao">Localização:</label>
-        <div class="input-container">
-            <select id="localizacao"></select>
-            <button class="btn-reset-group">Resetar</button>
-        </div>
-    </div>
-</div>
-                    <div class="filter-category">
-    <label>Categoria:</label>
-    <div class="category-buttons">
-        <button type="button" class="btn-category active" onclick="selectCategory(this)">Todos</button>
-        
-        <button type="button" class="btn-category" onclick="selectCategory(this)">Para sua mesa</button>
-        <button type="button" class="btn-category" onclick="selectCategory(this)">Vestir</button>
-        <button type="button" class="btn-category" onclick="selectCategory(this)">Ler</button>
-        <button type="button" class="btn-category" onclick="selectCategory(this)">Decoração</button>
-    </div>
-</div>
-                </div>
+                </form>
             </section>
         </section>
 
         <div class="product-grid">
     @foreach($products as $product)
         <div class="product-card">
-            <div class="card-header">
-                <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}" class="product-image">
-            </div>
-            
-            <button class="favorite-btn" aria-label="Adicionar aos favoritos">
-                <img src="{{ asset('assets/img/coracaoBotao.png') }}" alt="Favoritar" class="heart-img">
-            </button>
+            <a href="{{ route('product.show', $product->id) }}" style="text-decoration: none; color: inherit;">
+                <div class="card-header">
+                    <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}" class="product-image">
+                </div>
+                
+                <button class="favorite-btn" aria-label="Adicionar aos favoritos" onclick="event.preventDefault(); event.stopPropagation();">
+                    <img src="{{ asset('assets/img/coracaoBotao.png') }}" alt="Favoritar" class="heart-img">
+                </button>
 
-            <h3 class="product-title">{{ $product->name }}</h3>
+                <h3 class="product-title">{{ $product->name }}</h3>
 
-            <p class="product-description">{{ Str::limit($product->description, 50) }}</p>
+                <p class="product-description">{{ Str::limit($product->description, 50) }}</p>
 
-            <span class="product-price">R$ {{ number_format($product->price, 2, ',', '.') }}</span>
+                <span class="product-price">R$ {{ number_format($product->price, 2, ',', '.') }}</span>
+            </a>
 
-            <button class="buy-button">COMPRAR</button>
+            <a href="{{ route('product.show', $product->id) }}">
+                <button class="buy-button">COMPRAR</button>
+            </a>
         </div>
     @endforeach
     </div>
@@ -131,40 +173,225 @@
     </footer>
 
     <style>
-    .btn-category {
-        background-color: transparent; 
-        border: 1px solid #ccc; 
-        color: #ccc; 
-        padding: 8px 16px;
-        border-radius: 20px; 
+    .filter-bar-modern {
+        background-color: #2a2a2a;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 30px;
+    }
+
+    .filter-header-modern {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #444;
+    }
+
+    .filter-icon {
+        font-size: 1.5rem;
+        margin-right: 10px;
+    }
+
+    .filter-title-modern {
+        flex-grow: 1;
+        margin: 0;
+        font-size: 1.2rem;
+        color: white;
+    }
+
+    .filter-actions-modern {
+        display: flex;
+        gap: 10px;
+    }
+
+    .btn-reset-modern, .btn-apply-modern {
+        padding: 8px 20px;
+        border-radius: 5px;
+        border: none;
         cursor: pointer;
-        transition: all 0.3s ease; 
+        font-weight: bold;
+        transition: all 0.3s;
     }
 
-    .btn-category:hover {
-        background-color: rgba(255, 255, 255, 0.2); 
-        border-color: #fff;
-        color: #fff;
+    .btn-reset-modern {
+        background-color: transparent;
+        border: 1px solid #666;
+        color: #ccc;
     }
 
-    .btn-category.active {
-        background-color: #fff !important; 
-        color: #000 !important;
-        border-color: #fff !important;
+    .btn-reset-modern:hover {
+        background-color: #444;
+        color: white;
+    }
+
+    .btn-apply-modern {
+        background-color: white;
+        color: #000;
+    }
+
+    .btn-apply-modern:hover {
+        background-color: #f0f0f0;
+    }
+
+    .filter-content-modern {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    .filter-group-modern {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .filter-group-modern label {
+        color: white;
+        font-weight: bold;
+        white-space: nowrap;
+    }
+
+    .filter-select-modern, .filter-input-modern {
+        padding: 8px 15px;
+        border-radius: 5px;
+        border: 1px solid #555;
+        background-color: white;
+        color: #000;
+        min-width: 150px;
+    }
+
+    .filter-divider {
+        width: 1px;
+        height: 40px;
+        background-color: #555;
+    }
+
+    .btn-reset-field {
+        padding: 6px 12px;
+        border-radius: 5px;
+        border: none;
+        background-color: transparent;
+        color: #CD004A;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 0.9rem;
+    }
+
+    .btn-reset-field:hover {
+        text-decoration: underline;
+    }
+
+    .filter-tags-section {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        padding-top: 15px;
+        border-top: 1px solid #444;
+    }
+
+    .tags-label {
+        color: white;
+        font-weight: bold;
+    }
+
+    .tags-buttons {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .tag-btn {
+        padding: 8px 20px;
+        border-radius: 20px;
+        border: 1px solid #666;
+        background-color: transparent;
+        color: #ccc;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .tag-btn:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+        border-color: #999;
+        color: white;
+    }
+
+    .tag-btn.active {
+        background-color: white;
+        color: #000;
+        border-color: white;
         font-weight: bold;
     }
 </style>
 
+<!-- Modal de Sucesso -->
+@if(session('purchase_success'))
+<div id="success-modal" style="display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;">
+    <div style="position: relative; background: linear-gradient(135deg, #CD004A 0%, #8B0032 100%); border-radius: 20px; padding: 40px; max-width: 500px; text-align: center; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);">
+        <button onclick="closeModal()" style="position: absolute; top: -20px; right: -20px; width: 50px; height: 50px; border-radius: 50%; background-color: #CD004A; border: 3px solid white; color: white; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+            ✕
+        </button>
+        
+        <h1 style="color: white; font-size: 3rem; margin: 0 0 10px 0; font-weight: bold;">EBA!</h1>
+        <h2 style="color: white; font-size: 1.5rem; margin: 0 0 30px 0; font-weight: bold;">COMPRA FINALIZADA COM SUCESSO!</h2>
+        
+        <div style="width: 150px; height: 150px; margin: 20px auto; background-color: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 80px;">
+            🪄
+        </div>
+        
+        <p style="color: white; font-size: 1.1rem; line-height: 1.6; margin: 20px 0;">
+            Nossos magos já estão preparando a poção<br>
+            para que, magicamente, seu pedido chegue até<br>
+            você!
+        </p>
+        
+        <a href="{{ route('profile.edit') }}">
+            <button class="buy-button" style="margin-top: 30px; padding: 15px 40px; font-size: 1.1rem;">
+                Voltar para perfil
+            </button>
+        </a>
+    </div>
+</div>
+@endif
+
 <script>
-    function selectCategory(selectedButton) {
-        const buttons = document.querySelectorAll('.btn-category');
-        
+    function selectTag(button, tagValue) {
+        console.log('Tag selecionada:', tagValue);
+        const buttons = document.querySelectorAll('.tag-btn');
         buttons.forEach(btn => btn.classList.remove('active'));
-        
-        selectedButton.classList.add('active');
-        
-        console.log("Categoria selecionada: " + selectedButton.innerText);
+        button.classList.add('active');
+        document.getElementById('tag-input').value = tagValue;
     }
+
+    function resetFilters() {
+        document.getElementById('filter-form').reset();
+        document.querySelectorAll('.tag-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelector('.tag-btn[data-tag="todos"]')?.classList.add('active');
+        document.getElementById('tag-input').value = '';
+        window.location.href = '{{ route("initial") }}';
+    }
+
+    function closeModal() {
+        const modal = document.getElementById('success-modal');
+        if (modal) {
+            modal.style.display = 'none';
+        }
+    }
+
+    // Fechar modal ao clicar fora dele
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('success-modal');
+        if (modal) {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeModal();
+                }
+            });
+        }
+    });
 </script>
 
 </body>

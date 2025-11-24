@@ -11,6 +11,7 @@
 .navbar {
     display: flex;
     justify-content: center;
+    background-image: url('../../assets/img/Image2.png'); 
     background-size: cover;
     background-repeat: no-repeat;
     padding: 10px 0;
@@ -51,6 +52,7 @@
     text-decoration: none;
     font-weight: bold;
     padding-bottom: 5px;
+    background-image: url('../../assets/img/Image2.png'); 
     background-size: 100% 2px;
     background-repeat: no-repeat;
     background-position: bottom center;
@@ -62,10 +64,17 @@
 }
 
 .nav-links a.active-link {
-    background-image: url('../../assets/img/Image3.png');
+    background-image: url('../../assets/img/Image3.png'); 
     color: var(--light-text);
 }
 .user-actions img {
     height: 25px;
     margin-left: 20px;
+}
+.user-actions a {
+    text-decoration: inherit;
+    color: inherit;
+}
+.user-actions .perfilLojista{
+    margin-left: 25px;
 }

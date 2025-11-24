@@ -83,4 +83,9 @@ class ProductController extends Controller
         $categories = Category::all();
         return view('pages.item', compact('product', 'categories'));  
     }
+
+    public function show(Product $product)
+    {
+        return view('products.show', compact('product'));
+    }
 }

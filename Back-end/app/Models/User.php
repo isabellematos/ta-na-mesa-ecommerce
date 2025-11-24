@@ -25,6 +25,17 @@ class User extends Authenticatable
         'password',
         'imagemPerfil',
         'tipo',
+        'cep',
+        'logradouro',
+        'numero',
+        'complemento',
+        'bairro',
+        'cidade',
+        'estado',
+        'cpf',
+        'data_nascimento',
+        'telefone',
+        'receber_emails',
     ];
 
     /**
