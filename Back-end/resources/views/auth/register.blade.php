@@ -9,8 +9,10 @@
 	<link rel="stylesheet" href="{{ asset('components/atoms/button.css') }}">
 	<link rel="stylesheet" href="{{ asset('components/atoms/input.css') }}">
 	<link rel="stylesheet" href="{{ asset('components/atoms/label.css') }}">
+	<link rel="stylesheet" href="{{ asset('components/atoms/select.css') }}">
 
-<body>
+
+	<body>
 	<div class="container">
 		<div class="form-container">
 			<div class="bg-pattern"></div>
@@ -60,8 +62,8 @@
 					<label for="tipo">Você é lojista?</label>
 					<select id="tipo" name="tipo" required>
 						<option value="" disabled selected hidden>Selecione</option>
-						<option value="sim">Sim</option>
-						<option value="nao">Não</option>
+						<option value="sim">Sim, quero fazer negócios</option>
+						<option value="nao">Não, quero apenas comprar</option>
 					</select>
 				</div>
 
