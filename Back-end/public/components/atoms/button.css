@@ -140,23 +140,30 @@
 }
 
 .btn-upload {
-display: none;
-}
-
-.input-upload-container button {
-    display: block;
-    flex: content;
-    width: 100%;
-    border-radius: 8px;
-    border: none;
-    background-color: #EAEAEA;
-    box-sizing: border-box;
-    padding: 15px;
-    margin-bottom: 1.5rem;
-    overflow: hidden;
-    font-family: 'Roboto Condensed', sans-serif;
+    /* O SEU CÓDIGO TEM background-color: #333; (ESTÁ ERRADO PARA O VISUAL) */
+    /* Use a cor do INPUT para alinhamento visual com os outros campos */
+    background-color: #EAEAEA; 
+    color: #696969; /* Cor do texto "FAÇA O UPLOAD" (placeholder like) */
+    
+    /* Faz o botão preencher o container */
+    width: 100%; /* CORREÇÃO: Garante que o botão ocupe 100% da largura do seu container */
+    height: auto;
+    
+    padding: 15px; /* Define a mesma altura dos inputs (copiado de input.css) */
+    border-radius: 8px; /* Copiado de input.css */
+    
+    /* CENTRALIZAR O TEXTO E ESTILO DE PLACEHOLDER */
+    text-align: center; /* CORREÇÃO: Centraliza o texto */
     font-weight: 300;
     font-style: italic;
     font-size: clamp(16px, 3vw, 22px);
-    color: #696969;
+    
+    /* Remove estilos indesejados */
+    border: none;
+    cursor: pointer;
+}
+
+/* Garante que o texto seja centralizado para o alinhamento visual */
+.input-upload-container button {
+    text-align: center;
 }

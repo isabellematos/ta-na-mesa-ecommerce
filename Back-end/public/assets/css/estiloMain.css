@@ -374,10 +374,10 @@ body {
 .input-upload-container {
     display: flex;
     align-items: center;
-    background-color: #333;
+    background-color: transparent;
     padding: 0;
     border-radius: 5px;
-    height: 40px;
+    height: auto;
 }
 
 .btn-upload {
