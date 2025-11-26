@@ -169,7 +169,7 @@ body {
     background-image: url('../img/escamasFundo.png');
     background-repeat: repeat;
     background-size: 500px;
-    margin-top: 30 px;
+    margin-top: 30px;
 }
 
 /* Barra de Filtro */
@@ -180,8 +180,15 @@ body {
     margin-bottom: 30px;
     color: var(--light-text);
     margin-top: 0;
+    justify-content: center;
+    align-items: center;
+}
 
-
+.filter-bar-modern {
+    width: auto;
+    max-width: 80vw;
+    justify-content: center;
+    align-items: center;
 }
 
 .products-section {
@@ -205,6 +212,8 @@ body {
     height: auto;
     border-radius: 8px;
 }
+
+
 
 @media (max-width: 768px) {
 
@@ -234,6 +243,10 @@ body {
     .filter-row {
         flex-direction: column;
         gap: 15px;
+    }
+    .filter-bar-modern {
+    width: 100%;
+        flex-wrap: wrap;
     }
 
 
@@ -276,6 +289,7 @@ body {
         width: 100%;
         text-align: left;
     }
+
 
     .seller-save-btn,
     .buyer-save-btn {
@@ -366,9 +380,10 @@ body {
     box-sizing: border-box;
 }
 
-.textarea-wrapper {
-    background-color: #B5B5B5;
+.textarea-wrapper textarea {
+    resize: none;
     border-radius: 5px;
+    overflow: auto
 }
 
 .input-upload-container {

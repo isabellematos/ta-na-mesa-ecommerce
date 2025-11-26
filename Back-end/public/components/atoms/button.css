@@ -1,7 +1,7 @@
 .btn-login,
 .btn-cadastro {
-    padding: clamp(12px, 3vw, 17px);
-    font-size: clamp(16px, 3vw, 20px);
+    padding: clamp(12px, 1vw, 17px);
+    font-size: clamp(16px, 1vw, 20px);
     font-weight: 800;
     color: #fff;
     border: none;
@@ -156,7 +156,7 @@
     text-align: center; /* CORREÇÃO: Centraliza o texto */
     font-weight: 300;
     font-style: italic;
-    font-size: clamp(16px, 3vw, 22px);
+    font-size: clamp(16px, 1vw, 22px);
     
     /* Remove estilos indesejados */
     border: none;

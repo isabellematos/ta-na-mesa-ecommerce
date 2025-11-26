@@ -10,7 +10,7 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     font-style: italic;
-    font-size: clamp(16px, 3vw, 22px);
+    font-size: clamp(16px, 1vw, 22px);
     color: #696969;
     appearance: none;
     background-image: url("data:image/svg+xml;utf8,<svg fill='%23696969' height='24' width='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
