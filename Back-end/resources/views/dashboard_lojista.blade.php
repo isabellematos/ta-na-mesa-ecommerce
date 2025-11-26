@@ -207,7 +207,7 @@
 
                 <div style="padding: 20px 40px 30px 40px;">
                     <h2 style="text-align:center; color:white; font-family: 'Playfair Display', serif; font-weight: 400; margin-bottom:20px; font-size:1.5rem; border-bottom:1px solid #333; padding-bottom:10px;">
-                        Edite informações
+                        Edite as informações do produto
                     </h2>
 
                     <form action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
