@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="../components/organisms/footer.css">
     <link rel="stylesheet" href="../components/organisms/header.css">
     <link rel="stylesheet" href="../components/organisms/product-grid.css">
+    <link rel="stylesheet" href="../components/atom/select.css">
+
 </head>
 <body>
 
@@ -87,16 +89,6 @@
                         </div>
 
                         <div class="filter-content-modern">
-                            <div class="filter-group-modern">
-                                <label for="data">Data:</label>
-                                <select name="data" id="data" class="filter-select-modern">
-                                    <option value="">Selecione</option>
-                                    <option value="hoje">Hoje</option>
-                                    <option value="semana">Esta semana</option>
-                                    <option value="mes">Este mês</option>
-                                </select>
-                                <button type="button" class="btn-reset-field" onclick="document.getElementById('data').value=''">Resetar</button>
-                            </div>
 
                             <div class="filter-divider"></div>
 
@@ -122,17 +114,7 @@
                             </div>
                         </div>
 
-                        <div class="filter-tags-section">
-                            <label class="tags-label">Tags:</label>
-                            <div class="tags-buttons">
-                                <button type="button" class="tag-btn active" data-tag="todos" onclick="event.preventDefault(); selectTag(this, '');">Vestir</button>
-                                <button type="button" class="tag-btn" data-tag="mesa" onclick="event.preventDefault(); selectTag(this, 'mesa');">Mesa</button>
-                                <button type="button" class="tag-btn" data-tag="dados" onclick="event.preventDefault(); selectTag(this, 'dados');">Dados</button>
-                                <button type="button" class="tag-btn" data-tag="miniaturas" onclick="event.preventDefault(); selectTag(this, 'miniaturas');">Miniaturas</button>
-                                <button type="button" class="tag-btn" data-tag="livros" onclick="event.preventDefault(); selectTag(this, 'livros');">Livros</button>
-                            </div>
-                            <input type="hidden" name="tag" id="tag-input" value="">
-                        </div>
+                        
                     </div>
                 </form>
             </section>

@@ -1,6 +1,6 @@
-input[type="email"],
-input[type="password"],
-input[type="text"] {
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="text"] {
     display: block;
     width: 100%;
     border-radius: 8px;
@@ -17,7 +17,7 @@ input[type="text"] {
 }
 
 /* Placeholder (texto cinza dentro do campo) */
-input::placeholder {
+.form-group input::placeholder {
     color: #888;
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
@@ -26,13 +26,12 @@ input::placeholder {
 
 
 /* --- Estilos dos Filtros da Tela Inicial --- */
-.filter-group input,
-.filter-group select {
+.filter-group-modern input {
     flex-grow: 1;
     width: 180px;
     background-color: var(--light-text);
     border: 1px solid var(--light-text);
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 8px 10px; 
     color: var(--dark-bg);
     box-sizing: border-box;
