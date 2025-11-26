@@ -36,8 +36,8 @@ body {
     padding: 20px;
 
     /* Fundo escuro + escamas juntos */
-    background: var(--dark-bg) url('../img/escamasFundo.png') repeat;
-    background-size: 500px;
+    background: var(--dark-bg) url('../img/escamasFundo.png');
+    background-size: cover;
 }
 .logo {
     width: 150px;
