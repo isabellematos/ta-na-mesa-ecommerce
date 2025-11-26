@@ -5,7 +5,8 @@
 .field-row input[type="text"],
 .field-row input[type="password"],
 .field-row textarea,
-.field-row input[type="url"]{
+.field-row input[type="url"],
+.field-row .btn-upload {
     display: block;
     width: 100%;
     border-radius: 8px;

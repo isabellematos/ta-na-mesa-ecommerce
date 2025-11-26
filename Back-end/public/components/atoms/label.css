@@ -33,3 +33,6 @@
     margin-bottom: 5px;
 }
 
+.field-row .input-upload-container {
+    gap: 5px;
+}
