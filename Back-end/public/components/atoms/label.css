@@ -36,3 +36,8 @@
 .field-row .input-upload-container {
     gap: 5px;
 }
+
+.field-row label {
+    width: 150px;
+   text-align: right;
+}

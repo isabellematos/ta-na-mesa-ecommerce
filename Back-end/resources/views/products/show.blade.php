@@ -75,13 +75,15 @@
                         
                         <form action="{{ route('cart.add', $product->id) }}" method="POST">
                             @csrf
-                            <div class="quantity-controls">
-                                <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
-                                <span class="quantity-value" id="quantity">1</span>
-                                <input type="hidden" name="quantity" id="quantity-input" value="1">
-                                <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+                            <div class="product-info-options">
+                                <div class="quantity-controls">
+                                    <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
+                                    <span class="quantity-value" id="quantity">1</span>
+                                    <input type="hidden" name="quantity" id="quantity-input" value="1">
+                                    <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+                                </div>
+                                <button type="submit" class="buy-button">Adicionar ao Carrinho</button>
                             </div>
-                            <button type="submit" class="buy-button">Adicionar ao Carrinho</button>
                         </form>
                     </div>
                 </div>

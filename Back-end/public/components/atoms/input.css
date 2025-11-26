@@ -56,3 +56,10 @@
     color: #777;
     font-style: normal;
 }
+
+.input-upload-container{
+    width: 100%;
+}
+.input-upload-container button{
+    width: max-content;
+}

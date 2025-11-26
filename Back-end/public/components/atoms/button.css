@@ -76,16 +76,17 @@
 }
 
 .buy-button {
-    background-color: #CD004A; 
+    background-color: var(--primary-color);
     color: var(--light-text);
     border: none;
-    padding: 10px 25px;
+    padding: 10px 10px;
     font-size: 1rem;
     font-weight: bold;
     cursor: pointer;
     border-radius: 5px;
     transition: background-color 0.3s;
-    width: 100%; 
+    width: 100%;
+    height: fit-content;
 }
 
 .buy-button:hover {
@@ -141,4 +142,5 @@
 
 .btn-upload {
     cursor: pointer;
+    text-align: left;
 }
