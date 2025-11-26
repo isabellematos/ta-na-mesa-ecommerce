@@ -32,8 +32,8 @@ body, html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: url(../img/bg_cadastro.png);
-  background-size: cover;
+  background: url(../img/escamasFundo.png) repeat;
+  background-size: 500px;
   background-position: center;
   filter: brightness(1.6);
   z-index: 0;
