@@ -11,6 +11,7 @@
 		rel="stylesheet">
 	<link rel="stylesheet" href="../components/atoms/input.css">
 	<link rel="stylesheet" href="../components/atoms/label.css">
+	<link rel="stylesheet" href="../components/atoms/select.css">
 	<link rel="stylesheet" href="../components/molecules/form-group.css">
 </head>
 
@@ -43,12 +44,20 @@
 				</div>
 
 				<div class="form-group">
-					<label>Imagem de perfil</label>
-					<input type="text" name="imagemPerfil" id="imagemPerfil" placeholder="insira a url" required>
+					<label for="tipo">Você é lojista?</label>
+					<select id="tipo" name="tipo" required>
+						<option value="" disabled selected hidden>Selecione</option>
+						<option value="sim">Sim</option>
+						<option value="nao">Não</option>
+					</select>
 				</div>
 
-
-
+                
+				<!-- <div class="form-group">
+					<label>Imagem de perfil</label>
+					<input type="file" name="imagemPerfil" id="imagemPerfil" placeholder="insira a url"
+						value="{{old('imagemPerfil')}}" required>
+				</div> -->
 
 
 
