@@ -17,7 +17,6 @@ body {
     background-color: var(--dark-bg);
     color: var(--light-text);
     margin: 0;
-
 }
 
 .main-content {
@@ -44,6 +43,7 @@ body {
     border-bottom-left-radius: 65px;
     border-bottom-right-radius: 65px;
     overflow: hidden;
+    text-align: center;
 }
 
 .banner-image img {
@@ -62,6 +62,7 @@ body {
     font-size: 4.5rem;
     text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
     font-family: 'Instrument Serif', serif;
+    font-weight: lighter;
     text-align: center;
     line-height: 1.2;
 }

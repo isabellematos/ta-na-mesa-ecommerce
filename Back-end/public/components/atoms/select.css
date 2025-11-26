@@ -1,4 +1,4 @@
-select {
+.form-group select {
     display: block;
     width: 100%;
     border-radius: 8px;
@@ -19,8 +19,23 @@ select {
     background-size: 50px; /* tamanho da seta */
 }
 
-select:invalid {
+.form-group select:invalid {
     color: #888;
     font-style: italic;
 }
 
+.filter-select-modern select {
+    flex-grow: 1;
+    width: 180px;
+    background-color: var(--light-text);
+    border: 1px solid var(--light-text);
+    border-radius: 10px;
+    padding: 8px 10px; 
+    color: var(--dark-bg);
+    box-sizing: border-box;
+    height: 38px; 
+    background-image: url("data:image/svg+xml;utf8,<svg fill='%23696969' height='24' width='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center; /* posição da seta */
+    background-size: 10px; /* tamanho da seta */
+}

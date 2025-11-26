@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="{{ asset('components/atoms/select.css') }}">
 
 
-	<body>
+<body>
 	<div class="container">
 		<div class="form-container">
 			<div class="bg-pattern"></div>
