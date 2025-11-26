@@ -138,3 +138,25 @@
 .btn-pix-copy:hover {
     background-color: #444;
 }
+
+.btn-upload {
+display: none;
+}
+
+.input-upload-container button {
+    display: block;
+    flex: content;
+    width: 100%;
+    border-radius: 8px;
+    border: none;
+    background-color: #EAEAEA;
+    box-sizing: border-box;
+    padding: 15px;
+    margin-bottom: 1.5rem;
+    overflow: hidden;
+    font-family: 'Roboto Condensed', sans-serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(16px, 3vw, 22px);
+    color: #696969;
+}

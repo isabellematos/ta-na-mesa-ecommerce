@@ -32,3 +32,7 @@
     text-transform: none;
     margin-bottom: 5px;
 }
+
+.field-row label {
+    background-color: transparent !important;
+}
