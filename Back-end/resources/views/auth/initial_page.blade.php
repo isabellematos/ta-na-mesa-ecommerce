@@ -27,38 +27,49 @@
                     <img src="../assets/img/logoDaora.png" alt="Logo Ta Na Mesa">
                 </div>
                 <div class="user-actions">
-                    <a href="{{ route('cart.index') }}">
-                        <img src="{{ asset('assets/img/Shopping cart.png') }}" alt="Carrinho de compras" style="width: 30px; height: 30px;">
-                    </a>
-                    @auth
-                        <a href="{{ route('profile.edit') }}">
-                            @if(Auth::user()->imagemPerfil)
-                                <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}" 
-                                     alt="Perfil do usuário" 
-                                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;"
-                                     onerror="this.onerror=null; this.src='{{ asset('assets/img/user-icon.png') }}';">
-                            @else
-                                <img src="{{ asset('assets/img/user-icon.png') }}" 
-                                     alt="Perfil do usuário" 
-                                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;">
-                            @endif
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}">
-                            <img src="{{ asset('assets/img/user-icon.png') }}" 
-                                 alt="Perfil do usuário"
-                                 style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
-                        </a>
-                    @endauth
-                    <a href="{{ route('logout') }}" 
-                       onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
-                       style="color: white; text-decoration: none; margin-left: 15px;">
-                        Sair
-                    </a>
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                        @csrf
-                    </form>
-                </div>
+    
+    @if(Auth::check() && Auth::user()->tipo === 'sim')
+        <a href="#" onclick="openLojistaModal(); return false;">
+            <img src="{{ asset('assets/img/Shopping cart.png') }}" alt="Carrinho de compras" style="width: 30px; height: 30px;">
+        </a>
+    @else
+        <a href="{{ route('cart.index') }}">
+            <img src="{{ asset('assets/img/Shopping cart.png') }}" alt="Carrinho de compras" style="width: 30px; height: 30px;">
+        </a>
+    @endif
+
+    @auth
+        <a href="{{ route('profile.edit') }}">
+            @if(Auth::user()->imagemPerfil)
+                <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}" 
+                     alt="Perfil do usuário" 
+                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;"
+                     onerror="this.onerror=null; this.src='{{ asset('assets/img/user-icon.png') }}';">
+            @else
+                <img src="{{ asset('assets/img/user-icon.png') }}" 
+                     alt="Perfil do usuário" 
+                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;">
+            @endif
+        </a>
+        
+        <a href="{{ route('logout') }}" 
+           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+           style="color: white; text-decoration: none; margin-left: 15px;">
+            Sair
+        </a>
+        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+            @csrf
+        </form>
+
+    @else
+        <a href="{{ route('login') }}">
+            <img src="{{ asset('assets/img/user-icon.png') }}" 
+                 alt="Perfil do usuário"
+                 style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+        </a>
+    @endauth
+
+</div>
             </div>
         </nav>
     </header>
@@ -362,7 +373,7 @@
         
         <p style="color: #ccc; font-size: 1.1rem; line-height: 1.6; margin: 20px 0;">
             Você está logado como vendedor. <br>
-            Para comprar itens e equipar seus personagens, por favor, entre com seu <strong>perfil de aventureiro (usuário comum)</strong>.
+            Para comprar itens, por favor, entre com seu <strong>perfil de usuário comum</strong>.
         </p>
         
         <button onclick="closeLojistaModal()" class="buy-button" style="margin-top: 20px; padding: 12px 30px; font-size: 1rem;">
