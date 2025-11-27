@@ -34,17 +34,14 @@ Route::get('/admin/tag', [TagController::class, 'index']);
 Route::get('/initial', function (\Illuminate\Http\Request $request) {
     $query = \App\Models\Product::query();
     
-    // Filtro por nome/busca
     if ($request->filled('search')) {
         $query->where('name', 'like', '%' . $request->search . '%');
     }
     
-    // Filtro por categoria
     if ($request->filled('category_id')) {
         $query->where('category_id', $request->category_id);
     }
     
-    // Filtro por tag (você pode adicionar lógica específica aqui)
     if ($request->filled('tag')) {
         $query->where('name', 'like', '%' . $request->tag . '%');
     }
