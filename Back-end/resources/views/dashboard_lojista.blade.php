@@ -101,11 +101,6 @@
                             </div>
 
                             <div class="field-row">
-                                <label>Nome:</label>
-                                <input type="text" name="name" value="{{ Auth::user()->name }}">
-                            </div>
-
-                            <div class="field-row">
                                 <label>Link para contato:</label>
                                 <input type="url" name="contact_link" placeholder="Link do seu instagram/whatsapp...">
                             </div>

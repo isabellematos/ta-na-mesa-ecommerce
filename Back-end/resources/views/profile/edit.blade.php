@@ -197,7 +197,7 @@
 
                             <div class="buyer-fields">
                                 <div class="field-row">
-                                    <label>Foto de perfil:</label>
+                                    <label class="profile-picture">Foto de perfil:</label>
                                     <div class="input-upload-container">
                                         <input type="file" id="profile-upload" name="imagemPerfil" style="display: none;" accept="image/*" onchange="previewImage(event)">
                                         <button type="button" class="btn-upload" onclick="document.getElementById('profile-upload').click()">
@@ -244,7 +244,7 @@
                         @endif
 
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
-                            <h2 style="color: #CD004A; margin: 0;">Seus pedidos</h2>
+                            <h2 style="color: #ffffffff; margin: 0;">Seus pedidos</h2>
                             <button class="btn-close-orders" style="background: none; border: none; color: #CD004A; font-size: 1.5rem; cursor: pointer;">▲ Fechar</button>
                         </div>
 

@@ -5,7 +5,7 @@
     display: block; 
     align-self: flex-start;
     margin-bottom: 0.3rem;
-    font-size: clamp(18px, 3vw, 23px);
+    font-size: clamp(18px, 1vw, 23px);
     color: #1E1E1E; 
     font-weight: 400;
 }
@@ -31,4 +31,13 @@
     font-weight: normal;
     text-transform: none;
     margin-bottom: 5px;
+}
+
+.field-row .input-upload-container {
+    gap: 5px;
+}
+
+.field-row label {
+    width: 150px;
+   text-align: right;
 }

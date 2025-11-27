@@ -1,6 +1,12 @@
 .form-group input[type="email"],
 .form-group input[type="password"],
-.form-group input[type="text"] {
+.form-group input[type="text"],
+.field-row input[type="email"],
+.field-row input[type="text"],
+.field-row input[type="password"],
+.field-row textarea,
+.field-row input[type="url"],
+.field-row .btn-upload {
     display: block;
     width: 100%;
     border-radius: 8px;
@@ -12,7 +18,7 @@
     font-family: 'Roboto Condensed', sans-serif;
     font-weight: 300;
     font-style: italic;
-    font-size: clamp(16px, 3vw, 22px);
+    font-size: clamp(16px, 1vw, 22px);
     color: #696969;
 }
 
@@ -20,7 +26,7 @@
 .form-group input::placeholder {
     color: #888;
     font-family: 'Roboto Condensed', sans-serif;
-    font-weight: 300;
+    font-weight: light;
     font-style: italic;
 }
 
@@ -49,4 +55,11 @@
 .input-dark::placeholder {
     color: #777;
     font-style: normal;
+}
+
+.input-upload-container{
+    width: 100%;
+}
+.input-upload-container button{
+    width: max-content;
 }

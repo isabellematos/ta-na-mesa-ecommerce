@@ -135,8 +135,9 @@
                                            id="cep-input" 
                                            placeholder="00000-000" 
                                            maxlength="9"
-                                           value="{{ Auth::check() && Auth::user()->cep ? substr(Auth::user()->cep, 0, 5) . '-' . substr(Auth::user()->cep, 5) : '' }}"
-                                           style="width: 100%; padding: 10px; border-radius: 5px; border: 1px solid #555; background-color: #333; color: white; font-size: 1rem; margin-bottom: 10px;">
+                                           value="{{ Auth::check() && Auth::user()->cep ? substr(Auth::user()->
+                                           cep, 0, 5) . '-' . substr(Auth::user()->cep, 5) : '' }}"
+                                           >
                                     <button onclick="buscarCEP()" 
                                             class="buy-button"
                                             style="width: 100%; padding: 10px;">

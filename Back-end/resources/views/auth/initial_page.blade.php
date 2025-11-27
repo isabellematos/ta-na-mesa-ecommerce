@@ -77,7 +77,7 @@
             </div>
 
             <section id="store-section" class="store">
-                <form method="GET" action="{{ route('initial') }}" id="filter-form">
+                <form method="GET" action="{{ route('initial') }}" id="filter-form" class="store-filter">
                     <div class="filter-bar-modern">
                         <div class="filter-header-modern">
                             <span class="filter-icon">🔍</span>

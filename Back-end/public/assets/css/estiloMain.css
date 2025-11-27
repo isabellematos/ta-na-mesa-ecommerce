@@ -100,6 +100,12 @@ body {
     border-radius: 50%;
 }
 
+.filter-content-modern input, .filter-content-modern select {
+    width: 80%;
+    width: fit-content;
+    gap: 50px;
+}
+
 /* Seção do Filtro */
 .filter-bar {
     background-color: #333;
@@ -141,6 +147,15 @@ body {
     margin-bottom: 20px;
 }
 
+.filter-group-modern{
+    width: 50%;
+    flex-wrap: wrap;
+}
+
+.filter-group-modern {
+    width: 50%;
+    font-size: small;
+}
 
 .filter-group {
     display: flex;
@@ -164,13 +179,15 @@ body {
 
 /* Seção da Loja */
 .store {
-    padding: 0 50px 50px 50px;
-    background-color: var(--dark-bg);
-    background-image: url('../img/escamasFundo.png');
-    background-repeat: repeat;
-    background-size: 500px;
-    margin-top: 30 px;
+    width: 100%;
+    justify-content: center;
+    display: flex; 
+    flex-direction: column;
+    margin-top: 30px;
+    align-items: center;
+    
 }
+
 
 /* Barra de Filtro */
 .filter-bar {
@@ -180,8 +197,15 @@ body {
     margin-bottom: 30px;
     color: var(--light-text);
     margin-top: 0;
+    justify-content: center;
+    align-items: center;
+}
 
-
+.filter-bar-modern {
+    width: 60vw;
+    max-width: 80vw;
+    justify-content: center;
+    align-items: center;
 }
 
 .products-section {
@@ -206,9 +230,11 @@ body {
     border-radius: 8px;
 }
 
+
+
 @media (max-width: 768px) {
 
-    /* 1. Ajustar o menu de navegação */
+    /* 1. Ajustar o menu de navegação (Mantido) */
     .navbar-content {
         flex-direction: column;
         gap: 20px;
@@ -220,26 +246,48 @@ body {
         text-align: center;
     }
 
-    /* 2. Centralizar o logo e ações do usuário */
+    /* 2. Centralizar o logo e ações do usuário (Mantido) */
     .logo,
     .user-actions {
         margin: 0 auto;
     }
 
-    /* 3. Ajustar a barra de filtro */
+    /* 3. Ajustar a barra de filtro (Melhorado) */
     .filter-bar {
         padding: 15px;
     }
 
     .filter-row {
         flex-direction: column;
+        
+        flex-wrap: wrap;
         gap: 15px;
     }
-
-
-    .filter-category {
+    
+    .filter-bar-modern {
+        width: 80%;
+        display: flex;
         flex-direction: column;
-        gap: 10px;
+        
+        justify-content: center;
+    }
+
+    .filter-content-modern {
+        flex-direction: row;
+        box-sizing: content-box;
+        flex-wrap: wrap;
+        width: fit-content;
+    }
+
+    .filter-group {
+        width: 50%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .filter-header-modern {
+        display: flex;
+        flex-direction: column;
     }
 
     .category-buttons {
@@ -247,41 +295,152 @@ body {
         flex-wrap: wrap;
     }
 
-
+    /* 4. Layout das Seções de Vendedor/Comprador */
     .seller-info-content,
     .buyer-info-content {
+        flex-wrap: wrap;
         flex-direction: column;
-        align-items: center;
+        align-items: flex-start;
+        text-align: flex-start;
+        width: 100%;
         gap: 20px;
+        padding: 0 10px;
     }
 
     .seller-infos h2,
     .buyer-infos h2 {
-        text-align: center;
+        text-align: flex-start; /* Centraliza o título dentro do bloco */
         margin-left: 0;
     }
 
     .seller-photo,
     .buyer-photo {
-        margin-left: 0;
+        margin-left: 0; /* Remove margem fixa */
+    }
+
+    .seller-fields,
+    .buyer-fields {
+        margin-right: 0; /* Remove margem fixa */
+        width: 100%;
+        flex-wrap: wrap;
+
     }
 
     .field-row {
+        width: 100%;
         flex-direction: column;
         align-items: flex-start;
-        gap: 5px;
+        justify-content: flex-start;
+        gap: 10px;
+        
     }
 
     .field-row label {
-        width: 100%;
-        text-align: left;
+        flex-wrap: wrap;
+        width: 100%; /* Rótulo ocupa a largura total */
+        text-align: flex-start; /* Alinha o texto do rótulo à esquerda */
+    }
+
+    .seller-fields input[type="url"],
+    .seller-fields .textarea-wrapper,
+    .seller-fields .input-upload-container,
+    .buyer-fields input[type="url"],
+    .buyer-fields .textarea-wrapper,
+    .buyer-fields .input-upload-container {
+        width: 100%; /* Inputs ocupam a largura total */
+        flex-wrap: wrap;
+
+    }
+
+
+    .buyer-fields, .input-upload-container {
+        box-sizing: border-box;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .seller-save-btn,
     .buyer-save-btn {
+        justify-content: center; /* Centraliza o botão de salvar */
+    }
+    
+    
+    .seller-ads,
+    .seller-infos,
+    .buyer-shopped,
+    .buyer-infos {
+        flex-wrap: wrap;
+        width: 100%;
+        padding: 20px;
         justify-content: center;
+        align-items: center;
+        align-content: center;
     }
 
+    /* 6. Mudar a largura da imagem do produto para se adaptar (Mantido) */
+    .product-image {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    /* 7. Ajuste dos Modals */
+    .modal-content {
+        width: 95%; /* Ocupa mais espaço na tela */
+        padding: 20px;
+    }
+
+    .modal-form-grid {
+        grid-template-columns: 1fr; /* Rótulos e campos em uma única coluna */
+        gap: 5px 0;
+    }
+
+    .modal-form-grid label {
+        text-align: left; /* Alinha rótulos à esquerda */
+        width: 100%;
+        height: auto;
+    }
+
+    .modal-input-textarea,
+    .modal-input,
+    .modal-btn-upload,
+    .modal-form-grid select {
+        grid-column: 1; /* Garante que os campos ocupem a coluna única */
+    }
+
+    .modal-form-grid label[for="modal-descricao"] {
+        padding-top: 0;
+    }
+
+    .order-details-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .status-section {
+        text-align: left;
+    }
+
+    .product-info-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image-details img {
+        margin-bottom: 10px;
+    }
+    
+    .product-description-details {
+        text-align: center;
+    }
+
+    .product-btnActions {
+        width: 100%;
+        gap: 15px;
+    }
+    
+    .btn-action {
+        width: auto;
+    }
 }
 
 /* 4. Mudar a largura da imagem do produto para se adaptar */
@@ -293,11 +452,9 @@ body {
 /* informações do vendedor e comprador */
 
 
-.seller-infos h2,
 .seller-ads h2,
-.buyer-infos h2,
 .buyer-shopped h2 {
-    color: var(--primary-color);
+    color: var(--light-text);
     font-size: 2rem;
     text-align: left;
     margin-bottom: 20px;
@@ -308,11 +465,13 @@ body {
     justify-content: space-between;
     display: flex;
     gap: 100px;
+    width: 100%;
 }
 
 .seller-photo,
 .buyer-photo {
-    margin-left: 100px;
+justify-content: center;
+align-items: center;
 }
 
 .seller-photo img,
@@ -325,6 +484,7 @@ body {
 
 .seller-fields,
 .buyer-fields {
+    flex-wrap: wrap;
     margin-right: 100px;
     flex: 1;
     display: flex;
@@ -334,13 +494,18 @@ body {
 
 .field-row {
     display: flex;
+    
     align-items: center;
     gap: 10px;
+    
+    flex-wrap: nowrap;
+    width: 100%;
 }
 
 .field-row label {
-    width: 150px;
-    text-align: right;
+    
+    max-width: 100%;
+    text-align: center;
     font-weight: bold;
 }
 
@@ -348,9 +513,10 @@ body {
 .seller-fields .textarea-wrapper,
 .seller-fields .input-upload-container,
 .buyer-fields input[type="url"],
-.buyer-fields .textarea-wrapper,
-.buyer-fields .input-upload-container {
+.buyer-fields .textarea-wrapper {
     flex: 1;
+    flex-wrap: wrap;
+
 }
 
 .seller-fields input[type="url"],
@@ -362,35 +528,18 @@ body {
     padding: 10px;
     border-radius: 5px;
     color: #333;
-    width: 100%;
+
     box-sizing: border-box;
+    flex-wrap: wrap;
+
 }
 
-.textarea-wrapper {
-    background-color: #B5B5B5;
+.textarea-wrapper textarea {
+    resize: none;
     border-radius: 5px;
+    overflow: auto
 }
 
-.input-upload-container {
-    display: flex;
-    align-items: center;
-    background-color: #333;
-    padding: 0;
-    border-radius: 5px;
-    height: 40px;
-}
-
-.btn-upload {
-    background-color: #333;
-    color: white;
-    padding: 10px 15px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    font-size: 0.9em;
-    height: 100%;
-}
 
 .seller-save-btn,
 .buyer-save-btn {
@@ -432,6 +581,17 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
+.seller-infos h2, .buyer-infos h2 {
+    color: var(--primary-color);
+    font-family: 'Instrument Serif', serif;
+    font-size: 2rem;
+}
+
+.seller-ads h2, .buyer-shopped h2 {
+    color: var(--light-text);
+    font-family: 'Instrument Serif', serif;
+    font-size: 2rem;
+}
 .seller-ads .btn-ads,
 .buyer-shopped .btn-ads {
     background-color: #ff3366;

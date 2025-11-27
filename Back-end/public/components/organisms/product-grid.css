@@ -1,6 +1,9 @@
 .product-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 300px));
+    grid-template-columns: repeat(3, 1fr);
     justify-content: center;
     gap: 30px;
+    width: 70vw;
+    max-width: 1200px; /* Opcional: define uma largura máxima agradável para o grid */
+    margin: 0 auto; /* Centraliza o grid horizontalmente */
 }
