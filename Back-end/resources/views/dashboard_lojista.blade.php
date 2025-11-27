@@ -85,7 +85,7 @@
         <img 
             src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}" 
             alt="Foto do vendedor"
-            style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #CD004A;"
+            style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #ffff;"
         >
     @else
         <img 
