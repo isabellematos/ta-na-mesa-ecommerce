@@ -127,24 +127,30 @@
                 <div class="card-header">
                     <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}" class="product-image">
                 </div>
-                
-                <button class="favorite-btn" aria-label="Adicionar aos favoritos" onclick="event.preventDefault(); event.stopPropagation();">
-                    <img src="{{ asset('assets/img/coracaoBotao.png') }}" alt="Favoritar" class="heart-img">
-                </button>
-
                 <h3 class="product-title">{{ $product->name }}</h3>
-
-                <p class="product-description">{{ Str::limit($product->description, 50) }}</p>
-
-                <span class="product-price">R$ {{ number_format($product->price, 2, ',', '.') }}</span>
+                 <p class="product-description">{{ Str::limit($product->description, 50) }}</p>
+                 <span class="product-price">R$ {{ number_format($product->price, 2, ',', '.') }}</span>
             </a>
 
-            <a href="{{ route('product.show', $product->id) }}">
-                <button class="buy-button">COMPRAR</button>
-            </a>
+            @auth
+                @if(Auth::user()->tipo === 'sim')
+                    <button type="button" class="buy-button" onclick="openLojistaModal()">
+                        COMPRAR
+                    </button>
+                @else
+                    <a href="{{ route('product.show', $product->id) }}">
+                        <button class="buy-button">COMPRAR</button>
+                    </a>
+                @endif
+            @else
+                <a href="{{ route('product.show', $product->id) }}">
+                    <button class="buy-button">COMPRAR</button>
+                </a>
+            @endauth
+
         </div>
     @endforeach
-    </div>
+</div>
     </main>
 <div class="footer-spacer"></div>
     <footer class="footer">
@@ -337,7 +343,33 @@
         </a>
     </div>
 </div>
+
+
 @endif
+
+<div id="lojista-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;">
+    <div style="position: relative; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); border: 2px solid #CD004A; border-radius: 20px; padding: 40px; max-width: 500px; text-align: center; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);">
+        
+        <button onclick="closeLojistaModal()" style="position: absolute; top: -15px; right: -15px; width: 40px; height: 40px; border-radius: 50%; background-color: #CD004A; border: 2px solid white; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold;">
+            ✕
+        </button>
+        
+        <div style="width: 100px; height: 100px; margin: 0 auto 20px; background-color: rgba(205, 0, 74, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 50px;">
+            🧙‍♂️
+        </div>
+        
+        <h2 style="color: white; font-size: 1.8rem; margin: 0 0 15px 0; font-weight: bold;">Opa, Lojista!</h2>
+        
+        <p style="color: #ccc; font-size: 1.1rem; line-height: 1.6; margin: 20px 0;">
+            Você está logado como vendedor. <br>
+            Para comprar itens e equipar seus personagens, por favor, entre com seu <strong>perfil de aventureiro (usuário comum)</strong>.
+        </p>
+        
+        <button onclick="closeLojistaModal()" class="buy-button" style="margin-top: 20px; padding: 12px 30px; font-size: 1rem;">
+            Entendido
+        </button>
+    </div>
+</div>
 
 <script>
     function selectTag(button, tagValue) {
@@ -374,6 +406,33 @@
             });
         }
     });
+
+    // Funções do Modal de Lojista
+function openLojistaModal() {
+    const modal = document.getElementById('lojista-modal');
+    if (modal) {
+        modal.style.display = 'flex';
+    }
+}
+
+function closeLojistaModal() {
+    const modal = document.getElementById('lojista-modal');
+    if (modal) {
+        modal.style.display = 'none';
+    }
+}
+
+// Fechar modal ao clicar fora dele (fundo escuro)
+document.addEventListener('DOMContentLoaded', function() {
+    const lojistaModal = document.getElementById('lojista-modal');
+    if (lojistaModal) {
+        lojistaModal.addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeLojistaModal();
+            }
+        });
+    }
+});
 </script>
 
 </body>
