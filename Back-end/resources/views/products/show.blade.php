@@ -20,7 +20,9 @@
         <nav class="navbar">
             <div class="navbar-content">
                 <div class="logo">
-                    <img src="{{ asset('assets/img/logoDaora.png') }}" alt="Logo Ta Na Mesa">
+                    <a href="{{ route('initial') }}">
+                        <img src="{{ asset('assets/img/logoDaora.png') }}" alt="Logo Ta Na Mesa">
+                    </a>
                 </div>
                 <ul class="nav-links">
                     <li><a href="{{ route('initial') }}" class="active-link">Loja</a></li>
@@ -39,6 +41,16 @@
                                      style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                             @endif
                         </a>
+                        
+                        <a href="{{ route('logout') }}" 
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                           style="color: white; text-decoration: none; margin-left: 15px;">
+                            Sair
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
                     @else
                         <a href="{{ route('login') }}">
                             <img src="{{ asset('assets/img/user-icon.png') }}" 
@@ -66,7 +78,10 @@
 
             <section id="store-section" class="store">
                 <div class="product-card">
-                    <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}">
+                    {{-- AQUI ESTÁ A CORREÇÃO DA IMAGEM --}}
+                    <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}" 
+                         alt="{{ $product->name }}">
+                         
                     <div class="product-info">
                         <span class="product-tag">LANÇAMENTO</span>
                         <h3 class="product-title">{{ $product->name }}</h3>
@@ -123,5 +138,4 @@
     </script>
 
 </body>
-
 </html>

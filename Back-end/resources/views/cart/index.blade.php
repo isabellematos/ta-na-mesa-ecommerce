@@ -94,7 +94,11 @@
                                             <img src="{{ asset('assets/img/iconeLixo.png') }}" alt="Excluir item">
                                         </button>
                                     </form>
-                                    <img src="{{ asset('storage/' . $item->product->image1) }}" alt="{{ $item->product->name }}" class="cart-item-image">
+                                    
+                                    {{-- AQUI ESTÁ A CORREÇÃO DA IMAGEM --}}
+                                    <img src="{{ Str::startsWith($item->product->image1, ['http', 'https']) ? $item->product->image1 : asset('storage/' . $item->product->image1) }}" 
+                                         alt="{{ $item->product->name }}" 
+                                         class="cart-item-image">
                                 </div>
                                 <div class="cart-item-details">
                                     <h4>{{ $item->product->name }}</h4>
@@ -126,13 +130,12 @@
                                            id="cep-input" 
                                            placeholder="00000-000" 
                                            maxlength="9"
-                                           value="{{ Auth::check() && Auth::user()->cep ? substr(Auth::user()->
-                                           cep, 0, 5) . '-' . substr(Auth::user()->cep, 5) : '' }}"
+                                           value="{{ Auth::check() && Auth::user()->cep ? substr(Auth::user()->cep, 0, 5) . '-' . substr(Auth::user()->cep, 5) : '' }}"
                                            >
                                     <button onclick="buscarCEP()" 
                                             class="buy-button"
                                             style="width: 100%; padding: 10px;">
-                                        Buscar CEP
+                                            Buscar CEP
                                     </button>
                                 </div>
 
@@ -284,5 +287,4 @@
         });
     </script>
 </body>
-
 </html>
