@@ -27,7 +27,9 @@
         <nav class="navbar">
             <div class="navbar-content">
                 <div class="logo">
-                    <img src="{{ asset('assets/img/logoDaora.png') }}" alt="Logo Ta Na Mesa">
+                    <a href="{{ route('initial') }}">
+                        <img src="{{ asset('assets/img/logoDaora.png') }}" alt="Logo Ta Na Mesa">
+                    </a>
                 </div>
                 <div class="user-actions">
                     
@@ -147,7 +149,10 @@
                 <div class="product-card">
                     <a href="{{ route('product.show', $product->id) }}" style="text-decoration: none; color: inherit;">
                         <div class="card-header">
-                            <img src="{{ asset('storage/' . $product->image1) }}" alt="{{ $product->name }}" class="product-image">
+                            {{-- AQUI ESTÁ A CORREÇÃO DA IMAGEM --}}
+                            <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}" 
+                                 alt="{{ $product->name }}" 
+                                 class="product-image">
                         </div>
                         <h3 class="product-title">{{ $product->name }}</h3>
                         <p class="product-description">{{ Str::limit($product->description, 50) }}</p>
