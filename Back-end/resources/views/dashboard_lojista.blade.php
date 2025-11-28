@@ -20,62 +20,6 @@
     <link rel="stylesheet" href="{{ asset('components/organisms/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('components/organisms/header.css') }}">
     <link rel="stylesheet" href="{{ asset('components/organisms/product-grid.css') }}">
-
-    <style>
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            width: 100%;
-            margin-top: 20px;
-        }
-        .filter-bar {
-            background-color: #2a2a2a;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 20px;
-        }
-        .filter-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-            color: white;
-        }
-        .filter-row {
-            display: flex;
-            gap: 15px;
-            align-items: flex-end;
-            flex-wrap: wrap;
-        }
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .filter-group label {
-            color: white;
-            font-weight: bold;
-        }
-        .input-container select, .input-container input {
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-            background-color: #fff;
-            color: #000;
-            min-width: 150px;
-            height: 35px;
-        }
-        .btn-apply, .btn-reset {
-            padding: 8px 15px;
-            border-radius: 5px;
-            border: none;
-            cursor: pointer;
-            font-weight: bold;
-        }
-        .btn-apply { background-color: #CD004A; color: white; }
-        .btn-reset { background-color: transparent; border: 1px solid #666; color: #ccc; }
-    </style>
 </head>
 
 <body>
@@ -170,51 +114,54 @@
                 <section id="seller-salesAds" class="seller-ads">
                     <h2 class="sellers-title">Seus anúncios</h2>
 
-                    <form method="GET" action="{{ route('dashboard') }}" class="filter-bar">
-                        <div class="filter-header">
-                            <p class="filter-title" style="margin: 0; font-size: 1.2rem; font-weight: bold;">Filtro</p>
-                            <div class="filter-actions">
-                                <a href="{{ route('dashboard') }}" class="btn-reset" style="text-decoration: none; display: flex; align-items: center;">Resetar</a>
-                                <button type="submit" class="btn-apply">Aplicar</button>
+                    <form method="GET" action="{{ route('dashboard') }}" class="filter-bar-modern">
+                        <div class="filter-header-modern">
+                            <div style="display: flex; align-items: center;">
+                                <span class="filter-icon" style="font-size: 1.5rem; margin-right: 10px;"></span>
+                                <h3 class="filter-title-modern" style="margin: 0;">Filtro</h3>
+                            </div>
+                            <div class="filter-actions-modern">
+                                <a href="{{ route('dashboard') }}" class="btn-reset-modern">Resetar</a>
+                                <button type="submit" class="btn-apply-modern">Aplicar</button>
                             </div>
                         </div>
-                        <div style="width: 100%; height: 1px; background-color: #444; margin: 15px 0;"></div>
                         
-                        <div class="filter-row">
-                            <div class="filter-group">
+                        <div class="filter-content-modern">
+                            <div class="filter-group-modern">
                                 <label for="data">Data:</label>
-                                <div class="input-container">
-                                    <input type="date" id="data" name="date" value="{{ request('date') }}">
-                                </div>
+                                <input type="date" id="data" name="date" class="filter-select-modern" 
+                                       value="{{ request('date') }}"
+                                       style="background: white; color: black;">
                             </div>
 
-                            <div class="filter-group">
+                            <div class="filter-divider"></div>
+
+                            <div class="filter-group-modern">
                                 <label for="search">Nome:</label>
-                                <div class="input-container">
-                                    <input type="text" id="search" name="search" placeholder="Buscar..." value="{{ request('search') }}">
-                                </div>
+                                <input type="text" id="search" name="search" class="filter-input-modern" 
+                                       placeholder="Buscar..." 
+                                       value="{{ request('search') }}">
                             </div>
 
-                          <div class="filter-group">
-    <label for="category_id">Categoria:</label>
-    <div class="input-container">
-        <select id="category_id" name="category_id">
-            <option value="all">Todas</option>
-            {{-- AQUI ESTAVA O PROBLEMA: --}}
-            @if(isset($categories))
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                        {{ $category->name }}
-                    </option>
-                @endforeach
-            @endif
-        </select>
-    </div>
-</div>
+                            <div class="filter-divider"></div>
+
+                            <div class="filter-group-modern">
+                                <label for="category_id">Categoria:</label>
+                                <select id="category_id" name="category_id" class="filter-select-modern">
+                                    <option value="all">Todas</option>
+                                    @if(isset($categories))
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                                {{ $category->name }}
+                                            </option>
+                                        @endforeach
+                                    @endif
+                                </select>
+                            </div>
                         </div>
                     </form>
 
-                    <div class="product-grid">
+                    <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; width: 100%; margin-top: 20px;">
                         @forelse($products as $product)
                             <div class="product-card" style="background-color: #000; border: 1px solid #333; padding: 15px; border-radius: 10px; display:flex; flex-direction:column; align-items:center;">
                                 
@@ -255,7 +202,7 @@
                         @endforelse
                     </div>
 
-                    <button class="btn-ads" id="openModalButton">Adicionar novo anúncio</button>
+                    <button class="btn-ads" id="openModalButton" style="margin-top: 30px;">Adicionar novo anúncio</button>
                 </section>
             </section>
         </section>
@@ -301,16 +248,16 @@
                                         style="width:100%; height: 35px; padding:0 10px; background:#4f4f4f; border:none; border-radius:4px; color:white; font-style: italic; appearance: none; cursor:pointer; font-size: 0.9rem;">
                                     <option value="" disabled selected>Escolher categoria</option>
                                     @if(isset($categories) && count($categories) > 0)
-                @foreach($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
-                @endforeach
-            @else
-                <option value="" disabled>Nenhuma categoria cadastrada!</option>
-            @endif
-        </select>
-        <span style="position:absolute; right:10px; top:50%; transform:translateY(-50%); color:white; pointer-events:none; font-size: 0.8rem;">&#9660;</span>
-    </div>
-</div>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
+                                    @else
+                                        <option value="" disabled>Nenhuma categoria cadastrada!</option>
+                                    @endif
+                                </select>
+                                <span style="position:absolute; right:10px; top:50%; transform:translateY(-50%); color:white; pointer-events:none; font-size: 0.8rem;">&#9660;</span>
+                            </div>
+                        </div>
 
                         <div class="form-row" style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 10px;">
                             <label style="color:#ddd; font-size: 1rem; text-align: right;">Link Foto:</label>
@@ -352,7 +299,6 @@
             const modalTitle = document.getElementById('modalTitle');
             const submitBtn = document.getElementById('modalSubmitBtn');
 
-            // Função para abrir o modal em modo CRIAÇÃO
             if (openModalBtn) {
                 openModalBtn.addEventListener('click', function() {
                     form.reset(); 
@@ -380,32 +326,25 @@
             }
         });
 
-        // Função global para abrir o modal em modo EDIÇÃO
         function openEditModal(id, name, price, units, categoryId, image1, description) {
             const modal = document.getElementById('productModal');
             const form = document.getElementById('modalForm');
             const modalTitle = document.getElementById('modalTitle');
             const submitBtn = document.getElementById('modalSubmitBtn');
 
-            // Preenche os campos
             document.getElementById('modal-nome').value = name;
             document.getElementById('modal-preco').value = price;
             document.getElementById('modal-qtd').value = units;
             document.getElementById('modal-descricao').value = description;
-            
-            // PREENCHE O LINK DA IMAGEM
             document.getElementById('modal-foto').value = image1;
 
-            // Seleciona a categoria
             const categorySelect = document.getElementById('modal-categoria');
             if(categorySelect) categorySelect.value = categoryId;
 
-            // Configura para EDIÇÃO
             form.action = `/product/${id}`; 
             modalTitle.innerText = "Editar Produto";
             submitBtn.innerText = "Salvar Alterações";
 
-            // Adiciona o PUT
             let methodInput = form.querySelector('input[name="_method"]');
             if (!methodInput) {
                 methodInput = document.createElement('input');
@@ -418,5 +357,115 @@
             modal.style.display = 'flex';
         }
     </script>
+
+    <style>
+        /* === ESTILOS GERAIS PARA CORREÇÃO DE LAYOUT === */
+        * { box-sizing: border-box; }
+
+        /* === CSS DO FILTRO (Igual ao do Comprador) === */
+        .filter-bar-modern { 
+            background-color: #2a2a2a; 
+            border-radius: 10px; 
+            padding: 20px; 
+            margin-bottom: 30px; 
+            width: 100%; 
+            border: 1px solid #444; 
+        }
+
+        .filter-header-modern { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            margin-bottom: 20px; 
+            padding-bottom: 15px; 
+            border-bottom: 1px solid #444; 
+        }
+
+        .filter-title-modern { 
+            flex-grow: 1; 
+            margin: 0; 
+            font-size: 1.2rem; 
+            color: white; 
+            margin-left: 10px; 
+        }
+
+        .filter-actions-modern { display: flex; gap: 10px; }
+        
+        .btn-reset-modern, .btn-apply-modern { 
+            padding: 8px 20px; 
+            border-radius: 5px; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: all 0.3s; 
+            text-decoration: none; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 40px; 
+        }
+        
+        .btn-reset-modern { background-color: transparent; border: 1px solid #666; color: #ccc; }
+        .btn-reset-modern:hover { background-color: #444; color: white; }
+        .btn-apply-modern { background-color: #CD004A; color: white; }
+        .btn-apply-modern:hover { background-color: #a0003a; }
+
+        .filter-content-modern { 
+            display: flex; 
+            gap: 20px; 
+            align-items: flex-end; 
+            margin-bottom: 0; 
+            flex-wrap: wrap; 
+        }
+
+        .filter-group-modern { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 5px; 
+            flex: 1; 
+            min-width: 200px; 
+        }
+
+        .filter-group-modern label { 
+            color: white; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+        }
+
+        .filter-select-modern, .filter-input-modern { 
+            width: 100%; 
+            height: 45px; 
+            padding: 0 15px; 
+            border-radius: 5px; 
+            border: 1px solid #555; 
+            background-color: white; 
+            color: #000; 
+            font-size: 1rem;
+            outline: none;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        select.filter-select-modern {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 15px;
+            padding-right: 40px; 
+            cursor: pointer;
+        }
+
+        .filter-input-modern::placeholder { color: #666; }
+
+        .filter-divider { 
+            width: 1px; 
+            height: 45px; 
+            background-color: #555; 
+            display: none; 
+        }
+
+        @media(min-width: 768px) { .filter-divider { display: block; } }
+    </style>
 </body>
 </html>
