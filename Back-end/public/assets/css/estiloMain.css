@@ -104,9 +104,8 @@ body {
     padding: 25px;
     border-radius: 20px;
     margin-top: 0;
-    max-width: 60vw;
+    max-width: 80vw;
     color: var(--light-text);
-    display: grid;
     justify-content: stretch;
     align-items: center;
 }
@@ -221,9 +220,12 @@ body {
 /* Linha → várias colunas */
 .filter-row {
     display: flex;
-    justify-content: space-between;
-    gap: 20px;
+    justify-content: center;
+    /* gap: 10px; */
     margin-bottom: 20px;
+    align-content: center;
+    flex-direction: row;
+    align-items: center;
 }
 
 /* Conteúdo moderno principal (com divisores) */
@@ -240,8 +242,7 @@ body {
     gap: 20px;
 }
 
-/* Grupo moderno (inputs + labels) */
-.filter-group-modern {
+.filter-group-modern, .filter-group {
     width: 50%;
     flex-wrap: wrap;
     font-size: small;
@@ -254,27 +255,36 @@ body {
 }
 
 /* Labels */
-.filter-group-modern label {
+.filter-group-modern label{
     color: white;
     font-weight: bold;
     white-space: nowrap;
 }
 
 /* Input */
-.filter-group-modern input[type="text"] {
+.filter-group-modern input[type="text"]{
     height: 40px;
     padding: 8px 12px;
     border-radius: 6px;
     border: 1px solid #666;
 }
 
-/* Grupo comum */
-.filter-group {
-    display: flex;
-    width: 30%;
-    align-items: center;
-    gap: 10px;
+/* Labels */
+.filter-group label{
+    color: white;
+    font-weight: bold;
+    white-space: nowrap;
 }
+
+/* Input */
+.filter-group .input-container input[type="date"], .filter-group input[type="text"], .filter-group .input-container select{
+    height: 30px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #666;
+}
+
+
 
 /* Divisor vertical */
 .filter-divider {
@@ -377,7 +387,7 @@ align-items: center;
 .seller-fields,
 .buyer-fields {
     flex-wrap: wrap;
-    margin-right: 100px;
+    padding: 25px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -385,10 +395,8 @@ align-items: center;
 }
 
 .field-row {
-    display: flex;
     
     align-items: center;
-    gap: 10px;
     
     flex-wrap: nowrap;
     width: 100%;

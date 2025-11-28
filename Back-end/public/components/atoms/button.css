@@ -26,13 +26,6 @@
     background-color: #006ddf;
 }
 
-.filter-actions button {
-    padding: 8px 15px;
-    border-radius: 20px; 
-    cursor: pointer;
-    font-weight: bold;
-}
-
 .btn-reset,
 .btn-reset-group {
     font-weight: 700; 
@@ -43,12 +36,7 @@
     border: 1px solid var(--gray-text); 
     margin-right: 10px;
 }
-.btn-apply {
-    font-weight: bold;
-    background-color: var(--light-text); 
-    color: var(--dark-bg); 
-    border: 1px solid var(--light-text); 
-}
+
 .btn-reset-group {
     background-color: transparent;
     border: none;
