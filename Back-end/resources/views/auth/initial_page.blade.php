@@ -91,7 +91,7 @@
                 <form method="GET" action="{{ route('initial') }}" id="filter-form" class="store-filter">
                     <div class="filter-bar-modern">
                         <div class="filter-header-modern">
-                            <span class="filter-icon">🔍</span>
+                            <span class="filter-icon"></span>
                             <h3 class="filter-title-modern">Filtro</h3>
                             <div class="filter-actions-modern">
                                 <button type="button" class="btn-reset-modern" onclick="resetFilters()">Resetar</button>
@@ -100,31 +100,54 @@
                         </div>
 
                         <div class="filter-content-modern">
+  <div class="filter-content-modern">
+    
+    <div class="filter-group-modern">
+        <label for="nome">Nome:</label>
+        <div style="display: flex; align-items: center; background: white; border-radius: 5px; border: 1px solid #ccc; padding-right: 5px; height: 38px;">
+            <input type="text" name="search" id="nome" class="filter-input-modern" 
+                   placeholder="Buscar..." 
+                   value="{{ request('search') }}" 
+                   style="border: none; outline: none; box-shadow: none; height: 100%;">
+            
+            <button type="button" class="btn-reset-field" onclick="limparInput('nome')" style="font-size: 1.2rem; color: #CD004A; padding: 0 8px;">
+                &times;
+            </button>
+        </div>
+    </div>
 
-                            <div class="filter-divider"></div>
+    <div class="filter-divider"></div>
 
-                            <div class="filter-group-modern">
-                                <label for="nome">Nome:</label>
-                                <input type="text" name="search" id="nome" class="filter-input-modern" placeholder="Buscar produto..." value="{{ request('search') }}">
-                                <button type="button" class="btn-reset-field" onclick="document.getElementById('nome').value=''">Resetar</button>
-                            </div>
+    <div class="filter-group-modern"> <label for="cat-trigger">Categorias:</label>
+    
+    <div class="custom-dropdown">
+        <div class="dropdown-trigger" onclick="toggleDropdown()" id="cat-trigger" style="height: 38px; border: 1px solid #ccc;">
+            <span id="selected-text" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 130px;">
+                Selecionar categorias...
+            </span>
+            <span class="dropdown-arrow">▼</span>
+        </div>
 
-                            <div class="filter-divider"></div>
+        <div id="dropdown-list" class="dropdown-options">
+            @php
+                $categoriasFixas = ['Vestimentas', 'Acessórios', 'Livros', 'Dados', 'Brinquedos', 'Outro'];
+                $selecionadas = request('categories', []); 
+            @endphp
 
-                            <div class="filter-group-modern">
-                                <label for="categoria">Categoria:</label>
-                                <select name="category_id" id="categoria" class="filter-select-modern">
-                                    <option value="">Todas</option>
-                                    @foreach(\App\Models\Category::all() as $category)
-                                        <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                                            {{ $category->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <button type="button" class="btn-reset-field" onclick="document.getElementById('categoria').value=''">Resetar</button>
-                            </div>
-                        </div>
+            @foreach($categoriasFixas as $cat)
+                <label class="dropdown-item">
+                    <input type="checkbox" name="categories[]" value="{{ $cat }}" 
+                        {{ in_array($cat, $selecionadas) ? 'checked' : '' }}
+                        onchange="updateDropdownText()">
+                    <span>{{ $cat }}</span>
+                </label>
+            @endforeach
+        </div>
+    </div>
+</div>
 
+</div>
+</div>
                         
                     </div>
                 </form>
@@ -324,6 +347,182 @@
         border-color: white;
         font-weight: bold;
     }
+
+ .custom-dropdown {
+    position: relative;
+    min-width: 200px;
+}
+
+/* Gatilho (Botão) */
+.dropdown-trigger {
+    background-color: white !important;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 15px; /* Ajuste no padding */
+    color: #555 !important; /* Cor do texto placeholder */
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    user-select: none;
+    height: 100%; 
+}
+
+/* Lista de Opções (Onde estava o problema da cor) */
+.dropdown-options {
+    display: none;
+    position: absolute;
+    top: 105%;
+    left: 0;
+    width: 100%;
+    background-color: white !important; /* Fundo BRANCO forçado */
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    z-index: 9999; /* Z-index alto para ficar por cima de tudo */
+    padding: 5px 0;
+}
+
+.dropdown-options.show {
+    display: block;
+}
+
+/* Item da lista */
+.dropdown-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    cursor: pointer;
+    transition: background 0.2s;
+    color: #000 !important; /* TEXTO PRETO FORÇADO */
+    background-color: white !important;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f0f0 !important; /* Cinza claro no mouse over */
+}
+
+.dropdown-item span {
+    color: #000 !important; /* Garante que o texto dentro do span seja preto */
+    font-weight: normal;
+}
+
+.dropdown-item input {
+    margin-right: 10px;
+    accent-color: #CD004A;
+    width: 16px;
+    height: 16px;
+}
+
+/* === Ajuste geral da barra de filtro === */
+.filter-bar-modern {
+    background-color: #2a2a2a;
+    border-radius: 14px;
+    padding: 25px;
+    margin-bottom: 40px;
+    width: 100%;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+}
+
+/* Header organizado */
+.filter-header-modern {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #444;
+}
+
+.filter-title-modern {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+/* Botões */
+.filter-actions-modern button {
+    height: 35px;
+    padding: 0 18px;
+    border-radius: 6px;
+}
+
+/* === ORGANIZAÇÃO DOS CAMPOS === */
+.filter-content-modern {
+    display: flex;
+    gap: 30px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+/* Grupo do input + label */
+.filter-group-modern {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 260px;
+}
+
+/* Ajuste visual do input de texto */
+.filter-group-modern input[type="text"] {
+    height: 40px;
+    border-radius: 6px;
+    border: 1px solid #666;
+    padding: 8px 12px;
+}
+
+/* === DROPDOWN BONITO === */
+.custom-dropdown {
+    position: relative;
+    width: 240px;
+}
+
+.dropdown-trigger {
+    height: 40px !important;
+    border-radius: 6px;
+    border: 1px solid #666 !important;
+    padding: 0 12px;
+}
+
+.dropdown-options {
+    margin-top: 4px;
+    border-radius: 8px !important;
+}
+
+.dropdown-item {
+    padding: 8px 12px !important;
+}
+
+/* Divider sutil */
+.filter-divider {
+    width: 2px;
+    height: 45px;
+    background-color: #444;
+    border-radius: 2px;
+}
+
+/* Melhor comportamento em telas menores */
+@media (max-width: 768px) {
+    .filter-content-modern {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 20px;
+    }
+
+    .filter-divider {
+        display: none;
+    }
+
+    .custom-dropdown,
+    .filter-group-modern {
+        width: 100%;
+    }
+}
+
 </style>
 
 <!-- Modal de Sucesso -->
@@ -418,31 +617,40 @@
         }
     });
 
-    // Funções do Modal de Lojista
-function openLojistaModal() {
-    const modal = document.getElementById('lojista-modal');
-    if (modal) {
-        modal.style.display = 'flex';
+// Alterna visibilidade do menu
+function toggleDropdown() {
+    const list = document.getElementById('dropdown-list');
+    list.classList.toggle('show');
+}
+
+// Atualiza o texto da caixinha baseado no que foi marcado
+function updateDropdownText() {
+    const checkboxes = document.querySelectorAll('.dropdown-item input[type="checkbox"]:checked');
+    const textSpan = document.getElementById('selected-text');
+    
+    if (checkboxes.length === 0) {
+        textSpan.innerText = "Selecionar categorias...";
+        textSpan.style.color = "#555"; // Cor de placeholder
+    } else {
+        // Pega o valor de todos os marcados e junta com vírgula
+        const values = Array.from(checkboxes).map(cb => cb.value);
+        textSpan.innerText = values.join(', '); // Ex: "Dados, Livros"
+        textSpan.style.color = "#000"; // Cor de texto ativo
     }
 }
 
-function closeLojistaModal() {
-    const modal = document.getElementById('lojista-modal');
-    if (modal) {
-        modal.style.display = 'none';
+// Fecha o dropdown se clicar fora dele
+window.addEventListener('click', function(e) {
+    const dropdown = document.querySelector('.custom-dropdown');
+    if (dropdown && !dropdown.contains(e.target)) {
+        document.getElementById('dropdown-list').classList.remove('show');
     }
-}
+});
 
-// Fechar modal ao clicar fora dele (fundo escuro)
+// Roda uma vez ao carregar para mostrar os filtros que já vieram da URL
 document.addEventListener('DOMContentLoaded', function() {
-    const lojistaModal = document.getElementById('lojista-modal');
-    if (lojistaModal) {
-        lojistaModal.addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeLojistaModal();
-            }
-        });
-    }
+    updateDropdownText();
+    
 });
 </script>
 
