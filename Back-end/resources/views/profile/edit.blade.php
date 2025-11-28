@@ -122,7 +122,7 @@
                         <form method="GET" action="{{ route('profile.edit') }}" class="filter-bar-modern">
                             <div class="filter-header-modern">
                                 <div style="display: flex; align-items: center;">
-                                    <span class="filter-icon" style="font-size: 1.5rem; margin-right: 10px;">🔍</span>
+                                    <span class="filter-icon" style="font-size: 1.5rem; margin-right: 10px;"></span>
                                     <h3 class="filter-title-modern" style="margin: 0;">Filtro</h3>
                                 </div>
                                 <div class="filter-actions-modern">
@@ -189,9 +189,12 @@
                                             @endif
                                             
                                             <div class="order-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); padding: 10px; text-align: center;">
-                                                <h3 style="color: white; margin: 0; font-size: 1rem;">Pedido #{{ $order->id }}</h3>
-                                                <small style="color: #ccc;">{{ $order->created_at->format('d/m/Y') }}</small>
-                                            </div>
+    <h3 style="color: white; margin: 0; font-size: 1rem;">
+        {{-- Se tiver produto, mostra o nome. Se não, mostra o ID --}}
+        {{ $order->items->first() && $order->items->first()->product ? $order->items->first()->product->name : 'Pedido #' . $order->id }}
+    </h3>
+    <small style="color: #ccc;">{{ $order->created_at->format('d/m/Y') }}</small>
+</div>
                                         </div>
                                         
                                         <div class="order-actions" style="padding: 15px; display: flex; flex-direction: column; gap: 10px;">
@@ -303,7 +306,7 @@
             const content = `
                 <div style="color: white;">
                     <p><strong>Data:</strong> ${new Date(order.created_at).toLocaleDateString('pt-BR')}</p>
-                    <p><strong>Status:</strong> ${order.status === 'pending' ? 'Pendente' : order.status}</p>
+                    <p><strong>Status:</strong> ${order.status === 'pending' ? 'Em rota' : order.status}</p>
                     <p><strong>Total:</strong> R$ ${parseFloat(order.total).toFixed(2)}</p>
                     <hr style="border-color: #444; margin: 20px 0;">
                     ${itemsHtml}
