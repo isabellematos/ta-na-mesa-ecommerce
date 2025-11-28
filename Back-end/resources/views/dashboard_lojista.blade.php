@@ -21,7 +21,61 @@
     <link rel="stylesheet" href="{{ asset('components/organisms/header.css') }}">
     <link rel="stylesheet" href="{{ asset('components/organisms/product-grid.css') }}">
 
-
+    <style>
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            width: 100%;
+            margin-top: 20px;
+        }
+        .filter-bar {
+            background-color: #2a2a2a;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        .filter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            color: white;
+        }
+        .filter-row {
+            display: flex;
+            gap: 15px;
+            align-items: flex-end;
+            flex-wrap: wrap;
+        }
+        .filter-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .filter-group label {
+            color: white;
+            font-weight: bold;
+        }
+        .input-container select, .input-container input {
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+            color: #000;
+            min-width: 150px;
+            height: 35px;
+        }
+        .btn-apply, .btn-reset {
+            padding: 8px 15px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-apply { background-color: #CD004A; color: white; }
+        .btn-reset { background-color: transparent; border: 1px solid #666; color: #ccc; }
+    </style>
 </head>
 
 <body>
@@ -37,7 +91,7 @@
                 <div class="user-actions">
                     <a href="{{ route('profile.edit') }}">
                         @if(Auth::user()->imagemPerfil)
-                            <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}" 
+                            <img src="{{ Str::startsWith(Auth::user()->imagemPerfil, 'assets') ? asset(Auth::user()->imagemPerfil) : asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}" 
                                  alt="Perfil do usuário" 
                                  style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;"
                                  onerror="this.onerror=null; this.src='{{ asset('assets/img/user-icon.png') }}';">
@@ -73,7 +127,9 @@
                     <div class="seller-info-content">
                         <div class="seller-photo">
                             @if(Auth::user()->imagemPerfil)
-                                <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}" alt="Foto do vendedor" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #ffff;">
+                                <img src="{{ Str::startsWith(Auth::user()->imagemPerfil, 'assets') ? asset(Auth::user()->imagemPerfil) : asset('storage/' . Auth::user()->imagemPerfil) }}" 
+                                     alt="Foto do vendedor" 
+                                     style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #ffff;">
                             @else
                                 <img src="{{ asset('assets/img/gatoMago.jpg') }}" alt="Foto do vendedor" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #CD004A;">
                             @endif
@@ -116,13 +172,13 @@
 
                     <form method="GET" action="{{ route('dashboard') }}" class="filter-bar">
                         <div class="filter-header">
-                            <p class="filter-title">Filtro</p>
+                            <p class="filter-title" style="margin: 0; font-size: 1.2rem; font-weight: bold;">Filtro</p>
                             <div class="filter-actions">
-                                <a href="{{ route('dashboard') }}" class="btn-reset" style="text-decoration: none; color: inherit; display: flex; align-items: center;">Resetar</a>
+                                <a href="{{ route('dashboard') }}" class="btn-reset" style="text-decoration: none; display: flex; align-items: center;">Resetar</a>
                                 <button type="submit" class="btn-apply">Aplicar</button>
                             </div>
                         </div>
-                        <div class="filter-line"></div>
+                        <div style="width: 100%; height: 1px; background-color: #444; margin: 15px 0;"></div>
                         
                         <div class="filter-row">
                             <div class="filter-group">
@@ -139,19 +195,22 @@
                                 </div>
                             </div>
 
-                            <div class="filter-group">
-                                <label for="category_id">Categoria:</label>
-                                <div class="input-container">
-                                    <select id="category_id" name="category_id">
-                                        <option value="all">Todas</option>
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                                                {{ $category->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                            </div>
+                          <div class="filter-group">
+    <label for="category_id">Categoria:</label>
+    <div class="input-container">
+        <select id="category_id" name="category_id">
+            <option value="all">Todas</option>
+            {{-- AQUI ESTAVA O PROBLEMA: --}}
+            @if(isset($categories))
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                        {{ $category->name }}
+                    </option>
+                @endforeach
+            @endif
+        </select>
+    </div>
+</div>
                         </div>
                     </form>
 
@@ -159,15 +218,11 @@
                         @forelse($products as $product)
                             <div class="product-card" style="background-color: #000; border: 1px solid #333; padding: 15px; border-radius: 10px; display:flex; flex-direction:column; align-items:center;">
                                 
-                                <div class="product-image" style="width:100%; height:200px; margin-bottom:10px;">
-                                    @if($product->image1)
-                                        <img src="{{ asset('storage/'.$product->image1) }}" 
-                                             alt="{{ $product->name }}" 
-                                             style="width:100%; height:100%; object-fit:cover; border-radius:5px;"
-                                             onerror="this.onerror=null;this.src='{{ asset('assets/img/iconeMago.png') }}';"> 
-                                    @else
-                                        <img src="{{ asset('assets/img/iconeMago.png') }}" alt="Sem imagem" style="width:100%; height:100%; object-fit:contain;">
-                                    @endif
+                                <div class="product-image" style="width:100%; height:200px; margin-bottom:10px; overflow: hidden;">
+                                    <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : (Str::startsWith($product->image1, 'assets') ? asset($product->image1) : asset('storage/' . $product->image1)) }}" 
+                                         alt="{{ $product->name }}" 
+                                         style="width:100%; height:100%; object-fit:cover; border-radius:5px;"
+                                         onerror="this.onerror=null;this.src='{{ asset('assets/img/iconeMago.png') }}';">
                                 </div>
 
                                 <h3 style="color:white; margin-bottom:5px;">{{ $product->name }}</h3>
@@ -177,11 +232,12 @@
                                     <button type="button" 
                                             onclick="openEditModal(
                                                 '{{ $product->id }}', 
-                                                '{{ $product->name }}', 
+                                                '{{ addslashes($product->name) }}', 
                                                 '{{ $product->price }}', 
                                                 '{{ $product->units }}', 
                                                 '{{ $product->category_id }}', 
-                                                '{{ $product->description }}'
+                                                '{{ $product->image1 }}', 
+                                                '{{ addslashes($product->description) }}'
                                             )"
                                             style="flex:1; background:#2196F3; color:white; border:none; padding:8px; border-radius:5px; cursor:pointer; font-size:1rem;">
                                         Editar
@@ -215,8 +271,9 @@
                     </h2>
                 </div>
 
-                <form id="modalForm" action="{{ route('product.store') }}" method="POST" enctype="multipart/form-data">
+                <form id="modalForm" action="{{ route('product.store') }}" method="POST">
                     @csrf
+                    
                     <div class="modal-form-grid" style="display:flex; flex-direction:column; gap:12px;">
                         
                         <div class="form-row" style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 10px;">
@@ -243,19 +300,23 @@
                                 <select id="modal-categoria" name="category_id" required 
                                         style="width:100%; height: 35px; padding:0 10px; background:#4f4f4f; border:none; border-radius:4px; color:white; font-style: italic; appearance: none; cursor:pointer; font-size: 0.9rem;">
                                     <option value="" disabled selected>Escolher categoria</option>
-                                    @foreach($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                                <span style="position:absolute; right:10px; top:50%; transform:translateY(-50%); color:white; pointer-events:none; font-size: 0.8rem;">&#9660;</span>
-                            </div>
-                        </div>
+                                    @if(isset($categories) && count($categories) > 0)
+                @foreach($categories as $category)
+                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                @endforeach
+            @else
+                <option value="" disabled>Nenhuma categoria cadastrada!</option>
+            @endif
+        </select>
+        <span style="position:absolute; right:10px; top:50%; transform:translateY(-50%); color:white; pointer-events:none; font-size: 0.8rem;">&#9660;</span>
+    </div>
+</div>
 
                         <div class="form-row" style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 10px;">
-                            <label style="color:#ddd; font-size: 1rem; text-align: right;">Foto:</label>
+                            <label style="color:#ddd; font-size: 1rem; text-align: right;">Link Foto:</label>
                             <div style="background:#4f4f4f; border-radius:4px; height: 35px; display: flex; align-items: center; padding-left: 5px; width: 100%;">
-                                <input type="file" name="image1" id="modal-foto"
-                                       style="width:100%; color:#aaa; font-size: 0.85rem; background: transparent; border: none;">
+                                <input type="url" name="image1" id="modal-foto" placeholder="Cole o link da imagem (https://...)" required
+                                       style="width:100%; color:white; font-size: 0.85rem; background: transparent; border: none; padding: 0 5px;">
                             </div>
                         </div>
 
@@ -294,18 +355,14 @@
             // Função para abrir o modal em modo CRIAÇÃO
             if (openModalBtn) {
                 openModalBtn.addEventListener('click', function() {
-                    form.reset(); // Limpa o formulário
-                    form.action = "{{ route('product.store') }}"; // Rota de criar
+                    form.reset(); 
+                    form.action = "{{ route('product.store') }}"; 
                     modalTitle.innerText = "Insira informações sobre o produto";
                     submitBtn.innerText = "Criar Anúncio!";
                     
-                    // Remove input _method se existir (usado apenas no update)
                     const methodInput = form.querySelector('input[name="_method"]');
                     if (methodInput) methodInput.remove();
                     
-                    // Torna a foto obrigatória na criação
-                    document.getElementById('modal-foto').required = true;
-
                     modal.style.display = 'flex';
                 });
             }
@@ -323,8 +380,8 @@
             }
         });
 
-        // Função global para abrir o modal em modo EDIÇÃO (chamada pelos botões nos cards)
-        function openEditModal(id, name, price, units, categoryId, description) {
+        // Função global para abrir o modal em modo EDIÇÃO
+        function openEditModal(id, name, price, units, categoryId, image1, description) {
             const modal = document.getElementById('productModal');
             const form = document.getElementById('modalForm');
             const modalTitle = document.getElementById('modalTitle');
@@ -336,16 +393,19 @@
             document.getElementById('modal-qtd').value = units;
             document.getElementById('modal-descricao').value = description;
             
+            // PREENCHE O LINK DA IMAGEM
+            document.getElementById('modal-foto').value = image1;
+
             // Seleciona a categoria
             const categorySelect = document.getElementById('modal-categoria');
             if(categorySelect) categorySelect.value = categoryId;
 
             // Configura para EDIÇÃO
-            form.action = `/product/${id}`; // Rota de update
+            form.action = `/product/${id}`; 
             modalTitle.innerText = "Editar Produto";
             submitBtn.innerText = "Salvar Alterações";
 
-            // Adiciona o input hidden _method = PUT para o Laravel entender que é update
+            // Adiciona o PUT
             let methodInput = form.querySelector('input[name="_method"]');
             if (!methodInput) {
                 methodInput = document.createElement('input');
@@ -354,9 +414,6 @@
                 methodInput.value = 'PUT';
                 form.appendChild(methodInput);
             }
-
-            // Na edição, a foto não é obrigatória
-            document.getElementById('modal-foto').required = false;
 
             modal.style.display = 'flex';
         }
