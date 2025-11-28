@@ -36,7 +36,6 @@ body {
     padding-top: 70px;
 }
 
-
 .banner-image {
     position: relative;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
@@ -50,7 +49,6 @@ body {
     width: 100%;
     display: block;
     height: auto;
-
 }
 
 .banner-title {
@@ -67,8 +65,7 @@ body {
     line-height: 1.2;
 }
 
-/* altera algumas informacoes só na pag do vendedor e comprador*/
-
+/* Páginas específicas */
 .banner-title-seller,
 .banner-title-buyer {
     position: absolute;
@@ -83,11 +80,10 @@ body {
     line-height: 1.2;
 }
 
+/* Scroll Button */
 .scroll-down-container {
     text-align: center;
-
     margin-top: -37.5px;
-
     position: relative;
     z-index: 10;
 }
@@ -100,30 +96,118 @@ body {
     border-radius: 50%;
 }
 
-.filter-content-modern input, .filter-content-modern select {
-    width: 80%;
-    width: fit-content;
-    gap: 50px;
+/* Seção do Filtro */
+
+/* Barra genérica */
+.filter-bar {
+    background-color: #1E1E1E;
+    padding: 25px;
+    border-radius: 20px;
+    margin-top: 0;
+    max-width: 60vw;
+    color: var(--light-text);
+    display: grid;
+    justify-content: stretch;
+    align-items: center;
 }
 
-/* Seção do Filtro */
-.filter-bar {
-    background-color: #333;
-    padding: 20px;
-    border-radius: 10px;
-    margin-bottom: 30px;
-    color: var(--light-text);
+/* Barra moderna */
+.filter-bar-modern {
+    width: 100%;
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 25px;
+    background-color: #2a2a2a;
+    border-radius: 14px;
+    box-shadow: 0 4px 14px rgba(0,0,0,0.4);
+
+    /* sobrescrita do usuário */
+    width: 60vw;
+    max-width: 80vw;
+    justify-content: center;
+    align-items: center;
 }
+
+/* =========================================
+   HEADER DO FILTRO
+========================================= */
 
 .filter-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
 
+.filter-header-modern {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 18px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #444;
+}
+
+/* Títulos */
+.filter-title {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.filter-title-modern {
+    color: white;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+
+/* Ações do header */
+.filter-actions {
+    display: flex;
+}
+
+/* Ações do header */
+.filter-actions-modern {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-reset-modern,
+.btn-apply-modern,
+.btn-reset,
+.btn-apply {
+    padding: 8px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.3s;
+}
+
+.btn-reset-modern,
+.btn-reset {
+    background-color: transparent;
+    border: 1px solid #666;
+    color: #ccc;
+}
+
+.btn-reset-modern:hover,
+.btn-reset:hover {
+    background-color: #444;
+    color: white;
+}
+
+.btn-apply-modern {
+    background-color: white;
+    color: #000;
+}
+
+.btn-apply-modern:hover {
+    background-color: #f0f0f0;
+}
+
+/* Linha decorativa */
 .filter-line {
     width: 100%;
     height: 2px;
@@ -134,12 +218,7 @@ body {
     margin: 10px 0 20px 0;
 }
 
-.filter-title {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-
-
+/* Linha → várias colunas */
 .filter-row {
     display: flex;
     justify-content: space-between;
@@ -147,16 +226,49 @@ body {
     margin-bottom: 20px;
 }
 
-.filter-group-modern{
-    width: 50%;
-    flex-wrap: wrap;
+/* Conteúdo moderno principal (com divisores) */
+.filter-content-modern {
+    display: flex;
+    gap: 30px;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
 }
 
+/* Versão que estava duplicada no topo → unificada */
+.filter-content-modern {
+    gap: 20px;
+}
+
+/* Grupo moderno (inputs + labels) */
 .filter-group-modern {
     width: 50%;
+    flex-wrap: wrap;
     font-size: small;
+
+    /* segunda definição */
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 260px;
 }
 
+/* Labels */
+.filter-group-modern label {
+    color: white;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+/* Input */
+.filter-group-modern input[type="text"] {
+    height: 40px;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border: 1px solid #666;
+}
+
+/* Grupo comum */
 .filter-group {
     display: flex;
     width: 30%;
@@ -164,6 +276,22 @@ body {
     gap: 10px;
 }
 
+/* Divisor vertical */
+.filter-divider {
+    width: 2px;
+    height: 45px;
+    background-color: #444;
+    border-radius: 2px;
+}
+
+.btn-reset-field {
+    background: transparent;
+    border: none;
+    color: #CD004A;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
 
 .filter-category {
     display: flex;
@@ -176,35 +304,12 @@ body {
     gap: 10px;
 }
 
-
-/* Seção da Loja */
 .store {
     width: 100%;
     justify-content: center;
-    display: flex; 
+    display: flex;
     flex-direction: column;
     margin-top: 30px;
-    align-items: center;
-    
-}
-
-
-/* Barra de Filtro */
-.filter-bar {
-    background-color: #1E1E1E;
-    padding: 20px;
-    border-radius: 20px;
-    margin-bottom: 30px;
-    color: var(--light-text);
-    margin-top: 0;
-    justify-content: center;
-    align-items: center;
-}
-
-.filter-bar-modern {
-    width: 60vw;
-    max-width: 80vw;
-    justify-content: center;
     align-items: center;
 }
 
@@ -212,7 +317,6 @@ body {
     margin-bottom: 60px;
 }
 
-/* Só controla imagens de produto */
 .product-image {
     width: 120px;
     height: 120px;
@@ -223,225 +327,13 @@ body {
     display: block;
 }
 
-/* Remove ou adapta o genérico */
+/* Evita afetar imagens internas */
 .product-card img:not(.product-image) {
     max-width: 100%;
     height: auto;
     border-radius: 8px;
 }
 
-
-
-@media (max-width: 768px) {
-
-    /* 1. Ajustar o menu de navegação (Mantido) */
-    .navbar-content {
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .nav-links {
-        flex-direction: column;
-        gap: 10px;
-        text-align: center;
-    }
-
-    /* 2. Centralizar o logo e ações do usuário (Mantido) */
-    .logo,
-    .user-actions {
-        margin: 0 auto;
-    }
-
-    /* 3. Ajustar a barra de filtro (Melhorado) */
-    .filter-bar {
-        padding: 15px;
-    }
-
-    .filter-row {
-        flex-direction: column;
-        
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-    
-    .filter-bar-modern {
-        width: 80%;
-        display: flex;
-        flex-direction: column;
-        
-        justify-content: center;
-    }
-
-    .filter-content-modern {
-        flex-direction: row;
-        box-sizing: content-box;
-        flex-wrap: wrap;
-        width: fit-content;
-    }
-
-    .filter-group {
-        width: 50%;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .filter-header-modern {
-        display: flex;
-        flex-direction: column;
-    }
-
-    .category-buttons {
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    /* 4. Layout das Seções de Vendedor/Comprador */
-    .seller-info-content,
-    .buyer-info-content {
-        flex-wrap: wrap;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: flex-start;
-        width: 100%;
-        gap: 20px;
-        padding: 0 10px;
-    }
-
-    .seller-infos h2,
-    .buyer-infos h2 {
-        text-align: flex-start; /* Centraliza o título dentro do bloco */
-        margin-left: 0;
-    }
-
-    .seller-photo,
-    .buyer-photo {
-        margin-left: 0; /* Remove margem fixa */
-    }
-
-    .seller-fields,
-    .buyer-fields {
-        margin-right: 0; /* Remove margem fixa */
-        width: 100%;
-        flex-wrap: wrap;
-
-    }
-
-    .field-row {
-        width: 100%;
-        flex-direction: column;
-        align-items: flex-start;
-        justify-content: flex-start;
-        gap: 10px;
-        
-    }
-
-    .field-row label {
-        flex-wrap: wrap;
-        width: 100%; /* Rótulo ocupa a largura total */
-        text-align: flex-start; /* Alinha o texto do rótulo à esquerda */
-    }
-
-    .seller-fields input[type="url"],
-    .seller-fields .textarea-wrapper,
-    .seller-fields .input-upload-container,
-    .buyer-fields input[type="url"],
-    .buyer-fields .textarea-wrapper,
-    .buyer-fields .input-upload-container {
-        width: 100%; /* Inputs ocupam a largura total */
-        flex-wrap: wrap;
-
-    }
-
-
-    .buyer-fields, .input-upload-container {
-        box-sizing: border-box;
-        flex-direction: column;
-        justify-content: center;
-    }
-
-    .seller-save-btn,
-    .buyer-save-btn {
-        justify-content: center; /* Centraliza o botão de salvar */
-    }
-    
-    
-    .seller-ads,
-    .seller-infos,
-    .buyer-shopped,
-    .buyer-infos {
-        flex-wrap: wrap;
-        width: 100%;
-        padding: 20px;
-        justify-content: center;
-        align-items: center;
-        align-content: center;
-    }
-
-    /* 6. Mudar a largura da imagem do produto para se adaptar (Mantido) */
-    .product-image {
-        width: 100px !important;
-        height: 100px !important;
-    }
-
-    /* 7. Ajuste dos Modals */
-    .modal-content {
-        width: 95%; /* Ocupa mais espaço na tela */
-        padding: 20px;
-    }
-
-    .modal-form-grid {
-        grid-template-columns: 1fr; /* Rótulos e campos em uma única coluna */
-        gap: 5px 0;
-    }
-
-    .modal-form-grid label {
-        text-align: left; /* Alinha rótulos à esquerda */
-        width: 100%;
-        height: auto;
-    }
-
-    .modal-input-textarea,
-    .modal-input,
-    .modal-btn-upload,
-    .modal-form-grid select {
-        grid-column: 1; /* Garante que os campos ocupem a coluna única */
-    }
-
-    .modal-form-grid label[for="modal-descricao"] {
-        padding-top: 0;
-    }
-
-    .order-details-info {
-        flex-direction: column;
-        gap: 15px;
-    }
-
-    .status-section {
-        text-align: left;
-    }
-
-    .product-info-row {
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .product-image-details img {
-        margin-bottom: 10px;
-    }
-    
-    .product-description-details {
-        text-align: center;
-    }
-
-    .product-btnActions {
-        width: 100%;
-        gap: 15px;
-    }
-    
-    .btn-action {
-        width: auto;
-    }
-}
 
 /* 4. Mudar a largura da imagem do produto para se adaptar */
 .product-image {
@@ -573,8 +465,8 @@ align-items: center;
     justify-content: center;
     flex-direction: column;
 
-    width: calc(100% - 100px);
-    max-width: 1750px;
+    width: 60vw;
+    max-width: 80vw;
     margin: 60px auto 40px auto;
 
     color: var(--light-text);
@@ -872,4 +764,391 @@ align-items: center;
 
 .btn-cancel:hover {
     background-color: #cc2952;
+}
+
+/* RESPONSIVIDADE */
+
+/* Tablets (≤ 1024px) */
+@media (max-width: 1024px) {
+    .banner-title,
+    .banner-title-seller,
+    .banner-title-buyer {
+        font-size: 3.5rem;
+        top: 40%;
+        left: 50%;
+    }
+
+    .scroll-down-button img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .filtro-container {
+        width: 90%;
+        gap: 1rem;
+    }
+
+    .filtro-container select,
+    .filtro-container input {
+        font-size: 1rem;
+        padding: 10px;
+    }
+
+    .seller-info-content,
+    .buyer-info-content {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+        width: 100%;
+    }
+
+    .seller-photo img,
+    .buyer-photo img {
+        width: 130px;
+        height: 130px;
+    }
+
+    .seller-fields,
+    .buyer-fields {
+        width: 100%;
+        margin-right: 0;
+        gap: 20px;
+    }
+
+    .field-row {
+        flex-direction: column;
+        align-items: flex-start;
+        width: 100%;
+        gap: 8px;
+    }
+
+    .field-row label {
+        text-align: left;
+        width: 100%;
+    }
+
+    .seller-fields input[type="url"],
+    .seller-fields textarea,
+    .buyer-fields input[type="url"],
+    .buyer-fields textarea,
+    .textarea-wrapper,
+    .input-upload-container {
+        width: 100%;
+    }
+
+    .seller-save-btn,
+    .buyer-save-btn {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .seller-ads,
+    .seller-infos,
+    .buyer-shopped,
+    .buyer-infos {
+        width: 95%;
+        margin: 40px auto;
+        padding: 20px !important;
+    }
+
+}
+
+
+@media (max-width: 768px) {
+    .banner-image {
+        border-bottom-left-radius: 45px;
+        border-bottom-right-radius: 45px;
+    }
+
+    .banner-title,
+    .banner-title-seller,
+    .banner-title-buyer {
+        font-size: 2.8rem;
+        top: 42%;
+        left: 50%;
+        width: 90%;
+    }
+
+    .scroll-down-container {
+        margin-top: -25px;
+    }
+
+    .scroll-down-button img {
+        width: 55px;
+        height: 55px;
+    }
+
+    /* 1. Ajustar o menu de navegação (Mantido) */
+    .navbar-content {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        gap: 10px;
+        text-align: center;
+    }
+
+    /* 2. Centralizar o logo e ações do usuário (Mantido) */
+    .logo,
+    .user-actions {
+        margin: 0 auto;
+    }
+
+    /* 3. Ajustar a barra de filtro (Melhorado) */
+    .filter-bar {
+        padding: 15px;
+    }
+
+    .filter-row {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .filter-bar-modern {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        
+        justify-content: center;
+    }
+
+    .filter-content-modern {
+        flex-direction: row;
+        box-sizing: content-box;
+        flex-wrap: wrap;
+        width: fit-content;
+    }
+
+    .filter-group {
+        width: 50%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .filter-header-modern {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .filtro-container {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+        gap: 0.8rem;
+    }
+
+    .filtro-container select,
+    .filtro-container input,
+    .filtro-container button {
+        width: 100%;
+        font-size: 0.95rem;
+        padding: 10px;
+    }
+
+    .category-buttons {
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+.seller-info-content,
+    .buyer-info-content {
+        gap: 30px;
+    }
+
+    .seller-photo img,
+    .buyer-photo img {
+        width: 110px;
+        height: 110px;
+    }
+
+    .seller-fields,
+    .buyer-fields {
+        gap: 15px;
+    }
+
+    .field-row {
+        gap: 10px;
+    }
+
+    .seller-ads,
+    .seller-infos,
+    .buyer-shopped,
+    .buyer-infos {
+        width: 100%;
+        border-radius: 15px;
+    }
+
+    /* 6. Mudar a largura da imagem do produto para se adaptar (Mantido) */
+    .product-image {
+        width: 100px !important;
+        height: 100px !important;
+    }
+
+    /* 7. Ajuste dos Modals */
+    .modal-content {
+        width: 95%; /* Ocupa mais espaço na tela */
+        padding: 20px;
+    }
+
+    .modal-form-grid {
+        grid-template-columns: 1fr; /* Rótulos e campos em uma única coluna */
+        gap: 5px 0;
+    }
+
+    .modal-form-grid label {
+        text-align: left; /* Alinha rótulos à esquerda */
+        width: 100%;
+        height: auto;
+    }
+
+    .modal-input-textarea,
+    .modal-input,
+    .modal-btn-upload,
+    .modal-form-grid select {
+        grid-column: 1; /* Garante que os campos ocupem a coluna única */
+    }
+
+    .modal-form-grid label[for="modal-descricao"] {
+        padding-top: 0;
+    }
+
+    .order-details-info {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .status-section {
+        text-align: left;
+    }
+
+    .product-info-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .product-image-details img {
+        margin-bottom: 10px;
+    }
+    
+    .product-description-details {
+        text-align: center;
+    }
+
+    .product-btnActions {
+        width: 100%;
+        gap: 15px;
+    }
+    
+    .btn-action {
+        width: auto;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .banner-image {
+        border-bottom-left-radius: 35px;
+        border-bottom-right-radius: 35px;
+    }
+
+    .banner-title,
+    .banner-title-seller,
+    .banner-title-buyer {
+        font-size: 2rem;
+        top: 45%;
+        left: 50%;
+        width: 90%;
+        line-height: 1.1;
+    }
+
+    .scroll-down-button img {
+        width: 50px;
+        height: 50px;
+        box-shadow: 0 0 0 4px #252525;
+    }
+
+    .filtro-container {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+
+    .filtro-container select,
+    .filtro-container input,
+    .filtro-container button {
+        width: 100%;
+        font-size: 0.9rem;
+        padding: 9px;
+        border-radius: 10px;
+    }
+
+    .seller-photo img,
+    .buyer-photo img {
+        width: 90px;
+        height: 90px;
+    }
+
+    .seller-fields input[type="url"],
+    .buyer-fields input[type="url"],
+    .seller-fields textarea,
+    .buyer-fields textarea {
+        padding: 8px;
+        font-size: 0.9rem;
+    }
+
+    .seller-save-btn .btn-primary,
+    .buyer-save-btn .btn-primary {
+        width: 100%;
+        text-align: center;
+        padding: 12px;
+    }
+
+    .seller-ads .btn-ads,
+    .buyer-shopped .btn-ads {
+        width: 100%;
+        padding: 12px;
+    }
+}
+
+/* Celulares pequenos (≤ 360px) */
+@media (max-width: 360px) {
+
+    .banner-title,
+    .banner-title-seller,
+    .banner-title-buyer {
+        font-size: 1.6rem;
+        top: 48%;
+    }
+
+    .scroll-down-button img {
+        width: 45px;
+        height: 45px;
+    }
+
+    .filtro-container {
+        gap: 0.6rem;
+    }
+
+    .filtro-container select,
+    .filtro-container input,
+    .filtro-container button {
+        font-size: 0.85rem;
+        padding: 8px;
+    }
+
+    .seller-photo img,
+    .buyer-photo img {
+        width: 80px;
+        height: 80px;
+    }
+
+    .seller-fields,
+    .buyer-fields {
+        gap: 10px;
+    }
+
+    .field-row {
+        gap: 8px;
+    }
 }
