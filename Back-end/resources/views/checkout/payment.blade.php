@@ -27,9 +27,6 @@
     <header class="header">
         <nav class="navbar">
             <div class="navbar-content">
-                <div class="logo">
-                    <img src="{{ asset('assets/img/logoDaora.png') }}" alt="Logo Ta Na Mesa">
-                </div>
                 <ul class="nav-links">
                     <li><a href="#">Suas mesas</a></li>
                     <li><a href="#">Mesas</a></li>

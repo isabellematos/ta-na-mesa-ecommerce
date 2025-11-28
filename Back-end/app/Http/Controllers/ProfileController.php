@@ -45,43 +45,35 @@ class ProfileController extends Controller
     /**
      * Update the user's profile information.
      */
-    public function update(Request $request): RedirectResponse
-    {
-        $validated = $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'nullable|email|max:255',
-            'telefone' => 'nullable|string|max:20',
-            'imagemPerfil' => 'nullable|image|max:2048',
-        ]);
+    // Adicione lá em cima: use Illuminate\Support\Facades\Storage;
 
-        $user = $request->user();
-        
-        $user->name = $validated['name'];
-        if ($request->filled('email')) {
-            $user->email = $validated['email'];
-        }
-        $user->telefone = $validated['telefone'] ?? null;
+public function update(ProfileUpdateRequest $request): RedirectResponse
+{
+    $user = $request->user();
+    $data = $request->validated();
 
-        if ($request->hasFile('imagemPerfil')) {
-            \Log::info('Upload de foto detectado', ['file' => $request->file('imagemPerfil')->getClientOriginalName()]);
-            $path = $request->file('imagemPerfil')->store('profile-photos', 'public');
-            \Log::info('Foto salva', ['path' => $path]);
-            $user->imagemPerfil = $path;
-        } else {
-            \Log::info('Nenhum arquivo de foto detectado');
+    // Lógica da Imagem de Perfil
+    if ($request->hasFile('imagemPerfil')) {
+        // Se o usuário já tinha foto antes, apaga a velha para não encher o servidor
+        if ($user->imagemPerfil) {
+            Storage::disk('public')->delete($user->imagemPerfil);
         }
 
-        if ($user->isDirty('email')) {
-            $user->email_verified_at = null;
-        }
-
-        $user->save();
-        
-        // Refresh the user in the session to update the profile photo
-        $request->user()->refresh();
-
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        // Salva a nova na pasta 'perfil'
+        $path = $request->file('imagemPerfil')->store('perfil', 'public');
+        $user->imagemPerfil = $path;
     }
+
+    $user->fill($data);
+
+    if ($user->isDirty('email')) {
+        $user->email_verified_at = null;
+    }
+
+    $user->save();
+
+    return Redirect::route('dashboard')->with('status', 'profile-updated');
+}
 
     /**
      * Delete the user's account.

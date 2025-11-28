@@ -32,24 +32,25 @@ Route::middleware('auth')->group(function () {
 Route::get('/admin/tag', [TagController::class, 'index']);
 
 Route::get('/initial', function (\Illuminate\Http\Request $request) {
+    // Inicia a consulta de produtos
     $query = \App\Models\Product::query();
     
-    // Filtro por nome/busca
+    // 1. Filtro de Texto (Nome do produto)
     if ($request->filled('search')) {
         $query->where('name', 'like', '%' . $request->search . '%');
     }
     
-    // Filtro por categoria
-    if ($request->filled('category_id')) {
-        $query->where('category_id', $request->category_id);
+    // 2. Filtro de Múltiplas Categorias (O novo!)
+    if ($request->filled('categories')) {
+        // "whereHas" entra na tabela relacionada (Category) e filtra pelo nome
+        $query->whereHas('Category', function($q) use ($request) {
+            $q->whereIn('name', $request->categories);
+        });
     }
     
-    // Filtro por tag (você pode adicionar lógica específica aqui)
-    if ($request->filled('tag')) {
-        $query->where('name', 'like', '%' . $request->tag . '%');
-    }
-    
+    // Pega os produtos filtrados
     $products = $query->get();
+
     return view('auth.initial_page', ['products' => $products]); 
 })->name('initial');
 

@@ -80,43 +80,49 @@
                 <section id="profile-seller-infos" class="seller-infos">
                     <h2>Suas informações</h2>
                     <div class="seller-info-content">
-                        <div class="seller-photo">
-                            <img id="profile-preview-lojista" 
-                                 src="{{ Auth::user()->imagemPerfil ? asset('storage/'.Auth::user()->imagemPerfil).'?v='.time() : asset('assets/img/user-icon.png') }}" 
-                                 alt="Foto do vendedor"
-                                 style="width: 150px; height: 150px; border-radius: 50%; object-fit: cover;"
-                                 onerror="this.onerror=null; this.src='{{ asset('assets/img/user-icon.png') }}';">
-                        </div>
+                       <div class="seller-photo">
+    @if(Auth::user()->imagemPerfil)
+        <img 
+            src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}" 
+            alt="Foto do vendedor"
+            style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #ffff;"
+        >
+    @else
+        <img 
+            src="{{ asset('assets/img/gatoMago.jpg') }}" 
+            alt="Foto do vendedor"
+            style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #CD004A;"
+        >
+    @endif
+</div>
                         
-                        <form class="seller-fields" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-                            @method('PATCH')
+                       <div class="seller-fields">
+    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        @method('patch') <div class="field-row">
+            <label>Foto de perfil:</label>
+            <div class="input-upload-container">
+                <input type="file" id="profile-upload" name="imagemPerfil" style="display: none;" onchange="this.form.submit()"> <button type="button" class="btn-upload" onclick="document.getElementById('profile-upload').click()">
+                    FAÇA O UPLOAD
+                </button>
+            </div>
+        </div>
 
-                            <div class="field-row">
-                                <label>Foto de perfil:</label>
-                                <div class="input-upload-container">
-                                    <input type="file" id="profile-upload" name="imagemPerfil" style="display: none;" accept="image/*" onchange="previewImageLojista(event)">
-                                    <button type="button" class="btn-upload" onclick="document.getElementById('profile-upload').click()">FAÇA O UPLOAD</button>
-                                </div>
-                            </div>
+        <div class="field-row">
+            <label>Nome:</label>
+            <input type="text" name="name" value="{{ Auth::user()->name }}">
+        </div>
 
-                            <div class="field-row">
-                                <label>Link para contato:</label>
-                                <input type="url" name="contact_link" placeholder="Link do seu instagram/whatsapp...">
-                            </div>
+        <div class="field-row">
+            <label>E-mail:</label>
+            <input type="email" name="email" value="{{ Auth::user()->email }}">
+        </div>
 
-                            <div class="field-row">
-                                <label>Breve descrição:</label>
-                                <div class="textarea-wrapper">
-                                    <textarea rows="3" name="description" placeholder="Descrição da sua loja..."></textarea>
-                                </div>
-                            </div>
-
-                            <div class="seller-save-btn">
-                                <button type="submit" class="btn-primary">Salvar</button>
-                            </div>
-                        </form>
-                    </div>
+        <div class="seller-save-btn">
+            <button type="submit" class="btn-primary">Salvar Alterações</button>
+        </div>
+    </form>
+</div>
                 </section>
 
                 <!-- SEÇÃO DE ANÚNCIOS -->
