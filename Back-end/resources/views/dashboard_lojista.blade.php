@@ -21,36 +21,7 @@
     <link rel="stylesheet" href="{{ asset('components/organisms/header.css') }}">
     <link rel="stylesheet" href="{{ asset('components/organisms/product-grid.css') }}">
 
-    <style>
-        .product-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 20px;
-            width: 100%;
-            margin-top: 20px;
-        }
-        /* Ajustes para o filtro ficar alinhado */
-        .filter-row {
-            display: flex;
-            gap: 15px;
-            align-items: flex-end;
-            margin-top: 15px;
-            flex-wrap: wrap;
-        }
-        .filter-group {
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .input-container select, .input-container input {
-            padding: 8px;
-            border-radius: 5px;
-            border: none;
-            background-color: #fff;
-            color: #000;
-            min-width: 150px;
-        }
-    </style>
+
 </head>
 
 <body>

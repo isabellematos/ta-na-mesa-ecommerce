@@ -78,3 +78,119 @@
 .user-actions .perfilLojista{
     margin-left: 25px;
 }
+
+/* ------------------- RESPONSIVIDADE HEADER + NAVBAR ------------------- */
+
+/* Telas grandes/desktop médio */
+@media (max-width: 1200px) {
+    .navbar-content {
+        gap: 25px;
+        padding: 0 20px;
+    }
+
+    .nav-links {
+        gap: 20px;
+    }
+}
+
+/* Tablets */
+@media (max-width: 992px) {
+    .navbar-content {
+        gap: 20px;
+    }
+
+    .nav-links a {
+        font-size: 0.95rem;
+    }
+
+    .navbar .logo img {
+        height: 35px;
+    }
+
+    .user-actions img {
+        height: 22px;
+        margin-left: 15px;
+    }
+}
+
+/* Tablets pequenos e celulares grandes */
+@media (max-width: 768px) {
+
+    .navbar-content {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+        padding: 10px;
+    }
+
+    .logo {
+        margin-right: 0;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+        gap: 18px;
+        order: 2;
+    }
+
+    .user-actions {
+        order: 3;
+        margin-left: 0;
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+        padding-bottom: 5px;
+    }
+
+    .navbar .logo img {
+        height: 32px;
+    }
+
+    .user-actions img {
+        height: 20px;
+    }
+}
+
+/* Celulares */
+@media (max-width: 480px) {
+
+    .navbar-content {
+        gap: 10px;
+    }
+
+    .nav-links {
+        flex-wrap: wrap;
+        gap: 12px;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+        padding-bottom: 3px;
+    }
+
+    .navbar .logo img {
+        height: 28px;
+    }
+
+    .user-actions img {
+        height: 18px;
+        margin-left: 10px;
+    }
+}
+
+/* Celulares muito pequenos */
+@media (max-width: 360px) {
+
+    .nav-links a {
+        font-size: 0.75rem;
+    }
+
+    .user-actions img {
+        height: 16px;
+    }
+
+    .navbar-content {
+        gap: 8px;
+    }
+}
