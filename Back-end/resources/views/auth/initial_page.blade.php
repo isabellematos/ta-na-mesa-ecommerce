@@ -231,6 +231,25 @@
         .dropdown-item span { color: #000 !important; font-weight: normal; }
         .dropdown-item input { margin-right: 10px; accent-color: #CD004A; width: 16px; height: 16px; }
 
+        /* CSS Geral do Filtro */
+        .filter-bar-modern { background-color: #2a2a2a; border-radius: 14px; padding: 25px; margin-bottom: 40px; width: 100%; max-width: 900px; margin-left: auto; margin-right: auto; box-shadow: 0 4px 14px rgba(0,0,0,0.4); }
+        .filter-header-modern { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; padding-bottom: 12px; border-bottom: 1px solid #444; }
+        .filter-title-modern { color: white; font-size: 1.4rem; font-weight: bold; }
+        .filter-actions-modern { display: flex; gap: 10px; }
+        .btn-reset-modern, .btn-apply-modern { padding: 8px 20px; border-radius: 5px; border: none; cursor: pointer; font-weight: bold; transition: all 0.3s; }
+        .btn-reset-modern { background-color: transparent; border: 1px solid #666; color: #ccc; }
+        .btn-reset-modern:hover { background-color: #444; color: white; }
+        .btn-apply-modern { background-color: white; color: #000; }
+        .btn-apply-modern:hover { background-color: #f0f0f0; }
+        
+        .filter-content-modern { display: flex; gap: 30px; align-items: center; justify-content: space-between; flex-wrap: wrap; }
+        .filter-group-modern { display: flex; flex-direction: column; gap: 6px; min-width: 260px; }
+        .filter-group-modern label { color: white; font-weight: bold; white-space: nowrap; }
+        .filter-group-modern input[type="text"] { height: 40px; border-radius: 6px; border: 1px solid #666; padding: 8px 12px; }
+        
+        .filter-divider { width: 2px; height: 45px; background-color: #444; border-radius: 2px; }
+        .btn-reset-field { background: transparent; border: none; color: #CD004A; cursor: pointer; font-weight: bold; font-size: 1.2rem; }
+
         @media (max-width: 768px) {
             .filter-content-modern { flex-direction: column; align-items: stretch; gap: 20px; }
             .filter-divider { display: none; }

@@ -7,10 +7,3 @@
     max-width: 1200px; /* Opcional: define uma largura máxima agradável para o grid */
     margin: 0 auto; /* Centraliza o grid horizontalmente */
 }
-
-@media (max-width: 900px) {
-    .product-grid {
-        grid-template-columns: repeat(1, 1fr);
-        width: 90vw; /* Ajusta a largura para telas menores */
-    }
-}
