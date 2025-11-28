@@ -122,7 +122,7 @@
                         <form method="GET" action="{{ route('profile.edit') }}" class="filter-bar-modern">
                             <div class="filter-header-modern">
                                 <div style="display: flex; align-items: center;">
-                                    <span class="filter-icon" style="font-size: 1.5rem; margin-right: 10px;">🔍</span>
+                                    <span class="filter-icon" style="font-size: 1.5rem; margin-right: 10px;"></span>
                                     <h3 class="filter-title-modern" style="margin: 0;">Filtro</h3>
                                 </div>
                                 <div class="filter-actions-modern">
@@ -154,11 +154,14 @@
                                     <label for="order-categoria">Categoria:</label>
                                     <select name="category_id" id="order-categoria" class="filter-select-modern">
                                         <option value="">Todas</option>
-                                        @foreach($categories as $category)
-                                            <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
-                                                {{ $category->name }}
-                                            </option>
-                                        @endforeach
+                                        {{-- GARANTINDO QUE EXISTE CATEGORIA --}}
+                                        @if(isset($categories))
+                                            @foreach($categories as $category)
+                                                <option value="{{ $category->id }}" {{ request('category_id') == $category->id ? 'selected' : '' }}>
+                                                    {{ $category->name }}
+                                                </option>
+                                            @endforeach
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -178,16 +181,20 @@
                                         
                                         <div class="order-image" style="height: 200px; background-color: #fff; display: flex; align-items: center; justify-content: center; position: relative;">
                                             @if($order->items->first() && $order->items->first()->product)
-                                                <img src="{{ asset('storage/' . $order->items->first()->product->image1) }}" 
+                                                {{-- CORREÇÃO DA IMAGEM NA LISTA --}}
+                                                <img src="{{ Str::startsWith($order->items->first()->product->image1, ['http', 'https']) ? $order->items->first()->product->image1 : asset('storage/' . $order->items->first()->product->image1) }}" 
                                                      alt="Produto" style="max-width: 100%; max-height: 100%; object-fit: contain;">
                                             @else
                                                 <span style="font-size: 3rem;">📦</span>
                                             @endif
                                             
                                             <div class="order-overlay" style="position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.7); padding: 10px; text-align: center;">
-                                                <h3 style="color: white; margin: 0; font-size: 1rem;">Pedido #{{ $order->id }}</h3>
-                                                <small style="color: #ccc;">{{ $order->created_at->format('d/m/Y') }}</small>
-                                            </div>
+    <h3 style="color: white; margin: 0; font-size: 1rem;">
+        {{-- Se tiver produto, mostra o nome. Se não, mostra o ID --}}
+        {{ $order->items->first() && $order->items->first()->product ? $order->items->first()->product->name : 'Pedido #' . $order->id }}
+    </h3>
+    <small style="color: #ccc;">{{ $order->created_at->format('d/m/Y') }}</small>
+</div>
                                         </div>
                                         
                                         <div class="order-actions" style="padding: 15px; display: flex; flex-direction: column; gap: 10px;">
@@ -272,7 +279,16 @@
 
             let itemsHtml = '';
             order.items.forEach(item => {
-                const imagem = item.product.image1 ? `/storage/${item.product.image1}` : '/assets/img/iconeMago.png';
+                // CORREÇÃO DA IMAGEM NO JAVASCRIPT
+                let imagem = '';
+                if(item.product.image1 && item.product.image1.startsWith('http')) {
+                    imagem = item.product.image1;
+                } else if(item.product.image1) {
+                    imagem = `/storage/${item.product.image1}`;
+                } else {
+                    imagem = '/assets/img/iconeMago.png';
+                }
+
                 itemsHtml += `
                     <div style="display: flex; gap: 20px; margin-top: 20px; padding: 15px; background-color: #2a2a2a; border-radius: 10px;">
                         <div style="flex-shrink: 0;">
@@ -290,7 +306,7 @@
             const content = `
                 <div style="color: white;">
                     <p><strong>Data:</strong> ${new Date(order.created_at).toLocaleDateString('pt-BR')}</p>
-                    <p><strong>Status:</strong> ${order.status === 'pending' ? 'Pendente' : order.status}</p>
+                    <p><strong>Status:</strong> ${order.status === 'pending' ? 'Em rota' : order.status}</p>
                     <p><strong>Total:</strong> R$ ${parseFloat(order.total).toFixed(2)}</p>
                     <hr style="border-color: #444; margin: 20px 0;">
                     ${itemsHtml}
@@ -326,20 +342,121 @@
     </script>
 
     <style>
-        .filter-bar-modern { background-color: #2a2a2a; border-radius: 10px; padding: 20px; margin-bottom: 30px; }
-        .filter-header-modern { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 1px solid #444; }
-        .filter-title-modern { flex-grow: 1; margin: 0; font-size: 1.2rem; color: white; margin-left: 10px; }
+        /* === CORREÇÃO GERAL DE LAYOUT === */
+        * {
+            box-sizing: border-box; /* Isso impede que paddings estourem o tamanho dos elementos */
+        }
+
+        /* Container do Filtro */
+        .filter-bar-modern { 
+            background-color: #2a2a2a; 
+            border-radius: 10px; 
+            padding: 20px; 
+            margin-bottom: 30px; 
+            width: 100%; /* Garante que ocupa a largura certa */
+            border: 1px solid #444; /* Borda sutil para definir o limite */
+        }
+
+        /* Cabeçalho do Filtro */
+        .filter-header-modern { 
+            display: flex; 
+            align-items: center; 
+            justify-content: space-between; 
+            margin-bottom: 20px; 
+            padding-bottom: 15px; 
+            border-bottom: 1px solid #444; 
+        }
+
+        .filter-title-modern { 
+            flex-grow: 1; 
+            margin: 0; 
+            font-size: 1.2rem; 
+            color: white; 
+            margin-left: 10px; 
+        }
+
+        /* Botões Resetar/Aplicar */
         .filter-actions-modern { display: flex; gap: 10px; }
-        .btn-reset-modern, .btn-apply-modern { padding: 8px 20px; border-radius: 5px; border: none; cursor: pointer; font-weight: bold; transition: all 0.3s; text-decoration: none; display: inline-flex; align-items: center; justify-content: center; }
+        
+        .btn-reset-modern, .btn-apply-modern { 
+            padding: 8px 20px; 
+            border-radius: 5px; 
+            border: none; 
+            cursor: pointer; 
+            font-weight: bold; 
+            transition: all 0.3s; 
+            text-decoration: none; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            height: 40px; /* Altura fixa para alinhar */
+        }
+        
         .btn-reset-modern { background-color: transparent; border: 1px solid #666; color: #ccc; }
         .btn-reset-modern:hover { background-color: #444; color: white; }
         .btn-apply-modern { background-color: #CD004A; color: white; }
         .btn-apply-modern:hover { background-color: #a0003a; }
-        .filter-content-modern { display: flex; gap: 20px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; }
-        .filter-group-modern { display: flex; flex-direction: column; gap: 5px; min-width: 200px; flex: 1; }
-        .filter-group-modern label { color: white; font-weight: bold; font-size: 0.9rem; }
-        .filter-select-modern, .filter-input-modern { padding: 10px 15px; border-radius: 5px; border: 1px solid #555; background-color: white; color: #000; width: 100%; height: 40px; }
-        .filter-divider { width: 1px; height: 40px; background-color: #555; display: none; }
+
+        /* Conteúdo do Filtro (Inputs) */
+        .filter-content-modern { 
+            display: flex; 
+            gap: 20px; 
+            align-items: flex-end; /* Alinha tudo pela base */
+            margin-bottom: 0; /* Remove margem extra */
+            flex-wrap: wrap; 
+        }
+
+        .filter-group-modern { 
+            display: flex; 
+            flex-direction: column; 
+            gap: 5px; 
+            flex: 1; 
+            min-width: 200px; 
+        }
+
+        .filter-group-modern label { 
+            color: white; 
+            font-weight: bold; 
+            font-size: 0.9rem; 
+        }
+
+        /* === A MÁGICA DOS INPUTS E SELECTS IGUAIS === */
+        .filter-select-modern, .filter-input-modern { 
+            width: 100%; 
+            height: 45px; /* Altura unificada e maiorzinha */
+            padding: 0 15px; /* Padding lateral */
+            border-radius: 5px; 
+            border: 1px solid #555; 
+            background-color: white; 
+            color: #000; 
+            font-size: 1rem;
+            outline: none;
+            
+            /* Remove estilo padrão do navegador para ficar igual */
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+        }
+
+        /* Estilizando a setinha do Select na marra com CSS */
+        select.filter-select-modern {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 15px;
+            padding-right: 40px; /* Espaço para a seta não ficar em cima do texto */
+            cursor: pointer;
+        }
+
+        .filter-input-modern::placeholder { color: #666; }
+
+        .filter-divider { 
+            width: 1px; 
+            height: 45px; /* Altura igual aos inputs */
+            background-color: #555; 
+            display: none; 
+        }
+
         @media(min-width: 768px) { .filter-divider { display: block; } }
     </style>
 </body>
