@@ -18,24 +18,14 @@ class ProfileController extends Controller
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request) // Removi o ": View" para aceitar Redirect
+    public function edit(Request $request)
     {
         $user = $request->user();
-
-        // ==========================================================
-        // 1. O GUARDA DE TRÂNSITO (DESVIO DO LOJISTA)
-        // ==========================================================
-        // Se o usuário for Lojista, manda ele para o Dashboard dele!
         if ($user->tipo === 'sim') {
             return redirect()->route('dashboard');
         }
-
-        // ==========================================================
-        // 2. LÓGICA DO COMPRADOR (SE NÃO FOR LOJISTA)
-        // ==========================================================
-        
-        // Busca pedidos
         $ordersQuery = Order::where('user_id', $user->id)
+                            ->where('status', '!=', 'cancelled') 
                             ->with('items.product.Category');
 
         // Filtros
@@ -119,5 +109,25 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function cancelOrder($id)
+    {
+        // Busca o pedido ou falha se não encontrar
+        $order = Order::findOrFail($id);
+
+        // 1. Segurança: Verifica se o pedido é mesmo desse usuário
+        if ($order->user_id !== Auth::id()) {
+            abort(403, 'Acesso não autorizado.');
+        }
+
+        // 2. Verifica se o status permite cancelamento
+        if ($order->status === 'pending') {
+            $order->status = 'cancelled';
+            $order->save();
+            return redirect()->back()->with('status', 'profile-updated');
+        }
+
+        return redirect()->back()->with('error', 'Não é possível cancelar este pedido.');
     }
 }
