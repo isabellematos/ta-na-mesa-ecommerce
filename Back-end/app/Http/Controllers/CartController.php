@@ -114,4 +114,14 @@ class CartController extends Controller
 
         return response()->json(['success' => true, 'message' => 'Endereço salvo com sucesso!']);
     }
+
+
+public function getCartCount()
+{
+    if (Auth::check()) {
+        return CartItem::where('user_id', Auth::id())->sum('quantity');
+    } else {
+        return CartItem::where('session_id', session()->getId())->sum('quantity');
+    }
+}
 }

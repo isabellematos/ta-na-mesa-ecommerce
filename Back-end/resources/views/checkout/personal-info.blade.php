@@ -43,9 +43,6 @@
                                  style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                         @endif
                     </a>
-                    <a href="{{ route('cart.index') }}">
-                        <img src="{{ asset('assets/img/Shopping cart.png') }}" alt="Carrinho de compras">
-                    </a>
                 </div>
             </div>
         </nav>

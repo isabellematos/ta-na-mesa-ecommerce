@@ -46,8 +46,14 @@
                                  style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                         </a>
                     @endauth
-                    <a href="{{ route('cart.index') }}"><img src="{{ asset('assets/img/Shopping cart.png') }}" alt="Carrinho de compras"></a>
-                </div>
+                        <a href="{{ route('cart.index') }}" class="cart-icon">
+                            <img src="{{ asset('assets/img/Shopping cart.png') }}" style="width:30px;">
+
+                            @if(isset($cartCount) && $cartCount > 0)
+                                <span class="cart-badge">{{ $cartCount }}</span>
+                            @endif
+                        </a>                
+                    </div>
             </div>
         </nav>
     </header>

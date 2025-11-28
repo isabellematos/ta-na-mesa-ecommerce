@@ -36,8 +36,12 @@
                             <img src="{{ asset('assets/img/Shopping cart.png') }}" alt="Carrinho de compras" style="width: 30px; height: 30px;">
                         </a>
                     @else
-                        <a href="{{ route('cart.index') }}">
-                            <img src="{{ asset('assets/img/Shopping cart.png') }}" alt="Carrinho de compras" style="width: 30px; height: 30px;">
+                        <a href="{{ route('cart.index') }}" class="cart-icon">
+                            <img src="{{ asset('assets/img/Shopping cart.png') }}" style="width:30px;">
+
+                            @if(isset($cartCount) && $cartCount > 0)
+                                <span class="cart-badge">{{ $cartCount }}</span>
+                            @endif
                         </a>
                     @endif
 
