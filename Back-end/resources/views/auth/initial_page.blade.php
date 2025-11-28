@@ -243,19 +243,25 @@
         }
     </style>
 
-    @if(session('purchase_success'))
+   @if(session('purchase_success'))
         <div id="success-modal" style="display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;">
             <div style="position: relative; background: linear-gradient(135deg, #CD004A 0%, #8B0032 100%); border-radius: 20px; padding: 40px; max-width: 500px; text-align: center; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);">
                 <button onclick="closeModal()" style="position: absolute; top: -20px; right: -20px; width: 50px; height: 50px; border-radius: 50%; background-color: #CD004A; border: 3px solid white; color: white; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold;">✕</button>
+                
                 <h1 style="color: white; font-size: 3rem; margin: 0 0 10px 0; font-weight: bold;">EBA!</h1>
                 <h2 style="color: white; font-size: 1.5rem; margin: 0 0 30px 0; font-weight: bold;">COMPRA FINALIZADA COM SUCESSO!</h2>
-                <div style="width: 150px; height: 150px; margin: 20px auto; background-color: rgba(255, 255, 255, 0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 80px;">🪄</div>
+                <img src="{{ asset('assets/img/pocaoMagica.gif') }}" 
+                     alt="Mago fazendo poção" 
+                     style="width: 150px; height: 150px; margin: 20px auto; display: block; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 0 15px rgba(0,0,0,0.3);">
+
                 <p style="color: white; font-size: 1.1rem; line-height: 1.6; margin: 20px 0;">Nossos magos já estão preparando a poção<br>para que, magicamente, seu pedido chegue até<br>você!</p>
-                <a href="{{ route('profile.edit') }}"><button class="buy-button" style="margin-top: 30px; padding: 15px 40px; font-size: 1.1rem;">Voltar para perfil</button></a>
+                
+                <a href="{{ route('profile.edit') }}">
+                    <button class="buy-button" style="margin-top: 30px; padding: 15px 40px; font-size: 1.1rem;">Voltar para perfil</button>
+                </a>
             </div>
         </div>
     @endif
-
     <div id="lojista-modal" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;">
         <div style="position: relative; background: linear-gradient(135deg, #2a2a2a 0%, #1a1a1a 100%); border: 2px solid #CD004A; border-radius: 20px; padding: 40px; max-width: 500px; text-align: center; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);">
             <button onclick="closeLojistaModal()" style="position: absolute; top: -15px; right: -15px; width: 40px; height: 40px; border-radius: 50%; background-color: #CD004A; border: 2px solid white; color: white; font-size: 20px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold;">✕</button>
