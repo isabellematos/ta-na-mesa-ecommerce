@@ -38,25 +38,32 @@ class ProductController extends Controller
 
         // === DECISÃO: É COMPRADOR? ===
         else {
-            // Lógica do Comprador (BUSCA PEDIDOS REALIZADOS)
-            
-            // Verifica se a classe Order foi importada lá em cima
-            // Se der erro, troque 'Order::' por '\App\Models\Order::'
-            $ordersQuery = \App\Models\Order::where('user_id', $user->id)
-                                ->with('items.product.Category');
+            // ... dentro do else (Cenário Comprador)
+    $ordersQuery = \App\Models\Order::where('user_id', $user->id)
+                        ->with('items.product.Category');
 
-            // Filtro 1: Data da Compra
-            if ($request->filled('date')) {
-                $ordersQuery->whereDate('created_at', $request->date);
-            }
+    // Filtro de Data
+    if ($request->filled('date')) {
+        $ordersQuery->whereDate('created_at', $request->date);
+    }
 
-            // Filtro 2: Categoria dos Itens Comprados
-            if ($request->filled('categories')) {
-                $categoriasSelecionadas = $request->categories;
-                $ordersQuery->whereHas('items.product.Category', function($q) use ($categoriasSelecionadas) {
-                    $q->whereIn('name', $categoriasSelecionadas);
-                });
-            }
+    // Filtro de Categoria (NOVO - ID Único)
+    // Se você mudou para select simples (um só), use esta lógica:
+    if ($request->filled('category_id') && $request->category_id != 'all') {
+        $categoryId = $request->category_id;
+        $ordersQuery->whereHas('items.product', function($q) use ($categoryId) {
+            $q->where('category_id', $categoryId);
+        });
+    }
+
+    // Filtro de Nome (Busca nos produtos do pedido)
+    if ($request->filled('search')) {
+        $searchTerm = $request->search;
+        $ordersQuery->whereHas('items.product', function($q) use ($searchTerm) {
+            $q->where('name', 'like', '%' . $searchTerm . '%');
+        });
+    }
+// ...
 
             $orders = $ordersQuery->orderBy('created_at', 'desc')->get();
 
