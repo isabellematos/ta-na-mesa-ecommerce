@@ -10,19 +10,35 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
-use App\Models\Order;    // <--- Importante
-use App\Models\Category; // <--- Importante
+use App\Models\Order;
+use App\Models\Category;
 
 class ProfileController extends Controller
 {
-    public function edit(Request $request): View
+    /**
+     * Display the user's profile form.
+     */
+    public function edit(Request $request) // Removi o ": View" para aceitar Redirect
     {
         $user = $request->user();
 
-        // --- BUSCA PEDIDOS ---
+        // ==========================================================
+        // 1. O GUARDA DE TRÂNSITO (DESVIO DO LOJISTA)
+        // ==========================================================
+        // Se o usuário for Lojista, manda ele para o Dashboard dele!
+        if ($user->tipo === 'sim') {
+            return redirect()->route('dashboard');
+        }
+
+        // ==========================================================
+        // 2. LÓGICA DO COMPRADOR (SE NÃO FOR LOJISTA)
+        // ==========================================================
+        
+        // Busca pedidos
         $ordersQuery = Order::where('user_id', $user->id)
                             ->with('items.product.Category');
 
+        // Filtros
         if ($request->filled('date')) {
             $ordersQuery->whereDate('created_at', $request->date);
         }
@@ -42,18 +58,19 @@ class ProfileController extends Controller
         }
 
         $orders = $ordersQuery->orderBy('created_at', 'desc')->get();
-        
-        // --- BUSCA CATEGORIAS (Para o filtro) ---
-        $categories = Category::all();
+        $categories = Category::all(); 
 
-        // --- RETORNA TUDO ---
+        // Retorna a tela do Comprador
         return view('profile.edit', [
             'user' => $user,
             'orders' => $orders,
-            'categories' => $categories, // <--- ESSENCIAL PARA O FILTRO FUNCIONAR
+            'categories' => $categories,
         ]);
     }
 
+    /**
+     * Update the user's profile information.
+     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
@@ -75,9 +92,17 @@ class ProfileController extends Controller
 
         $user->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        // Se for lojista, volta pro dashboard depois de salvar. Se for comprador, fica no perfil.
+        if ($user->tipo === 'sim') {
+             return redirect()->route('dashboard')->with('success', 'Perfil atualizado!');
+        }
+
+        return Redirect::route('profile.edit')->with('success', 'Perfil atualizado!');
     }
 
+    /**
+     * Delete the user's account.
+     */
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
