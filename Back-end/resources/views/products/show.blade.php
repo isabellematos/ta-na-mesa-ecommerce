@@ -73,7 +73,7 @@
     <main class="main-content">
         <div class="main-container">
             <div class="caminho">
-                <h3><a href="{{ route('initial') }}" style="color: blue; text-decoration: none;">Home</a> > Produto</h3>
+                <h3><a href="{{ route('initial') }}" style="color: inherit; text-decoration: none;">Home</a> > Produto</h3>
             </div>
 
             <section id="store-section" class="store">

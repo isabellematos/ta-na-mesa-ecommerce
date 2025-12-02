@@ -27,6 +27,8 @@ class CheckoutController extends Controller
             'cpf' => 'required|string|size:14',
             'data_nascimento' => 'required|date',
             'telefone' => 'required|string',
+            'cep'=> 'required|string',
+            'logradouro' => 'required|string',
             'numero' => 'required|string',
             'complemento' => 'nullable|string',
         ]);
@@ -36,6 +38,8 @@ class CheckoutController extends Controller
             'cpf' => $request->cpf,
             'data_nascimento' => $request->data_nascimento,
             'telefone' => $request->telefone,
+            'cep'=> $request->cep,
+            'logradouro' => $request->logradouro,
             'numero' => $request->numero,
             'complemento' => $request->complemento,
             'receber_emails' => $request->has('receber_emails'),
@@ -80,7 +84,7 @@ class CheckoutController extends Controller
             return $item->product->price * $item->quantity;
         });
 
-        $shippingCost = $subtotal >= 250 ? 0 : 10;
+        $shippingCost = $subtotal >= 150 ? 0 : 10;
         $total = $subtotal + $shippingCost;
 
         // Criar o pedido

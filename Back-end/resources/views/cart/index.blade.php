@@ -123,7 +123,7 @@
                         <div class="order-summary">
                             <div class="frete-info">
                                 <h4>Frete</h4>
-                                <p>Informe o CEP e veja se tem <a href="#">FRETE GRÁTIS</a> na sua região!</p>
+                                <p>Informe o CEP e veja se tem FRETE GRÁTIS na sua região!</p>
                                 
                                 <div style="margin: 15px 0;">
                                     <input type="text" 

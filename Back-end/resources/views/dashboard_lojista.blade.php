@@ -102,6 +102,14 @@
                                     <label>E-mail:</label>
                                     <input type="email" name="email" value="{{ Auth::user()->email }}">
                                 </div>
+                                <div class="field-row">
+                                    <label>CEP:</label>
+                                    <input type="cep" name="cep" value="{{ Auth::user()->cep }}">
+                                </div>
+                                <div class="field-row">
+                                    <label>E-mail:</label>
+                                    <input type="email" name="email" value="{{ Auth::user()->email }}">
+                                </div>
 
                                 <div class="seller-save-btn">
                                     <button type="submit" class="btn-primary">Salvar Alterações</button>

@@ -148,19 +148,34 @@
                     <div class="address-info-column">
                         <h4>Endereço de entrega</h4>
 
-                        <div class="info-field">
-                            <img src="{{ asset('assets/img/iconeCEP.png') }}" alt="Ícone de CEP">
-                            <div class="info-field-text">
-                                <h5>CEP</h5>
-                                <p>{{ $user->cep ? substr($user->cep, 0, 5) . '-' . substr($user->cep, 5) : 'Não informado' }}</p>
-                            </div>
+                    <div class="info-field">
+                        <img src="{{ asset('assets/img/iconeCEP.png') }}" alt="Ícone de CEP">
+                        <div class="info-field-text">
+                            <h5>CEP</h5>
+                            <input type="text"
+                                name="cep"
+                                id="cep-input"
+                                value="{{ old('cep', $user->cep) }}"
+                                placeholder="00000-000"
+                                maxlength="9"
+                                required
+                                style="background: transparent; border: none; color: white; font-size: 1rem; width: 100%; outline: none;">
                         </div>
+                    </div>
+
 
                         <div class="info-field">
                             <img src="{{ asset('assets/img/iconeEndereco.png') }}" alt="Ícone de Endereço">
                             <div class="info-field-text">
                                 <h5>ENDEREÇO</h5>
-                                <p>{{ $user->logradouro ? $user->logradouro . ', ' . $user->cidade . ' - ' . $user->estado : 'Não informado' }}</p>
+                                <input type="text"
+                                name="logradouro"
+                                value="{{ old('logradouro', $user->logradouro) }}"
+                                placeholder="Digite seu logradouro"
+                                maxlength="50"
+                                required
+                                style="background: transparent; border: none; color: white; font-size: 1rem; width: 100%; outline: none;">
+                        
                             </div>
                         </div>
 
@@ -169,22 +184,25 @@
                             <div class="info-field-text">
                                 <h5>NÚMERO</h5>
                                 <input type="text" 
-                                       name="numero"
-                                       value="{{ old('numero', $user->numero) }}"
-                                       placeholder="Nº, AP, BL"
-                                       required
-                                       style="background: transparent; border: none; color: white; font-size: 1rem; width: 100%; outline: none;">
+                                    name="numero"
+                                    value="{{ old('numero', $user->numero) }}"
+                                    placeholder="Nº, S/N"
+                                    maxlength="7"
+                                    pattern="^[1-9][0-9]*$"
+                                    title="Digite apenas números positivos"
+                                    required
+                                    style="background: transparent; border: none; color: white; font-size: 1rem; width: 100%; outline: none;">
                             </div>
                         </div>
 
                         <div class="info-field">
                             <img src="{{ asset('assets/img/iconeComplemento.png') }}" alt="Ícone de Complemento">
                             <div class="info-field-text">
-                                <h5>COMPLEMENTO</h5>
+                                <h5>COMPLEMENTO (OPCIONAL)</h5>
                                 <input type="text" 
                                        name="complemento"
                                        value="{{ old('complemento', $user->complemento) }}"
-                                       placeholder="(Opcional)"
+                                       placeholder="AP, BL, QD"
                                        style="background: transparent; border: none; color: white; font-size: 1rem; width: 100%; outline: none;">
                             </div>
                         </div>
