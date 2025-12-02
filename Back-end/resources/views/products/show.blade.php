@@ -73,12 +73,11 @@
     <main class="main-content">
         <div class="main-container">
             <div class="caminho">
-                <h3><a href="{{ route('initial') }}" style="color: inherit; text-decoration: none;">Home</a> > Produto</h3>
+                <h3><a href="{{ route('initial') }}" style="color: blue; text-decoration: none;">Home</a> > Produto</h3>
             </div>
 
             <section id="store-section" class="store">
                 <div class="product-card">
-                    {{-- AQUI ESTÁ A CORREÇÃO DA IMAGEM --}}
                     <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}" 
                          alt="{{ $product->name }}">
                          

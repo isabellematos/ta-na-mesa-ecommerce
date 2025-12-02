@@ -22,7 +22,7 @@ class ProfileController extends Controller
     {
         $user = $request->user();
         if ($user->tipo === 'sim') {
-            return redirect()->route('dashboard');
+            return redirect()->route('profile.edit');
         }
         $ordersQuery = Order::where('user_id', $user->id)
                             ->where('status', '!=', 'cancelled') 

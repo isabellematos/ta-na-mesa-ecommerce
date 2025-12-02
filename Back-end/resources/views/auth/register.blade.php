@@ -68,12 +68,12 @@
 				</div>
 
                 
-				<!-- <div class="form-group">
+				<div class="form-group">
 					<label>Imagem de perfil</label>
 					<input type="file" name="imagemPerfil" id="imagemPerfil" placeholder="insira a url"
-						value="{{old('imagemPerfil')}}" required>
-				</div> -->
- 
+						value="{{old('imagemPerfil')}}">
+				</div>
+
 				<button type="submit" class="btn-cadastro">CADASTRE-SE</button>
 				<p class="login-link">JÁ TEM CADASTRO? <a href="login">VOLTE AQUI!</a></p>
 			</form>

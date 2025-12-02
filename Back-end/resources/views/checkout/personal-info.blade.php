@@ -54,7 +54,7 @@
                 <h3>
                     <a href="{{ route('initial') }}" style="color: inherit; text-decoration: none;">Home</a> > 
                     <a href="{{ route('cart.index') }}" style="color: inherit; text-decoration: none;">Carrinho de Compras</a> > 
-                    Informações pessoais
+                    Informações Pessoais
                 </h3>
             </div>
 

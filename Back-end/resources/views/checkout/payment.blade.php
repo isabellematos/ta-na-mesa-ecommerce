@@ -54,6 +54,7 @@
                 <h3>
                     <a href="{{ route('initial') }}" style="color: inherit; text-decoration: none;">Home</a> > 
                     <a href="{{ route('cart.index') }}" style="color: inherit; text-decoration: none;">Carrinho de Compras</a> > 
+                    <a href="{{ route('checkout.personalInfo') }}" style="color: inherit; text-decoration: none;">Informações Pessoais</a> > 
                     Métodos de pagamento
                 </h3>
             </div>
@@ -67,6 +68,7 @@
             <form action="{{ route('checkout.finalize') }}" method="POST">
                 @csrf
                 <div class="checkout-container">
+                    <!-- Coluna de envio e resumo -->
                     <div class="personal-info-column">
                         <h4>Formas de envio</h4>
 
@@ -119,19 +121,17 @@
                             </div>
                             <div class="summary-line">
                                 <span>Frete</span>
-                                <span id="frete-display">R$ 10,20</span>
+                                <span id="frete-display"></span>
                             </div>
                             <div class="summary-total">
                                 <span>Total do pedido</span>
-                                <span id="total-display">R$ {{ number_format($subtotal + 10.20, 2, ',', '.') }}</span>
+                                <span id="total-display"></span>
                             </div>
-                            <p class="summary-installments" id="installments-info">
-                                R$ {{ number_format(($subtotal + 10.20) * 0.97, 2, ',', '.') }} no pix com desconto<br>
-                                Ou 5x de R$ {{ number_format(($subtotal + 10.20) / 5, 2, ',', '.') }} no cartão
-                            </p>
+                            <p class="summary-installments" id="installments-info"></p>
                         </div>
                     </div>
 
+                    <!-- Coluna de pagamento -->
                     <div class="address-info-column">
                         <h4>Métodos de pagamento</h4>
 
@@ -144,14 +144,17 @@
 
                             <input type="hidden" name="payment_method" id="payment-method-input" value="pix">
 
+                            <!-- PIX -->
                             <div class="payment-tab-content active" id="pix-content">
                                 <p>Pagamento confirmado em até 10 minutos.</p>
                                 <div class="pix-buttons">
-                                    <button type="button" class="buy-button" style="flex: 1;">Gerar QR CODE</button>
-                                    <button type="button" class="buy-button" style="flex: 1;">Copiar código</button>
+                                    <button type="button" class="buy-button" style="flex: 1;" id="generate-qr-btn">Gerar QR CODE</button>
+                                    <button type="button" class="buy-button" style="flex: 1;" id="copy-qr-btn">Copiar código</button>
                                 </div>
+                                <img src="{{ asset('assets/img/qrcode.png') }}" id="pix-qrcode" style="display: none; margin-top: 15px; max-width: 200px;">
                             </div>
 
+                            <!-- CARTÃO -->
                             <div class="payment-tab-content" id="cartao-content">
                                 <p>Pagamento confirmado em até 2h.</p>
                                 <div class="form-group">
@@ -171,13 +174,13 @@
                                 <a href="#" class="payment-conditions-link">Clique para ver as condições de parcelamento</a>
                             </div>
 
+                            <!-- BOLETO -->
                             <div class="payment-tab-content" id="boleto-content">
                                 <p>Pagamento confirmado em até 3 dias úteis.</p>
                             </div>
                         </div>
 
                         <h4>Aplicar cupom de desconto</h4>
-
                         <div class="coupon-form">
                             <input type="text" id="coupon-input" placeholder="Digite seu cupom" class="input-dark" style="text-transform: uppercase;">
                             <button type="button" class="buy-button" onclick="applyCoupon()">APLICAR</button>
@@ -185,14 +188,13 @@
                         <p class="coupon-success" id="coupon-message" style="display: none;"></p>
 
                         <h4>Detalhes de Pagamento</h4>
-
                         <div class="payment-details-placeholder">
                             <div><span>Total dos produtos</span><span id="products-total">R$ {{ number_format($subtotal, 2, ',', '.') }}</span></div>
-                            <div><span>Total do frete</span><span id="shipping-total">R$ 10,20</span></div>
-                            <div><span>Parcelas</span><span id="installments">5x de R$ {{ number_format(($subtotal + 10.20) / 5, 2, ',', '.') }}</span></div>
+                            <div><span>Total do frete</span><span id="shipping-total"></span></div>
+                            <div><span>Parcelas</span><span id="installments">5x de R$ 0,00</span></div>
                             <div><span>Desconto forma de pagamento</span><span id="payment-discount">R$ 0,00</span></div>
                             <div><span>Cupom aplicado</span><span id="coupon-discount">R$ 0,00</span></div>
-                            <div class="total"><span>Pagamento total</span><span id="final-total">R$ {{ number_format($subtotal + 10.20, 2, ',', '.') }}</span></div>
+                            <div class="total"><span>Pagamento total</span><span id="final-total">R$ 0,00</span></div>
                         </div>
 
                         <button type="submit" class="buy-button" style="width: 100%; margin-top: 20px;">Finalizar compra</button>
@@ -205,8 +207,7 @@
     <footer class="footer">
         <div class="footer-content">
             <p>&copy; direitos reservados 2025</p>
-            <p>Este site foi desenvolvido por Isabelle Matos, Laís Lívia, Luana Miyashiro, Maria Vivielle, Malu
-                Araujo, Yasmin Carolina</p>
+            <p>Este site foi desenvolvido por Isabelle Matos, Laís Lívia, Luana Miyashiro, Maria Vivielle, Malu Araujo, Yasmin Carolina</p>
         </div>
     </footer>
 
@@ -216,11 +217,17 @@
         let paymentDiscount = 0;
         let couponDiscount = 0;
 
-        // Tabs de pagamento
+        // Se subtotal >= 100, frete grátis
+        if (subtotal >= 100) {
+            shippingCost = 0;
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+            updateTotals();
+
+            // Tabs de pagamento
             const tabButtons = document.querySelectorAll('.payment-tab-btn');
             const tabContents = document.querySelectorAll('.payment-tab-content');
-
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     tabButtons.forEach(btn => btn.classList.remove('active'));
@@ -229,56 +236,64 @@
                     const tabId = button.getAttribute('data-tab');
                     document.getElementById(tabId + '-content').classList.add('active');
                     document.getElementById('payment-method-input').value = tabId;
-                    
-                    // Atualizar desconto de pagamento
-                    if (tabId === 'pix') {
-                        paymentDiscount = (subtotal + shippingCost) * 0.03;
-                    } else {
-                        paymentDiscount = 0;
-                    }
+
+                    paymentDiscount = (tabId === 'pix') ? (subtotal + shippingCost) * 0.03 : 0;
                     updateTotals();
                 });
             });
 
-            // Atualizar frete
+            // Seleção de envio
             document.querySelectorAll('input[name="envio"]').forEach(radio => {
                 radio.addEventListener('change', (e) => {
                     shippingCost = parseFloat(e.target.dataset.price);
+                    if (subtotal >= 100) shippingCost = 0; // frete grátis
                     updateTotals();
                 });
             });
 
-            // Formatar cartão
+            // Formatação de cartão
             document.getElementById('card-number')?.addEventListener('input', function(e) {
                 let value = e.target.value.replace(/\D/g, '');
                 let formatted = value.match(/.{1,4}/g)?.join(' ') || value;
                 e.target.value = formatted;
             });
-
-            // Formatar vencimento
             document.getElementById('card-expiry')?.addEventListener('input', function(e) {
                 let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 2) {
-                    value = value.substring(0, 2) + '/' + value.substring(2, 6);
-                }
+                if (value.length > 2) value = value.substring(0,2)+'/'+value.substring(2,6);
                 e.target.value = value;
             });
 
-            // Inicializar com desconto PIX
+            // Inicializar desconto PIX
             paymentDiscount = (subtotal + shippingCost) * 0.03;
             updateTotals();
+
+            // PIX QR CODE
+            const qrBtn = document.getElementById('generate-qr-btn');
+            const qrImg = document.getElementById('pix-qrcode');
+            qrBtn.addEventListener('click', () => {
+                if (qrImg.style.display === 'none' || qrImg.style.display === '') {
+                    qrImg.style.display = 'block';
+                    qrBtn.textContent = 'Ocultar QR CODE';
+                } else {
+                    qrImg.style.display = 'none';
+                    qrBtn.textContent = 'Gerar QR CODE';
+                }
+            });
+            const copyBtn = document.getElementById('copy-qr-btn');
+            copyBtn.addEventListener('click', () => {
+                navigator.clipboard.writeText(qrImg.src).then(() => alert('Obrigada por testar nosso PI <3'));
+            });
         });
 
         function updateTotals() {
             const total = subtotal + shippingCost - paymentDiscount - couponDiscount;
-            
             document.getElementById('frete-display').textContent = 'R$ ' + shippingCost.toFixed(2).replace('.', ',');
             document.getElementById('shipping-total').textContent = 'R$ ' + shippingCost.toFixed(2).replace('.', ',');
             document.getElementById('payment-discount').textContent = 'R$ ' + paymentDiscount.toFixed(2).replace('.', ',');
             document.getElementById('coupon-discount').textContent = 'R$ ' + couponDiscount.toFixed(2).replace('.', ',');
             document.getElementById('total-display').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
             document.getElementById('final-total').textContent = 'R$ ' + total.toFixed(2).replace('.', ',');
-            
+
             const pixPrice = total;
             const installmentPrice = total / 5;
             document.getElementById('installments-info').innerHTML = 
@@ -338,5 +353,4 @@
         }
     </style>
 </body>
-
 </html>

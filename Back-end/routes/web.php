@@ -1,29 +1,45 @@
 <?php
+
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
+use App\Http\Controllers\Auth\RegisteredUserController;
+use App\Http\Controllers\Auth\PasswordResetController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/dashboard', [ProductController::class, 'index'])
-    ->middleware(['auth', 'verified'])
-    ->name('dashboard');
+Route::middleware('guest')->group(function () {
+    Route::get('register', [RegisteredUserController::class, 'create'])->name('register');
+    Route::post('register', [RegisteredUserController::class, 'store']);
 
-Route::get('/dashboard2', function () {
-    return view('dashboard_lojista_copy');
-})->middleware(['auth', 'verified'])->name('dashboard2');
+    Route::get('login', [AuthenticatedSessionController::class, 'create'])->name('login');
+    Route::post('login', [AuthenticatedSessionController::class, 'store']);
+
+    Route::get('/reset-password', [PasswordResetController::class, 'showForm'])->name('password');
+    Route::post('/reset-password', [PasswordResetController::class, 'simpleReset'])->name('password.reset');
+});
 
 Route::middleware('auth')->group(function () {
+    Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])->name('logout');
+
+    Route::get('/dashboard', [ProductController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard2', function () {
+        return view('dashboard_lojista_copy');
+    })->name('dashboard2');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::delete('/order/{order}', [ProfileController::class, 'cancelOrder'])->name('order.cancel');
 
     Route::post('/product', [ProductController::class, 'store'])->name('product.store');
-    Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit'); // Se tiver tela de edição
+    Route::get('/product/{product}/edit', [ProductController::class, 'edit'])->name('product.edit');
     Route::put('/product/{product}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/product/{product}', [ProductController::class, 'destroy'])->name('product.destroy');
 });
@@ -31,39 +47,31 @@ Route::middleware('auth')->group(function () {
 Route::get('/admin/tag', [TagController::class, 'index']);
 
 Route::get('/initial', function (\Illuminate\Http\Request $request) {
-    // Inicia a consulta de produtos
     $query = \App\Models\Product::query();
-    
-    // 1. Filtro de Texto (Nome do produto)
+
     if ($request->filled('search')) {
         $query->where('name', 'like', '%' . $request->search . '%');
     }
-    
-    // 2. Filtro de Múltiplas Categorias (O novo!)
+
     if ($request->filled('categories')) {
-        // "whereHas" entra na tabela relacionada (Category) e filtra pelo nome
-        $query->whereHas('Category', function($q) use ($request) {
+        $query->whereHas('Category', function ($q) use ($request) {
             $q->whereIn('name', $request->categories);
         });
     }
-    
-    // Pega os produtos filtrados
-    $products = $query->get();
 
-    return view('auth.initial_page', ['products' => $products]); 
+    $products = $query->get();
+    return view('auth.initial_page', ['products' => $products]);
 })->name('initial');
 
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
-Route::get('/cart', [\App\Http\Controllers\CartController::class, 'index'])->name('cart.index');
-Route::post('/cart/add/{product}', [\App\Http\Controllers\CartController::class, 'add'])->name('cart.add');
-Route::patch('/cart/{cartItem}', [\App\Http\Controllers\CartController::class, 'update'])->name('cart.update');
-Route::delete('/cart/{cartItem}', [\App\Http\Controllers\CartController::class, 'remove'])->name('cart.remove');
-Route::post('/cart/save-address', [\App\Http\Controllers\CartController::class, 'saveAddress'])->name('cart.saveAddress');
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
+Route::patch('/cart/{cartItem}', [CartController::class, 'update'])->name('cart.update');
+Route::delete('/cart/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart/save-address', [CartController::class, 'saveAddress'])->name('cart.saveAddress');
 
-Route::get('/checkout/personal-info', [\App\Http\Controllers\CheckoutController::class, 'showPersonalInfo'])->name('checkout.personalInfo');
-Route::post('/checkout/personal-info', [\App\Http\Controllers\CheckoutController::class, 'savePersonalInfo'])->name('checkout.savePersonalInfo');
-Route::get('/checkout/payment', [\App\Http\Controllers\CheckoutController::class, 'showPayment'])->name('checkout.payment');
-Route::post('/checkout/finalize', [\App\Http\Controllers\CheckoutController::class, 'finalizePurchase'])->name('checkout.finalize');
-
-require __DIR__.'/auth.php';
+Route::get('/checkout/personal-info', [CheckoutController::class, 'showPersonalInfo'])->name('checkout.personalInfo');
+Route::post('/checkout/personal-info', [CheckoutController::class, 'savePersonalInfo'])->name('checkout.savePersonalInfo');
+Route::get('/checkout/payment', [CheckoutController::class, 'showPayment'])->name('checkout.payment');
+Route::post('/checkout/finalize', [CheckoutController::class, 'finalizePurchase'])->name('checkout.finalize');
