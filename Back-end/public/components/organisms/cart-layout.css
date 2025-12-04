@@ -1,7 +1,6 @@
-/* components/organisms/cart-layout.css */
 .cart-container {
-    display: flex; /* Garante que as colunas fiquem lado a lado */
-    gap: 30px; /* Espaço entre as colunas */
+    display: flex;     
+    gap: 30px;
     align-items: flex-start;
     background-color: #1E1E1E;
     padding: 30px;
@@ -9,11 +8,11 @@
 }
 
 .cart-items-column {
-    flex: 2.5; /* Coluna da esquerda maior */
-    border-right: 1px solid #444; /* Linha divisória cinza sólida */
-    padding-right: 30px; /* Espaço entre o conteúdo e a linha */
+    flex: 2.5;
+    border-right: 1px solid #444;
+    padding-right: 30px; 
 }
 
 .summary-column {
-    flex: 1.5; /* Coluna da direita menor */
+    flex: 1.5; 
 }

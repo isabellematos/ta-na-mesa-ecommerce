@@ -34,8 +34,6 @@ body {
     justify-content: center;
     align-items: center;
     padding: 20px;
-
-    /* Fundo escuro + escamas juntos */
     background: var(--dark-bg) url('../img/escamasFundo.png') repeat;
     background-size: 500px;
 }
@@ -51,8 +49,6 @@ body {
     flex-direction: column;
     gap: 15px;
 }
-
-
 
 .signup-link {
     text-align: center;

@@ -17,14 +17,12 @@
 .card-header {
     position: relative;
     padding-bottom: 12px;
-    background-image: url('../../assets/img/linhaBranca.png'); /* Caminho da imagem ajustado */
-    background-repeat: no-repeat;
+    background-image: url('../../assets/img/linhaBranca.png');
     background-position: bottom center;
     background-size: 90% 2px;
     margin: 20px 0;
 }
 
-/* Regra específica para a imagem DENTRO do card */
 .product-card .product-image {
     width: 150px !important;
     height: 150px !important;
