@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ $product->name }} - Ta Na Mesa</title>
+
     <link rel="stylesheet" href="{{ asset('assets/css/estiloProduto.css') }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,10 +14,11 @@
     <link rel="stylesheet" href="{{ asset('components/organisms/header.css') }}">
     <link rel="stylesheet" href="{{ asset('components/organisms/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('components/atoms/button.css') }}">
+    <link rel="stylesheet" href="{{ asset('components/molecules/product-card.css') }}">
+    <link rel="stylesheet" href="{{ asset('components/molecules/cart-item.css') }}">
 </head>
 
 <body>
-
     <header class="header">
         <nav class="navbar">
             <div class="navbar-content">
@@ -78,9 +81,10 @@
 
             <section id="store-section" class="store">
                 <div class="product-card">
+                    <div class="product-imag">
                     <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}" 
                          alt="{{ $product->name }}">
-                         
+                </div>
                     <div class="product-info">
                         <span class="product-tag">LANÇAMENTO</span>
                         <h3 class="product-title">{{ $product->name }}</h3>
@@ -95,8 +99,9 @@
                                 <div class="quantity-controls">
                                     <button type="button" class="quantity-btn" onclick="decreaseQuantity()">-</button>
                                     <span class="quantity-value" id="quantity">1</span>
-                                    <input type="hidden" name="quantity" id="quantity-input" value="1">
                                     <button type="button" class="quantity-btn" onclick="increaseQuantity()">+</button>
+
+                                    <input type="hidden" name="quantity" id="quantity-input" value="1">
                                 </div>
                                 <button type="submit" class="buy-button">Adicionar ao Carrinho</button>
                             </div>
