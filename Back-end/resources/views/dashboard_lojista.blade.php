@@ -367,10 +367,8 @@
     </script>
 
     <style>
-        /* === ESTILOS GERAIS PARA CORREÇÃO DE LAYOUT === */
         * { box-sizing: border-box; }
 
-        /* === CSS DO FILTRO (Igual ao do Comprador) === */
         .filter-bar-modern { 
             background-color: #2a2a2a; 
             border-radius: 10px; 

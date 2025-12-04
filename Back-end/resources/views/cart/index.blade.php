@@ -204,13 +204,12 @@
             .then(data => {
                 if (data.success) {
                     quantityElement.textContent = newQuantity;
-                    location.reload(); // Recarrega para atualizar os totais
+                    location.reload(); 
                 }
             })
             .catch(error => console.error('Erro:', error));
         }
 
-        // Formatar CEP enquanto digita
         document.getElementById('cep-input').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 5) {
@@ -228,7 +227,6 @@
                 return;
             }
 
-            // Buscar CEP na API ViaCEP
             fetch(`https://viacep.com.br/ws/${cep}/json/`)
                 .then(response => response.json())
                 .then(data => {
@@ -237,13 +235,11 @@
                         return;
                     }
 
-                    // Exibir informações do endereço
                     document.getElementById('cidade-estado').textContent = `${data.localidade} - ${data.uf}`;
                     document.getElementById('logradouro-bairro').textContent = data.logradouro;
                     document.getElementById('bairro-text').textContent = data.bairro;
                     document.getElementById('address-info').style.display = 'block';
 
-                    // Salvar no banco de dados se o usuário estiver logado
                     @auth
                     fetch('/cart/save-address', {
                         method: 'POST',
@@ -276,7 +272,6 @@
                 });
         }
 
-        // Permitir buscar CEP ao pressionar Enter
         document.getElementById('cep-input').addEventListener('keypress', function(e) {
             if (e.key === 'Enter') {
                 buscarCEP();

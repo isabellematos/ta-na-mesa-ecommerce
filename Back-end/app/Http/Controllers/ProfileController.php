@@ -15,9 +15,7 @@ use App\Models\Category;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+    
     public function edit(Request $request)
     {
         $user = $request->user();
@@ -28,7 +26,6 @@ class ProfileController extends Controller
                             ->where('status', '!=', 'cancelled') 
                             ->with('items.product.Category');
 
-        // Filtros
         if ($request->filled('date')) {
             $ordersQuery->whereDate('created_at', $request->date);
         }
@@ -50,7 +47,6 @@ class ProfileController extends Controller
         $orders = $ordersQuery->orderBy('created_at', 'desc')->get();
         $categories = Category::all(); 
 
-        // Retorna a tela do Comprador
         return view('profile.edit', [
             'user' => $user,
             'orders' => $orders,
@@ -58,9 +54,6 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
     public function update(ProfileUpdateRequest $request): RedirectResponse
     {
         $user = $request->user();
@@ -82,7 +75,6 @@ class ProfileController extends Controller
 
         $user->save();
 
-        // Se for lojista, volta pro dashboard depois de salvar. Se for comprador, fica no perfil.
         if ($user->tipo === 'sim') {
              return redirect()->route('dashboard')->with('success', 'Perfil atualizado!');
         }
@@ -90,9 +82,7 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('success', 'Perfil atualizado!');
     }
 
-    /**
-     * Delete the user's account.
-     */
+    
     public function destroy(Request $request): RedirectResponse
     {
         $request->validateWithBag('userDeletion', [
@@ -113,15 +103,12 @@ class ProfileController extends Controller
 
     public function cancelOrder($id)
     {
-        // Busca o pedido ou falha se não encontrar
         $order = Order::findOrFail($id);
 
-        // 1. Segurança: Verifica se o pedido é mesmo desse usuário
         if ($order->user_id !== Auth::id()) {
             abort(403, 'Acesso não autorizado.');
         }
 
-        // 2. Verifica se o status permite cancelamento
         if ($order->status === 'pending') {
             $order->status = 'cancelled';
             $order->save();

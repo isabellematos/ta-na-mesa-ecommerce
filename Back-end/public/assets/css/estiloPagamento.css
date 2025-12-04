@@ -1,12 +1,12 @@
 /* assets/css/estiloPagamento.css */
 :root {
     --dark-bg: #1a1a1a;
-    --primary-color: #CD004A; /* Cor rosa/vermelho principal */
+    --primary-color: #CD004A; 
     --light-text: #ffffff;
     --gray-text: #cccccc;
-    --dark-component-bg: #1E1E1E; /* Fundo dos containers */
-    --dark-element-bg: #2c2c2c; /* Fundo de elementos menores */
-    --dark-input-bg: #333; /* Fundo dos inputs */
+    --dark-component-bg: #1E1E1E; 
+    --dark-element-bg: #2c2c2c; 
+    --dark-input-bg: #333; 
     --border-color: #444;
 }
 
@@ -24,7 +24,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 100px; /* Espaço para o header fixo */
+    padding-top: 100px; 
 }
 
 .caminho h3 {
@@ -34,7 +34,7 @@ body {
     text-transform: uppercase;
 }
 
-/* Garante que o footer fique no fim da página */
+
 html, body {
     height: 100%;
 }
@@ -42,16 +42,14 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* altura mínima da tela */
+    min-height: 100vh; 
 }
 
 main {
-    flex: 1; /* faz o main ocupar o espaço disponível */
+    flex: 1; 
 }
 
-/* --- ESTILOS ESPECÍFICOS DA PÁGINA DE PAGAMENTO --- */
 
-/* Coluna da Esquerda */
 
 .shipping-address-box {
     background-color: var(--dark-element-bg);
@@ -180,8 +178,6 @@ main {
 }
 
 
-/* Formulário de Cartão */
-/* Sobrescrevendo o átomo de input para o fundo escuro */
 .payment-methods .form-group input,
 .coupon-form input {
     background-color: var(--dark-input-bg);
@@ -238,11 +234,10 @@ main {
 
 .coupon-success {
     font-size: 0.9rem;
-    color: #4CAF50; /* Verde sucesso */
+    color: #4CAF50; 
     font-weight: bold;
 }
 
-/* Placeholder Detalhes do Pagamento */
 .payment-details-placeholder {
     display: flex;
     flex-direction: column;
