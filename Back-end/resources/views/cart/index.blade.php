@@ -95,7 +95,6 @@
                                         </button>
                                     </form>
                                     
-                                    {{-- AQUI ESTÁ A CORREÇÃO DA IMAGEM --}}
                                     <img src="{{ Str::startsWith($item->product->image1, ['http', 'https']) ? $item->product->image1 : asset('storage/' . $item->product->image1) }}" 
                                          alt="{{ $item->product->name }}" 
                                          class="cart-item-image">
@@ -148,9 +147,7 @@
                                 @if($subtotal >= 250)
                                     <p style="color: #28a745; font-weight: bold;">Parabéns! Você ganhou FRETE GRÁTIS!</p>
                                 @elseif($subtotal < 100)
-                                    <p><a href="#">Compre mais R${{ number_format(100 - $subtotal, 2, ',', '.') }} e ganhe FRETE GRÁTIS!</a></p>
-                                @else
-                                    <p><a href="#">Compre mais R${{ number_format(250 - $subtotal, 2, ',', '.') }} e ganhe FRETE GRÁTIS!</a></p>
+                                    <p style="color: #CD004A; font-weight: bold;">Compre mais R${{ number_format(100 - $subtotal, 2, ',', '.') }} e ganhe FRETE GRÁTIS!</a></p>
                                 @endif
                             </div>
                             <hr style="border-color: #444; margin: 20px 0;">
