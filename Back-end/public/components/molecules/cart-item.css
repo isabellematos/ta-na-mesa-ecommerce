@@ -1,17 +1,15 @@
-/* components/molecules/cart-item.css */
 .cart-item {
     display: flex;
     align-items: center;
     gap: 15px;
     padding: 20px 0;
-    background-image: url('../../assets/img/linhaBranca.png'); /* Caminho da imagem */
+    background-image: url('../../assets/img/linhaBranca.png');
     background-repeat: no-repeat;
     background-position: bottom center;
     background-size: 90% 2px; 
     padding-bottom: 22px; 
 }
 
-/* Garante que o último item NÃO tenha a linha */
 .cart-item:last-child {
     background-image: none;
     padding-bottom: 20px; 
@@ -20,12 +18,12 @@
 
 
 .cart-item:last-child {
-    border-bottom: none; /* Remove a linha do último item */
+    border-bottom: none; 
 }
 
 .cart-item-image-container {
     position: relative;
-    background-color: #fff; /* Fundo branco para a imagem */
+    background-color: #fff;
     border-radius: 8px;
     padding: 5px;
 }
@@ -47,7 +45,6 @@
     width: 24px;
     height: 24px;
     cursor: pointer;
-    /* Adicionado para centralizar o ícone perfeitamente */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -55,7 +52,7 @@
 }
 
 .cart-item-delete img {
-    width: 14px; /* Deixamos o ícone um pouco menor que o botão */
+    width: 14px;
     height: 14px;
 }
 
@@ -90,7 +87,6 @@
     color: var(--primary-color);
     font-weight: bold;
     border-radius: 20px;
-    
 }
 
 .quantity-btn {
@@ -108,4 +104,3 @@
     padding: 5px 10px;
     font-size: 1rem;
 }
-
