@@ -14,8 +14,7 @@
     <link rel="stylesheet" href="{{ asset('components/organisms/header.css') }}">
     <link rel="stylesheet" href="{{ asset('components/organisms/footer.css') }}">
     <link rel="stylesheet" href="{{ asset('components/atoms/button.css') }}">
-    <link rel="stylesheet" href="{{ asset('components/molecules/product-card.css') }}">
-    <link rel="stylesheet" href="{{ asset('components/molecules/cart-item.css') }}">
+
 </head>
 
 <body>
