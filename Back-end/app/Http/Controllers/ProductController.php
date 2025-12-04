@@ -13,12 +13,7 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $user = Auth::user();
-
-        // =================================================================
-        // TRUQUE DE EMERGÊNCIA: CATEGORIAS MANUAIS (Para garantir a apresentação)
-        // =================================================================
-        // Isso simula o que viria do banco de dados.
-        // O Blade vai ler isso e achar que veio do banco.
+        
         $categories = collect([
             (object)['id' => 1, 'name' => 'Vestimentas'],
             (object)['id' => 2, 'name' => 'Acessórios'],
@@ -28,13 +23,10 @@ class ProductController extends Controller
             (object)['id' => 6, 'name' => 'Outro'],
         ]);
 
-        // === CENÁRIO 1: É LOJISTA? ===
         if ($user->tipo === 'sim') {
             
-            // Busca os produtos desse lojista
             $query = Product::where('user_id', $user->id);
 
-            // Filtros
             if ($request->filled('search')) {
                 $query->where('name', 'like', '%' . $request->search . '%');
             }
@@ -47,11 +39,9 @@ class ProductController extends Controller
 
             $products = $query->get();
 
-            // Envia products (do banco) e categories (manual/garantido)
             return view('dashboard_lojista', compact('products', 'categories'));
         }
 
-        // === CENÁRIO 2: É COMPRADOR? ===
         else {
             $ordersQuery = Order::where('user_id', $user->id)
                                 ->with('items.product.Category');
@@ -78,7 +68,6 @@ class ProductController extends Controller
         }
     }
 
-    // --- MANTENHA AS OUTRAS FUNÇÕES IGUAIS ---
     
     public function store(Request $request)
     {
@@ -91,7 +80,7 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $product = Product::findOrFail($id);
-        $product->fill($request->all()); // Atalho para atualizar tudo
+        $product->fill($request->all()); 
         $product->save();
         return redirect()->back()->with('success', 'Produto atualizado!');
     }
@@ -103,12 +92,10 @@ class ProductController extends Controller
         return redirect()->route('dashboard');
     }
 
-    // No edit também precisa das categorias!
     public function edit(Product $product)
     {
         if ($product->user_id !== Auth::id()) { abort(403); }
         
-        // REPETINDO O TRUQUE AQUI TAMBÉM PRA GARANTIR A TELA DE EDIÇÃO
         $categories = collect([
             (object)['id' => 1, 'name' => 'Vestimentas'],
             (object)['id' => 2, 'name' => 'Acessórios'],
