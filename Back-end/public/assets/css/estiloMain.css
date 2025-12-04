@@ -30,7 +30,6 @@ body {
 }
 
 
-/* Banner Principal */
 .hero-banner {
     position: relative;
     padding-top: 70px;
@@ -206,7 +205,6 @@ body {
     background-color: #f0f0f0;
 }
 
-/* Linha decorativa */
 .filter-line {
     width: 100%;
     height: 2px;
@@ -217,7 +215,6 @@ body {
     margin: 10px 0 20px 0;
 }
 
-/* Linha → várias colunas */
 .filter-row {
     display: flex;
     justify-content: center;
@@ -228,7 +225,6 @@ body {
     align-items: center;
 }
 
-/* Conteúdo moderno principal (com divisores) */
 .filter-content-modern {
     display: flex;
     gap: 30px;
@@ -237,7 +233,6 @@ body {
     justify-content: space-between;
 }
 
-/* Versão que estava duplicada no topo → unificada */
 .filter-content-modern {
     gap: 20px;
 }
@@ -247,21 +242,18 @@ body {
     flex-wrap: wrap;
     font-size: small;
 
-    /* segunda definição */
     display: flex;
     flex-direction: column;
     gap: 6px;
     min-width: 260px;
 }
 
-/* Labels */
 .filter-group-modern label{
     color: white;
     font-weight: bold;
     white-space: nowrap;
 }
 
-/* Input */
 .filter-group-modern input[type="text"]{
     height: 40px;
     padding: 8px 12px;
@@ -269,14 +261,12 @@ body {
     border: 1px solid #666;
 }
 
-/* Labels */
 .filter-group label{
     color: white;
     font-weight: bold;
     white-space: nowrap;
 }
 
-/* Input */
 .filter-group .input-container input[type="date"], .filter-group input[type="text"], .filter-group .input-container select{
     height: 30px;
     padding: 8px 12px;
@@ -284,9 +274,6 @@ body {
     border: 1px solid #666;
 }
 
-
-
-/* Divisor vertical */
 .filter-divider {
     width: 2px;
     height: 45px;
@@ -337,7 +324,6 @@ body {
     display: block;
 }
 
-/* Evita afetar imagens internas */
 .product-card img:not(.product-image) {
     max-width: 100%;
     height: auto;
@@ -345,14 +331,10 @@ body {
 }
 
 
-/* 4. Mudar a largura da imagem do produto para se adaptar */
 .product-image {
     width: 100px !important;
     height: 100px !important;
 }
-
-/* informações do vendedor e comprador */
-
 
 .seller-ads h2,
 .buyer-shopped h2 {
@@ -861,7 +843,6 @@ align-items: center;
 
 }
 
-
 @media (max-width: 768px) {
     .banner-image {
         border-bottom-left-radius: 45px;
@@ -886,7 +867,6 @@ align-items: center;
         height: 55px;
     }
 
-    /* 1. Ajustar o menu de navegação (Mantido) */
     .navbar-content {
         flex-direction: column;
         gap: 20px;
@@ -898,13 +878,11 @@ align-items: center;
         text-align: center;
     }
 
-    /* 2. Centralizar o logo e ações do usuário (Mantido) */
     .logo,
     .user-actions {
         margin: 0 auto;
     }
 
-    /* 3. Ajustar a barra de filtro (Melhorado) */
     .filter-bar {
         padding: 15px;
     }
@@ -988,25 +966,23 @@ align-items: center;
         border-radius: 15px;
     }
 
-    /* 6. Mudar a largura da imagem do produto para se adaptar (Mantido) */
     .product-image {
         width: 100px !important;
         height: 100px !important;
     }
 
-    /* 7. Ajuste dos Modals */
     .modal-content {
-        width: 95%; /* Ocupa mais espaço na tela */
+        width: 95%; 
         padding: 20px;
     }
 
     .modal-form-grid {
-        grid-template-columns: 1fr; /* Rótulos e campos em uma única coluna */
+        grid-template-columns: 1fr; 
         gap: 5px 0;
     }
 
     .modal-form-grid label {
-        text-align: left; /* Alinha rótulos à esquerda */
+        text-align: left;
         width: 100%;
         height: auto;
     }
@@ -1015,7 +991,7 @@ align-items: center;
     .modal-input,
     .modal-btn-upload,
     .modal-form-grid select {
-        grid-column: 1; /* Garante que os campos ocupem a coluna única */
+        grid-column: 1;
     }
 
     .modal-form-grid label[for="modal-descricao"] {

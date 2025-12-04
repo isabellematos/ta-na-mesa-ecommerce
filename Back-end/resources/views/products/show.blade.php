@@ -81,9 +81,9 @@
             <section id="store-section" class="store">
                 <div class="product-card">
                     <div class="product-imag">
-                    <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}" 
+                        <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}" 
                          alt="{{ $product->name }}">
-                </div>
+                    </div>
                     <div class="product-info">
                         <span class="product-tag">LANÇAMENTO</span>
                         <h3 class="product-title">{{ $product->name }}</h3>

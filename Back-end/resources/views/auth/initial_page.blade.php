@@ -149,7 +149,6 @@
                 <div class="product-card">
                     <a href="{{ route('product.show', $product->id) }}" style="text-decoration: none; color: inherit;">
                         <div class="card-header">
-                            {{-- AQUI ESTÁ A CORREÇÃO DA IMAGEM --}}
                             <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}" 
                                  alt="{{ $product->name }}" 
                                  class="product-image">
