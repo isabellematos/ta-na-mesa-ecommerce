@@ -1,7 +1,6 @@
-/* assets/css/estiloInformacao.css */
 :root {
     --dark-bg: #1a1a1a;
-    --primary-color: #CD004A; /* Cor rosa/vermelho principal */
+    --primary-color: #CD004A;
     --light-text: #ffffff;
     --gray-text: #cccccc;
 }
@@ -20,8 +19,7 @@ body {
     max-width: 1200px;
     margin: 0 auto;
     padding: 20px;
-    padding-top: 100px; /* Espaço para o header fixo */
-}
+    padding-top: 100px; }
 
 .caminho h3 {
     font-size: 1rem;
@@ -30,7 +28,6 @@ body {
     text-transform: uppercase;
 }
 
-/* Garante que o footer fique no fim da página */
 html, body {
     height: 100%;
 }
@@ -38,10 +35,10 @@ html, body {
 body {
     display: flex;
     flex-direction: column;
-    min-height: 100vh; /* altura mínima da tela */
+    min-height: 100vh; 
 }
 
 main {
-    flex: 1; /* faz o main ocupar o espaço disponível */
+    flex: 1; /
 }
 
