@@ -71,7 +71,19 @@ Route::get('/initial', function (Request $request) {
     }
 
     $products = $query->get();
-    return view('auth.initial_page', ['products' => $products]);
+    $categories = collect([
+        (object)['id' => 1, 'name' => 'Vestimentas'],
+        (object)['id' => 2, 'name' => 'Acessórios'],
+        (object)['id' => 3, 'name' => 'Livros'],
+        (object)['id' => 4, 'name' => 'Dados'],
+        (object)['id' => 5, 'name' => 'Brinquedos'],
+        (object)['id' => 6, 'name' => 'Outro'],
+    ]);
+
+    return view('auth.initial_page', [ 
+        'products' => $products,
+        'categories' => $categories
+    ]);
 })->name('initial');
 
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
