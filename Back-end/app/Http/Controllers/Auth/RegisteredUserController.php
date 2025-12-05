@@ -33,19 +33,30 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'tipo' => ['required', 'string', 'in:sim,nao'], 
+            'imagemPerfil' => ['nullable', 'image', 'max:5120'], 
         ]);
 
+        $caminhoImagem = null;
+        if ($request->hasFile('imagemPerfil')) {
+            $caminhoImagem = $request->file('imagemPerfil')->store('perfil', 'public');
+        }
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'tipo' => $request->tipo,
+            'imagemPerfil' => $caminhoImagem, 
         ]);
 
         event(new Registered($user));
 
-        //Auth::login($user);
+        Auth::login($user);
 
-        return redirect('/login')->with('success', 'Cadastro realizado com sucesso!');
+        if ($user->tipo === 'sim') {
+            return redirect()->route('dashboard');
+        }
+
+        return redirect(route('initial', absolute: false)); 
     }
 }
