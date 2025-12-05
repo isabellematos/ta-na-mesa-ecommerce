@@ -87,7 +87,6 @@ class CheckoutController extends Controller
         $shippingCost = $subtotal >= 150 ? 0 : 10;
         $total = $subtotal + $shippingCost;
 
-        // Criar o pedido
         $order = \App\Models\Order::create([
             'user_id' => Auth::id(),
             'subtotal' => $subtotal,
@@ -98,7 +97,6 @@ class CheckoutController extends Controller
             'status' => 'pending',
         ]);
 
-        // Criar os itens do pedido
         foreach ($cartItems as $cartItem) {
             \App\Models\OrderItem::create([
                 'order_id' => $order->id,
@@ -108,7 +106,6 @@ class CheckoutController extends Controller
             ]);
         }
 
-        // Limpar o carrinho
         \App\Models\CartItem::where('user_id', Auth::id())->delete();
 
         return redirect()->route('initial')->with('purchase_success', true);

@@ -171,7 +171,6 @@
                         </div>
                     </div>
 
-                    <!-- Coluna de pagamento -->
                     <div class="address-info-column">
                         <h4>Métodos de pagamento</h4>
 
@@ -184,7 +183,6 @@
 
                             <input type="hidden" name="payment_method" id="payment-method-input" value="pix">
 
-                            <!-- PIX -->
                             <div class="payment-tab-content active" id="pix-content">
                                 <p>Pagamento confirmado em até 10 minutos.</p>
                                 <div class="pix-buttons">
@@ -194,7 +192,6 @@
                                 <img src="{{ asset('assets/img/qrcode.png') }}" id="pix-qrcode" style="display: none; margin-top: 15px; max-width: 200px;">
                             </div>
 
-                            <!-- CARTÃO -->
                             <div class="payment-tab-content" id="cartao-content">
                                 <p>Pagamento confirmado em até 2h.</p>
                                 <div class="form-group">
@@ -214,7 +211,6 @@
                                 <a href="#" class="payment-conditions-link">Clique para ver as condições de parcelamento</a>
                             </div>
 
-                            <!-- BOLETO -->
                             <div class="payment-tab-content" id="boleto-content">
                                 <p>Pagamento confirmado em até 3 dias úteis.</p>
                             </div>
@@ -257,7 +253,6 @@
         let paymentDiscount = 0;
         let couponDiscount = 0;
 
-        // Se subtotal >= 100, frete grátis
         if (subtotal >= 100) {
             shippingCost = 0;
         }
@@ -265,7 +260,6 @@
         document.addEventListener('DOMContentLoaded', () => {
             updateTotals();
 
-            // Tabs de pagamento
             const tabButtons = document.querySelectorAll('.payment-tab-btn');
             const tabContents = document.querySelectorAll('.payment-tab-content');
             tabButtons.forEach(button => {
@@ -282,7 +276,6 @@
                 });
             });
 
-            // Seleção de envio
             document.querySelectorAll('input[name="envio"]').forEach(radio => {
                 radio.addEventListener('change', (e) => {
                     shippingCost = parseFloat(e.target.dataset.price);
@@ -291,7 +284,6 @@
                 });
             });
 
-            // Formatação de cartão
             document.getElementById('card-number')?.addEventListener('input', function(e) {
                 let value = e.target.value.replace(/\D/g, '');
                 let formatted = value.match(/.{1,4}/g)?.join(' ') || value;
@@ -303,11 +295,9 @@
                 e.target.value = value;
             });
 
-            // Inicializar desconto PIX
             paymentDiscount = (subtotal + shippingCost) * 0.03;
             updateTotals();
 
-            // PIX QR CODE
             const qrBtn = document.getElementById('generate-qr-btn');
             const qrImg = document.getElementById('pix-qrcode');
             qrBtn.addEventListener('click', () => {

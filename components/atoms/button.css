@@ -92,7 +92,6 @@
     background-color: #CD004A;
 }
 
-/* --- Variantes de Botões de Pagamento --- */
 .payment-tab-btn {
     background: transparent;
     border: none;
@@ -103,7 +102,7 @@
     font-weight: bold;
     font-family: 'Roboto Condensed', sans-serif;
     border-bottom: 3px solid transparent;
-    transform: translateY(1px); /* Alinha com a borda de baixo */
+    transform: translateY(1px); 
 }
 
 .payment-tab-btn.active {
@@ -131,7 +130,7 @@
 }
 
 .btn-pix-copy {
-    background-color: var(--dark-input-bg, #333); /* Usa variável ou fallback */
+    background-color: var(--dark-input-bg, #333); 
     color: var(--gray-text);
     border: 1px solid var(--border-color, #444);
 }

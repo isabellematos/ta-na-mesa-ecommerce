@@ -33,8 +33,8 @@ class RegisteredUserController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'tipo' => ['required', 'string', 'in:sim,nao'], 
-            'imagemPerfil' => ['nullable', 'image', 'max:5120'], 
+            'tipo' => ['required', 'string', 'in:sim,nao'],
+            'imagemPerfil' => ['nullable', 'image', 'max:5120'],
         ]);
 
         $caminhoImagem = null;
@@ -46,17 +46,11 @@ class RegisteredUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'tipo' => $request->tipo,
-            'imagemPerfil' => $caminhoImagem, 
+            'imagemPerfil' => $caminhoImagem,
         ]);
 
         event(new Registered($user));
 
-        Auth::login($user);
-
-        if ($user->tipo === 'sim') {
-            return redirect()->route('dashboard');
-        }
-
-        return redirect(route('initial', absolute: false)); 
+        return redirect()->route('login')->with('success', 'Cadastro realizado com sucesso! Faça login para continuar.');
     }
 }

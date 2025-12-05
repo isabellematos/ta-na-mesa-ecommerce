@@ -31,7 +31,7 @@ class PasswordResetController extends Controller
         $user->password = Hash::make($request->password);
         $user->save();
 
-        Auth::logout(); // força logout caso o usuário estivesse logado
+        Auth::logout(); 
 
         return redirect()->route('login')->with('success', 'Senha redefinida com sucesso!');
     }

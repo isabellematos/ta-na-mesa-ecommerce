@@ -16,7 +16,6 @@ input[type="text"] {
     color: #696969;
 }
 
-/* Placeholder (texto cinza dentro do campo) */
 input::placeholder {
     color: #888;
     font-family: 'Roboto Condensed', sans-serif;
@@ -25,7 +24,6 @@ input::placeholder {
 }
 
 
-/* --- Estilos dos Filtros da Tela Inicial --- */
 .filter-group input,
 .filter-group select {
     flex-grow: 1;
