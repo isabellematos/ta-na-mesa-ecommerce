@@ -23,7 +23,7 @@
 
 <body>
 
-    <header class="header">
+        <header class="header">
         <nav class="navbar">
             <div class="navbar-content">
                 <div class="logo">
@@ -31,8 +31,13 @@
                         <img src="{{ asset('assets/img/logoDaora.png') }}" alt="Logo Ta Na Mesa">
                     </a>
                 </div>
-                <div class="user-actions">
-                    
+                <div class="Loja">
+                <ul class="nav-links">
+                    <li><a href="{{ route('initial') }}" class="active-link">Loja</a></li>
+                </ul>
+                </div>
+                <div class="user-actions ">
+                    <div class="carrinho " >
                     @if(Auth::check() && Auth::user()->tipo === 'sim')
                         <a href="#" onclick="openLojistaModal(); return false;">
                             <img src="{{ asset('assets/img/Shopping cart.png') }}" alt="Carrinho de compras" style="width: 30px; height: 30px;">
@@ -46,10 +51,9 @@
                             @endif
                         </a>
                     @endif
-
+                    </div>    
                     @auth
-                        <a href="{{ route('profile.edit') }}">
-                            @if(Auth::user()->imagemPerfil)
+                        <a href="{{ Auth::user()->tipo === 'sim' ? route('dashboard') : route('profile.edit') }}">                            @if(Auth::user()->imagemPerfil)
                                 <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}" 
                                      alt="Perfil do usuário" 
                                      style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;"
@@ -149,6 +153,7 @@
                 <div class="product-card">
                     <a href="{{ route('product.show', $product->id) }}" style="text-decoration: none; color: inherit;">
                         <div class="card-header">
+                            {{-- AQUI ESTÁ A CORREÇÃO DA IMAGEM --}}
                             <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}" 
                                  alt="{{ $product->name }}" 
                                  class="product-image">
@@ -338,7 +343,15 @@
                 }
             });
         });
-    </script>
 
+        @if(session('show_lojista_modal'))
+        // Esta função garante que a função openLojistaModal() só é chamada depois
+        // que toda a página (e suas funções JS) foram carregadas.
+        document.addEventListener('DOMContentLoaded', function() {
+            // Abre o modal que você já tem implementado
+            openLojistaModal();
+        });
+    </script>
+@endif
 </body>
 </html>

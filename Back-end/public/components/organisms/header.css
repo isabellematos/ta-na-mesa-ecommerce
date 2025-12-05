@@ -1,98 +1,149 @@
-.header {
-    background-color: rgba(0, 0, 0, 0.8);
-    position: fixed;
-    width: 100%;
-    z-index: 1000;
-}
-
-.navbar {
-    display: flex;
-    justify-content: center;
-    background-image: url('../../assets/img/Image2.png'); 
-    background-size: cover;
-    background-repeat: no-repeat;
-    padding: 10px 0;
-}
-
-.navbar-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    width: 100%;
-    max-width: 1400px;
-}
-
-.logo {
-    margin-right: 20px;
-}
-
-.user-actions {
-    display: flex;
-    align-items: center;
-    margin-left: 20px;
-}
-
-.navbar .logo img {
-    height: 40px;
-}
-
-.nav-links {
+/* Remove o ponto da lista */
+.nav-links, .nav-links li {
     list-style: none;
-    display: flex;
-    gap: 30px;
+    margin: 0;
     padding: 0;
-}
-
-.nav-links a {
-    color: var(--light-text);
-    text-decoration: none;
     font-weight: bold;
-    padding-bottom: 5px;
-    background-image: url('../../assets/img/Image2.png'); 
-    background-size: 100% 2px;
-    background-repeat: no-repeat;
-    background-position: bottom center;
-    transition: all 0.3s ease;
+    justify-content: center;
 }
 
-.nav-links a:hover {
-    color: var(--light-text);
+/* Cor corrigida */
+.nav-links a {
+    color: white !important;
+        text-decoration: none !important;
+
 }
 
-.nav-links a.active-link {
-    background-image: url('../../assets/img/Image3.png'); 
-    color: var(--light-text);
-}
-.user-actions img {
-    height: 25px;
-    margin-left: 20px;
-}
-.user-actions a {
-    text-decoration: inherit;
-    color: inherit;
-}
-.user-actions .perfilLojista{
-    margin-left: 25px;
-}
 
-.cart-icon {
-    position: relative;
-}
+
+        .user-actions img {
+            height: 25px;
+            margin-left: 20px;
+        }
+
+        .user-actions a {
+            text-decoration: inherit;
+            color: inherit;
+        }
+
+
+            .cart-icon img {
+                width: 30px;
+                height: 30px;
+            }
+
+
+                .hidden {
+                    visibility: hidden;
+                    pointer-events: none;
+                }
 
 .cart-badge {
-    position: absolute;
-    top: -6px;
-    right: -6px;
-    background-color: #ff2e2e;
-    color: white;
-    font-size: 11px;
-    font-weight: bold;
-    width: 18px;
-    height: 18px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: 2px solid #1a1a1a;
-}
+                        justify-content: center;
+                        border: 2px solid #1a1a1a;
+                    }
+
+                    /* PERFIL */
+                    .user-actions img {
+                        height: 35px;
+                        width: 35px;
+                        object-fit: cover;
+                    }
+
+                    /* Botão "Sair" */
+                    .user-actions a {
+                        color: white;
+                        text-decoration: none;
+                        font-weight: bold;
+                    }
+
+                    .header {
+                        background-color: rgba(0, 0, 0, 0.8);
+                        position: fixed;
+                        width: 100%;
+                        z-index: 1000;
+                    }
+
+                    .navbar {
+                        display: flex;
+                        justify-content: center;
+                        background-image: url('../../assets/img/Image2.png');
+                        background-size: cover;
+                        background-repeat: no-repeat;
+                        padding: 12px 0;
+                    }
+
+                    .navbar-content {
+                        display: flex;
+                        align-items: center;
+                        justify-content: space-between;
+                        width: 100%;
+                        max-width: 1400px;
+                        padding: 0 150px;
+                        /* <<< padding lateral */
+                    }
+
+                    /* LOGO */
+                    .logo img {
+                        height: 50px;
+                    }
+
+                    /* AÇÕES DO USUÁRIO */
+                    .user-actions {
+                        display: flex;
+                        align-items: center;
+                        gap: 35px;
+                        /* <<< distância igual entre os itens */
+                    }
+
+                    /* ÍCONE DO CARRINHO */
+                    .cart-icon {
+                        position: relative;
+                        width: 45;
+                        height: 45;
+                        display: flex;
+                        align-items: center;
+                    }
+
+                    .cart-icon img {
+                        width: 30px;
+                        height: 30px;
+                    }
+
+                    /* Mantém espaço quando não tiver carrinho */
+                    .hidden {
+                        visibility: hidden;
+                        pointer-events: none;
+                    }
+
+                    /* BADGE DO CARRINHO */
+                    .cart-badge {
+                        position: absolute;
+                        top: -6px;
+                        right: -6px;
+                        background-color: #ff2e2e;
+                        color: white;
+                        font-size: 11px;
+                        font-weight: bold;
+                        width: 18px;
+                        height: 18px;
+                        border-radius: 50%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: center;
+                        border: 2px solid #1a1a1a;
+                    }
+
+                    /* PERFIL */
+                    .user-actions img {
+                        height: 35px;
+                        width: 35px;
+                        object-fit: cover;
+                    }
+
+                    /* Botão "Sair" */
+                    .user-actions a {
+                        color: white;
+                        text-decoration: none;
+                        font-weight: bold;
+                    }

@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
+
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TagController;
@@ -9,6 +12,14 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\PasswordResetController;
+
+function notLojista() {
+    if (Auth::check() && Auth::user()->tipo === 'sim') {
+        session()->flash('show_lojista_modal', true);
+        return redirect()->route('initial');
+    }
+    return null;
+}
 
 Route::get('/', function () {
     return view('welcome');
@@ -46,7 +57,7 @@ Route::middleware('auth')->group(function () {
 
 Route::get('/admin/tag', [TagController::class, 'index']);
 
-Route::get('/initial', function (\Illuminate\Http\Request $request) {
+Route::get('/initial', function (Request $request) {
     $query = \App\Models\Product::query();
 
     if ($request->filled('search')) {
@@ -65,13 +76,60 @@ Route::get('/initial', function (\Illuminate\Http\Request $request) {
 
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
-Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+
+// ==========================================================
+// ROTAS DE COMPRA E CHECKOUT
+// ==========================================================
+
+
+Route::get('/cart', function () {
+    $block = notLojista(); 
+    if ($block) return $block; 
+    return app(\App\Http\Controllers\CartController::class)->index();
+})->name('cart.index');
+
+
 Route::post('/cart/add/{product}', [CartController::class, 'add'])->name('cart.add');
 Route::patch('/cart/{cartItem}', [CartController::class, 'update'])->name('cart.update');
 Route::delete('/cart/{cartItem}', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart/save-address', [CartController::class, 'saveAddress'])->name('cart.saveAddress');
 
-Route::get('/checkout/personal-info', [CheckoutController::class, 'showPersonalInfo'])->name('checkout.personalInfo');
-Route::post('/checkout/personal-info', [CheckoutController::class, 'savePersonalInfo'])->name('checkout.savePersonalInfo');
-Route::get('/checkout/payment', [CheckoutController::class, 'showPayment'])->name('checkout.payment');
-Route::post('/checkout/finalize', [CheckoutController::class, 'finalizePurchase'])->name('checkout.finalize');
+
+Route::get('/checkout/personal-info', function () {
+    $block = notLojista(); 
+    if ($block) return $block;
+    return app(\App\Http\Controllers\CheckoutController::class)->showPersonalInfo();
+})->name('checkout.personalInfo');
+
+
+Route::post('/checkout/personal-info', function (Request $request) {
+    $block = notLojista();
+    if ($block) return $block;
+    
+    return app(\App\Http\Controllers\CheckoutController::class)->savePersonalInfo($request);
+})->name('checkout.savePersonalInfo');
+
+
+Route::get('/checkout/payment', function () {
+    $block = notLojista(); 
+    if ($block) return $block;
+    return app(\App\Http\Controllers\CheckoutController::class)->showPayment();
+})->name('checkout.payment');
+
+
+Route::post('/checkout/finalize', function (Request $request) {
+    $block = notLojista();
+    if ($block) return $block;
+    
+    return app(\App\Http\Controllers\CheckoutController::class)->finalizePurchase($request);
+})->name('checkout.finalize');
+
+
+// --- ROTAS DE TESTE
+Route::get('/teste', function () {
+    return view('checkout.teste');
+})->name('teste.view');
+
+Route::get('/teste2', function () {
+    return view('checkout.teste2');
+})->name('teste2.view');

@@ -32,18 +32,57 @@
                         <img src="{{ asset('assets/img/logoDaora.png') }}" alt="Logo Ta Na Mesa">
                     </a>
                 </div>
-                <div class="user-actions">
-                    <a href="{{ route('profile.edit') }}">
-                        <img src="{{ Auth::user()->imagemPerfil ? asset('storage/' . Auth::user()->imagemPerfil).'?v='.time() : asset('assets/img/user-icon.png') }}" 
-                             alt="Perfil do usuário" 
-                             style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;">
-                    </a>
-                    <form method="POST" action="{{ route('logout') }}" style="display: inline; margin-left: 10px;">
-                        @csrf
-                        <button type="submit" class="perfilLojista" style="background: none; border: none; color: white; cursor: pointer; font: inherit; font-size: 1rem;">
+                <div class="Loja">
+                <ul class="nav-links">
+                    <li><a href="{{ route('initial') }}" class="active-link">Loja</a></li>
+                </ul>
+                </div>
+                <div class="user-actions ">
+                    <div class="carrinho " >
+                    @if(Auth::check() && Auth::user()->tipo === 'sim')
+                        <a href="#" onclick="openLojistaModal(); return false;">
+                            <img src="{{ asset('assets/img/Shopping cart.png') }}" alt="Carrinho de compras" style="width: 30px; height: 30px;">
+                        </a>
+                    @else
+                        <a href="{{ route('cart.index') }}" class="cart-icon">
+                            <img src="{{ asset('assets/img/Shopping cart.png') }}" style="width:30px;">
+
+                            @if(isset($cartCount) && $cartCount > 0)
+                                <span class="cart-badge">{{ $cartCount }}</span>
+                            @endif
+                        </a>
+                    @endif
+                    </div>    
+                    @auth
+                        <a href="{{ Auth::user()->tipo === 'sim' ? route('dashboard') : route('profile.edit') }}">                            @if(Auth::user()->imagemPerfil)
+                                <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}" 
+                                     alt="Perfil do usuário" 
+                                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;"
+                                     onerror="this.onerror=null; this.src='{{ asset('assets/img/user-icon.png') }}';">
+                            @else
+                                <img src="{{ asset('assets/img/user-icon.png') }}" 
+                                     alt="Perfil do usuário" 
+                                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;">
+                            @endif
+                        </a>
+                        
+                        <a href="{{ route('logout') }}" 
+                           onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                           style="color: white; text-decoration: none; margin-left: 15px;">
                             Sair
-                        </button>
-                    </form>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+
+                    @else
+                        <a href="{{ route('login') }}">
+                            <img src="{{ asset('assets/img/user-icon.png') }}" 
+                                 alt="Perfil do usuário"
+                                 style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                        </a>
+                    @endauth
+
                 </div>
             </div>
         </nav>
