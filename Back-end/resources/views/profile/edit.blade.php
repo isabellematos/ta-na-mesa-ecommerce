@@ -144,26 +144,6 @@
                                     <input type="email" name="email" value="{{ old('email', Auth::user()->email) }}" required>
                                 </div>
                                 
-                                <div class="field-row">
-                                    <label>CEP:</label>
-                                    <input type="text" name="cep" value="{{ old('cep', Auth::user()->cep) }}" required>
-                                </div>
-
-                                <div class="field-row">
-                                    <label>Logradouro:</label>
-                                    <input type="text" name="logradouro" value="{{ old('logradouro', Auth::user()->logradouro) }}" required>
-                                </div>
-
-                                <div class="field-row">
-                                    <label>Número:</label>
-                                    <input type="text" name="numero" value="{{ old('numero', Auth::user()->numero) }}" required>
-                                </div>
-
-                                <div class="field-row">
-                                    <label>Complemento:</label>
-                                    <input type="text" name="complemento" value="{{ old('complemento', Auth::user()->complemento) }}">
-                                </div>
-                                
                                 <div class="buyer-save-btn">
                                     <button type="submit" class="btn-primary">Salvar Alterações</button>
                                 </div>
