@@ -31,7 +31,7 @@
                         <img src="{{ asset('assets/img/logoDaora.png') }}" alt="Logo Ta Na Mesa">
                     </a>
                 </div>
-                <div class="Loja">
+                <div class="Loja hidden">
                 <ul class="nav-links">
                     <li><a href="{{ route('initial') }}" class="active-link">Loja</a></li>
                 </ul>
@@ -153,7 +153,6 @@
                 <div class="product-card">
                     <a href="{{ route('product.show', $product->id) }}" style="text-decoration: none; color: inherit;">
                         <div class="card-header">
-                            {{-- AQUI ESTÁ A CORREÇÃO DA IMAGEM --}}
                             <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}" 
                                  alt="{{ $product->name }}" 
                                  class="product-image">
@@ -345,10 +344,7 @@
         });
 
         @if(session('show_lojista_modal'))
-        // Esta função garante que a função openLojistaModal() só é chamada depois
-        // que toda a página (e suas funções JS) foram carregadas.
         document.addEventListener('DOMContentLoaded', function() {
-            // Abre o modal que você já tem implementado
             openLojistaModal();
         });
     </script>
