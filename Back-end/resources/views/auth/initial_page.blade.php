@@ -254,10 +254,10 @@
                 <h1 style="color: white; font-size: 3rem; margin: 0 0 10px 0; font-weight: bold;">EBA!</h1>
                 <h2 style="color: white; font-size: 1.5rem; margin: 0 0 30px 0; font-weight: bold;">COMPRA FINALIZADA COM SUCESSO!</h2>
                 <img src="{{ asset('assets/img/pocaoMagica.gif') }}" 
-                     alt="Mago fazendo poção" 
+                     alt="Mago fazendo porção" 
                      style="width: 150px; height: 150px; margin: 20px auto; display: block; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 0 15px rgba(0,0,0,0.3);">
 
-                <p style="color: white; font-size: 1.1rem; line-height: 1.6; margin: 20px 0;">Nossos magos já estão preparando a poção<br>para que, magicamente, seu pedido chegue até<br>você!</p>
+                <p style="color: white; font-size: 1.1rem; line-height: 1.6; margin: 20px 0;">Nossos magos já estão preparando a porção<br>para que, magicamente, seu pedido chegue até<br>você!</p>
                 
                 <a href="{{ route('profile.edit') }}">
                     <button class="buy-button" style="margin-top: 30px; padding: 15px 40px; font-size: 1.1rem;">Voltar para perfil</button>
