@@ -36,7 +36,7 @@
                     <li><a href="{{ route('initial') }}" class="active-link">Loja</a></li>
                 </ul>
                 </div>
-                <div class="user-actions ">
+                <div class="user-actions">
                     <div class="carrinho " >
                     @if(Auth::check() && Auth::user()->tipo === 'sim')
                         <a href="#" onclick="openLojistaModal(); return false;">
