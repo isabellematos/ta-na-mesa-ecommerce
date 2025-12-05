@@ -67,10 +67,9 @@
 					</select>
 				</div>
 
-                
 				<div class="form-group">
 					<label>Imagem de perfil</label>
-					<input type="file" name="imagemPerfil" id="imagemPerfil" placeholder="insira a url"
+					<input type="file" name="imagemPerfil" id="imagemPerfil"
 						value="{{old('imagemPerfil')}}">
 				</div>
 

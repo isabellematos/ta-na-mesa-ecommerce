@@ -22,7 +22,6 @@
     color: #696969;
 }
 
-/* Placeholder (texto cinza dentro do campo) */
 .form-group input::placeholder {
     color: #888;
     font-family: 'Roboto Condensed', sans-serif;
@@ -30,8 +29,6 @@
     font-style: italic;
 }
 
-
-/* --- Estilos dos Filtros da Tela Inicial --- */
 .filter-group-modern input {
     flex-grow: 1;
     width: 180px;
