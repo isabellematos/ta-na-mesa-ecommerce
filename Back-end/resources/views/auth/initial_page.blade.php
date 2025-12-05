@@ -347,7 +347,6 @@
         document.addEventListener('DOMContentLoaded', function() {
             openLojistaModal();
         });
-    </script>
-@endif
-</body>
+        @endif
+    </script> </body>
 </html>
