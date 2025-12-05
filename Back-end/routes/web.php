@@ -123,13 +123,3 @@ Route::post('/checkout/finalize', function (Request $request) {
     
     return app(\App\Http\Controllers\CheckoutController::class)->finalizePurchase($request);
 })->name('checkout.finalize');
-
-
-// --- ROTAS DE TESTE
-Route::get('/teste', function () {
-    return view('checkout.teste');
-})->name('teste.view');
-
-Route::get('/teste2', function () {
-    return view('checkout.teste2');
-})->name('teste2.view');
