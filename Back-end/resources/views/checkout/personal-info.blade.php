@@ -260,13 +260,11 @@
     </footer>
 
     <style>
-        /* Estilo para o checkbox marcado */
         .checkbox-container input[type="checkbox"]:checked + .checkmark {
             background-color: var(--primary-color);
             position: relative;
         }
 
-        /* Adiciona o "check" quando marcado */
         .checkbox-container input[type="checkbox"]:checked + .checkmark::after {
             content: "✓";
             position: absolute;
@@ -278,7 +276,6 @@
             font-weight: bold;
         }
 
-        /* Quando não marcado, fica com borda */
         .checkbox-container .checkmark {
             border: 2px solid var(--primary-color);
             background-color: transparent;
@@ -286,7 +283,6 @@
     </style>
 
     <script>
-        // Formatar CPF
         document.getElementById('cpf-input').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 3) value = value.substring(0, 3) + '.' + value.substring(3);
@@ -295,7 +291,6 @@
             e.target.value = value;
         });
 
-        // Formatar Telefone
         document.getElementById('telefone-input').addEventListener('input', function(e) {
             let value = e.target.value.replace(/\D/g, '');
             if (value.length > 0) value = '(' + value;

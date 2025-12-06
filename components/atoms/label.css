@@ -1,4 +1,4 @@
-/* --- Estilos dos formulários de Login e Cadastro --- */
+
 
 .login-form label,
 .form-container form label {
@@ -10,14 +10,12 @@
     font-weight: 400;
 }
 
-/* Ajuste específico para o label do login que é um pouco diferente */
 .login-form label {
     color: #F8F8F8; 
     
 }
 
 
-/* --- Estilos dos Filtros da Tela Inicial --- */
 .filter-group label,
 .filter-category label {
     font-size: 0.9rem;

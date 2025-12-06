@@ -89,10 +89,6 @@ Route::get('/initial', function (Request $request) {
 Route::get('/product/{product}', [ProductController::class, 'show'])->name('product.show');
 
 
-// ==========================================================
-// ROTAS DE COMPRA E CHECKOUT
-// ==========================================================
-
 
 Route::get('/cart', function () {
     $block = notLojista(); 
