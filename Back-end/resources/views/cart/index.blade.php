@@ -176,7 +176,7 @@
                                     <p id="bairro-text">{{ Auth::check() && Auth::user()->bairro ? Auth::user()->bairro : '' }}</p>
                                 </div>
 
-                                @if($subtotal >= 250)
+                                @if($subtotal >= 100)
                                     <p style="color: #28a745; font-weight: bold;">Parabéns! Você ganhou FRETE GRÁTIS!</p>
                                 @elseif($subtotal < 100)
                                     <p style="color: #CD004A; font-weight: bold;">Compre mais R${{ number_format(100 - $subtotal, 2, ',', '.') }} e ganhe FRETE GRÁTIS!</a></p>
