@@ -52,21 +52,21 @@
                             @endif
                         </a>
                     @endif
-                    </div>    
+                    </div>
                     @auth
                         <a href="{{ Auth::user()->tipo === 'sim' ? route('dashboard') : route('profile.edit') }}">                            @if(Auth::user()->imagemPerfil)
-                                <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}" 
-                                     alt="Perfil do usuário" 
+                                <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}"
+                                     alt="Perfil do usuário"
                                      style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;"
                                      onerror="this.onerror=null; this.src='{{ asset('assets/img/user-icon.png') }}';">
                             @else
-                                <img src="{{ asset('assets/img/user-icon.png') }}" 
-                                     alt="Perfil do usuário" 
+                                <img src="{{ asset('assets/img/user-icon.png') }}"
+                                     alt="Perfil do usuário"
                                      style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;">
                             @endif
                         </a>
-                        
-                        <a href="{{ route('logout') }}" 
+
+                        <a href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                            style="color: white; text-decoration: none; margin-left: 15px;">
                             Sair
@@ -77,7 +77,7 @@
 
                     @else
                         <a href="{{ route('login') }}">
-                            <img src="{{ asset('assets/img/user-icon.png') }}" 
+                            <img src="{{ asset('assets/img/user-icon.png') }}"
                                  alt="Perfil do usuário"
                                  style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                         </a>
@@ -96,28 +96,28 @@
             </div>
 
             <section id="store-section" class="store">
-                
+
                 <section id="profile-seller-infos" class="seller-infos">
                     <h2>Suas informações</h2>
                     <div class="seller-info-content">
                         <div class="seller-photo">
                             @if(Auth::user()->imagemPerfil)
-                                <img src="{{ Str::startsWith(Auth::user()->imagemPerfil, 'assets') ? asset(Auth::user()->imagemPerfil) : asset('storage/' . Auth::user()->imagemPerfil) }}" 
-                                     alt="Foto do vendedor" 
+                                <img src="{{ Str::startsWith(Auth::user()->imagemPerfil, 'assets') ? asset(Auth::user()->imagemPerfil) : asset('storage/' . Auth::user()->imagemPerfil) }}"
+                                     alt="Foto do vendedor"
                                      style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #ffff;">
                             @else
                                 <img src="{{ asset('assets/img/gatoMago.jpg') }}" alt="Foto do vendedor" style="width: 180px; height: 180px; object-fit: cover; border-radius: 50%; border: 4px solid #CD004A;">
                             @endif
                         </div>
-                        
+
                         <div class="seller-fields">
                             <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
-                                @method('patch') 
+                                @method('patch')
                                 <div class="field-row">
                                     <label>Foto de perfil:</label>
                                     <div class="input-upload-container">
-                                        <input type="file" id="profile-upload" name="imagemPerfil" style="display: none;" onchange="this.form.submit()"> 
+                                        <input type="file" id="profile-upload" name="imagemPerfil" style="display: none;" onchange="this.form.submit()">
                                         <button type="button" class="btn-upload" onclick="document.getElementById('profile-upload').click()">
                                             FAÇA O UPLOAD
                                         </button>
@@ -133,7 +133,7 @@
                                     <label>E-mail:</label>
                                     <input type="email" name="email" value="{{ Auth::user()->email }}">
                                 </div>
-                               {{-- 
+                               {{--
                                 <div class="field-row">
                                     <label>CEP:</label>
                                     <input type="text" name="cep" value="{{ Auth::user()->cep }}">
@@ -164,11 +164,11 @@
                                 <button type="submit" class="btn-apply-modern">Aplicar</button>
                             </div>
                         </div>
-                        
+
                         <div class="filter-content-modern">
                             <div class="filter-group-modern">
                                 <label for="data">Data:</label>
-                                <input type="date" id="data" name="date" class="filter-select-modern" 
+                                <input type="date" id="data" name="date" class="filter-select-modern"
                                        value="{{ request('date') }}"
                                        style="background: white; color: black;">
                             </div>
@@ -177,8 +177,8 @@
 
                             <div class="filter-group-modern">
                                 <label for="search">Nome:</label>
-                                <input type="text" id="search" name="search" class="filter-input-modern" 
-                                       placeholder="Buscar..." 
+                                <input type="text" id="search" name="search" class="filter-input-modern"
+                                       placeholder="Buscar..."
                                        value="{{ request('search') }}">
                             </div>
 
@@ -203,26 +203,26 @@
                     <div class="product-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 20px; width: 100%; margin-top: 20px;">
                         @forelse($products as $product)
                             <div class="product-card" style="background-color: #000; border: 1px solid #333; padding: 15px; border-radius: 10px; display:flex; flex-direction:column; align-items:center;">
-                                
+
                                 <div class="product-image" style="width:100%; height:200px; margin-bottom:10px; overflow: hidden;">
-                                    <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : (Str::startsWith($product->image1, 'assets') ? asset($product->image1) : asset('storage/' . $product->image1)) }}" 
-                                         alt="{{ $product->name }}" 
+                                    <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : (Str::startsWith($product->image1, 'assets') ? asset($product->image1) : asset('storage/' . $product->image1)) }}"
+                                         alt="{{ $product->name }}"
                                          style="width:100%; height:100%; object-fit:cover; border-radius:5px;"
                                          onerror="this.onerror=null;this.src='{{ asset('assets/img/iconeMago.png') }}';">
                                 </div>
 
                                 <h3 style="color:white; margin-bottom:5px;">{{ $product->name }}</h3>
                                 <p class="price" style="color:#e85d04; font-weight:bold;">R$ {{ number_format($product->price, 2, ',', '.') }}</p>
-                                
+
                                 <div style="display:flex; gap:10px; width:100%; margin-top:10px;">
-                                    <button type="button" 
+                                    <button type="button"
                                             onclick="openEditModal(
-                                                '{{ $product->id }}', 
-                                                '{{ addslashes($product->name) }}', 
-                                                '{{ $product->price }}', 
-                                                '{{ $product->units }}', 
-                                                '{{ $product->category_id }}', 
-                                                '{{ $product->image1 }}', 
+                                                '{{ $product->id }}',
+                                                '{{ addslashes($product->name) }}',
+                                                '{{ $product->price }}',
+                                                '{{ $product->units }}',
+                                                '{{ $product->category_id }}',
+                                                '{{ $product->image1 }}',
                                                 '{{ addslashes($product->description) }}'
                                             )"
                                             style="flex:1; background:#2196F3; color:white; border:none; padding:8px; border-radius:5px; cursor:pointer; font-size:1rem;">
@@ -235,7 +235,7 @@
                                         <button type="submit" style="width:100%; height:100%; background:#F44336; color:white; border:none; padding:8px; border-radius:5px; cursor:pointer; font-size:1rem;">Excluir</button>
                                     </form>
                                 </div>
-                            </div> 
+                            </div>
                         @empty
                             <p style="color: white; grid-column: 1/-1; text-align: center; padding: 20px;">Você ainda não possui anúncios.</p>
                         @endforelse
@@ -248,9 +248,9 @@
 
         <div id="productModal" class="modal-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:1000; justify-content:center; align-items:center; backdrop-filter: blur(4px);">
             <div class="modal-content" style="background:#0f0f0f; padding:30px 40px; border-radius:8px; width:480px; max-width:95%; position:relative; box-shadow: 0 10px 30px rgba(0,0,0,0.5);">
-                
+
                 <button class="modal-close-btn" style="position:absolute; top:-15px; right:-15px; background:#D81B60; width:45px; height:45px; border-radius:50%; border:none; color:white; font-size:1.8rem; cursor:pointer; display:flex; align-items:center; justify-content:center; box-shadow: 0 4px 10px rgba(0,0,0,0.3);">&times;</button>
-                
+
                 <div style="text-align:center; margin-bottom:25px; border-bottom: 1px solid #333; padding-bottom: 15px;">
                     <h2 id="modalTitle" style="color:white; font-family: 'Playfair Display', serif; font-size: 1.8rem; font-weight: 400; letter-spacing: 0.5px;">
                         Insira informações sobre o produto
@@ -259,31 +259,31 @@
 
                 <form id="modalForm" action="{{ route('product.store') }}" method="POST">
                     @csrf
-                    
+
                     <div class="modal-form-grid" style="display:flex; flex-direction:column; gap:12px;">
-                        
+
                         <div class="form-row" style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 10px;">
                             <label style="color:#ddd; font-size: 1rem; text-align: right;">Nome:</label>
-                            <input type="text" id="modal-nome" name="name" placeholder="Nome do produto" required 
+                            <input type="text" id="modal-nome" name="name" placeholder="Nome do produto" required
                                    style="width:100%; height: 35px; padding:0 10px; background:#4f4f4f; border:none; border-radius:4px; color:white; font-style: italic; font-size: 0.9rem;">
                         </div>
 
                         <div class="form-row" style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 10px;">
                             <label style="color:#ddd; font-size: 1rem; text-align: right;">Preço:</label>
-                            <input type="number" id="modal-preco" name="price" step="0.01" placeholder="Digite o valor em R$" required 
+                            <input type="number" id="modal-preco" name="price" step="0.01" placeholder="Digite o valor em R$" required
                                    style="width:100%; height: 35px; padding:0 10px; background:#4f4f4f; border:none; border-radius:4px; color:white; font-style: italic; font-size: 0.9rem;">
                         </div>
 
                         <div class="form-row" style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 10px;">
                             <label style="color:#ddd; font-size: 1rem; text-align: right;">Quantidade:</label>
-                            <input type="number" id="modal-qtd" name="units" placeholder="Quantidade em estoque" required 
+                            <input type="number" id="modal-qtd" name="units" placeholder="Quantidade em estoque" required
                                    style="width:100%; height: 35px; padding:0 10px; background:#4f4f4f; border:none; border-radius:4px; color:white; font-style: italic; font-size: 0.9rem;">
                         </div>
 
                         <div class="form-row" style="display: grid; grid-template-columns: 100px 1fr; align-items: center; gap: 10px;">
                             <label style="color:#ddd; font-size: 1rem; text-align: right;">Categoria:</label>
                             <div style="position:relative; width: 100%;">
-                                <select id="modal-categoria" name="category_id" required 
+                                <select id="modal-categoria" name="category_id" required
                                         style="width:100%; height: 35px; padding:0 10px; background:#4f4f4f; border:none; border-radius:4px; color:white; font-style: italic; appearance: none; cursor:pointer; font-size: 0.9rem;">
                                     <option value="" disabled selected>Escolher categoria</option>
                                     @if(isset($categories) && count($categories) > 0)
@@ -308,7 +308,7 @@
 
                         <div class="form-row" style="display: grid; grid-template-columns: 100px 1fr; align-items: start; gap: 10px;">
                             <label style="color:#ddd; font-size: 1rem; text-align: right; margin-top: 8px;">Descrição:</label>
-                            <textarea id="modal-descricao" name="description" rows="3" placeholder="Informações sobre o produto" required 
+                            <textarea id="modal-descricao" name="description" rows="3" placeholder="Informações sobre o produto" required
                                       style="width:100%; padding:10px; background:#4f4f4f; border:none; border-radius:4px; color:white; font-style: italic; resize: none; font-size: 0.9rem;"></textarea>
                         </div>
                     </div>
@@ -340,14 +340,14 @@
 
             if (openModalBtn) {
                 openModalBtn.addEventListener('click', function() {
-                    form.reset(); 
-                    form.action = "{{ route('product.store') }}"; 
+                    form.reset();
+                    form.action = "{{ route('product.store') }}";
                     modalTitle.innerText = "Insira informações sobre o produto";
                     submitBtn.innerText = "Criar Anúncio!";
-                    
+
                     const methodInput = form.querySelector('input[name="_method"]');
                     if (methodInput) methodInput.remove();
-                    
+
                     modal.style.display = 'flex';
                 });
             }
@@ -380,7 +380,7 @@
             const categorySelect = document.getElementById('modal-categoria');
             if(categorySelect) categorySelect.value = categoryId;
 
-            form.action = `/product/${id}`; 
+            form.action = `/product/${id}`;
             modalTitle.innerText = "Editar Produto";
             submitBtn.innerText = "Salvar Alterações";
 
@@ -400,83 +400,83 @@
     <style>
         * { box-sizing: border-box; }
 
-        .filter-bar-modern { 
-            background-color: #2a2a2a; 
-            border-radius: 10px; 
-            padding: 20px; 
-            margin-bottom: 30px; 
-            width: 100%; 
-            border: 1px solid #444; 
+        .filter-bar-modern {
+            background-color: #2a2a2a;
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            width: 100%;
+            border: 1px solid #444;
         }
 
-        .filter-header-modern { 
-            display: flex; 
-            align-items: center; 
-            justify-content: space-between; 
-            margin-bottom: 20px; 
-            padding-bottom: 15px; 
-            border-bottom: 1px solid #444; 
+        .filter-header-modern {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #444;
         }
 
-        .filter-title-modern { 
-            flex-grow: 1; 
-            margin: 0; 
-            font-size: 1.2rem; 
-            color: white; 
-            margin-left: 10px; 
+        .filter-title-modern {
+            flex-grow: 1;
+            margin: 0;
+            font-size: 1.2rem;
+            color: white;
+            margin-left: 10px;
         }
 
         .filter-actions-modern { display: flex; gap: 10px; }
-        
-        .btn-reset-modern, .btn-apply-modern { 
-            padding: 8px 20px; 
-            border-radius: 5px; 
-            border: none; 
-            cursor: pointer; 
-            font-weight: bold; 
-            transition: all 0.3s; 
-            text-decoration: none; 
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center; 
-            height: 40px; 
+
+        .btn-reset-modern, .btn-apply-modern {
+            padding: 8px 20px;
+            border-radius: 5px;
+            border: none;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            height: 40px;
         }
-        
+
         .btn-reset-modern { background-color: transparent; border: 1px solid #666; color: #ccc; }
         .btn-reset-modern:hover { background-color: #444; color: white; }
         .btn-apply-modern { background-color: #CD004A; color: white; }
         .btn-apply-modern:hover { background-color: #a0003a; }
 
-        .filter-content-modern { 
-            display: flex; 
-            gap: 20px; 
-            align-items: flex-end; 
-            margin-bottom: 0; 
-            flex-wrap: wrap; 
+        .filter-content-modern {
+            display: flex;
+            gap: 20px;
+            align-items: flex-end;
+            margin-bottom: 0;
+            flex-wrap: wrap;
         }
 
-        .filter-group-modern { 
-            display: flex; 
-            flex-direction: column; 
-            gap: 5px; 
-            flex: 1; 
-            min-width: 200px; 
+        .filter-group-modern {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+            flex: 1;
+            min-width: 200px;
         }
 
-        .filter-group-modern label { 
-            color: white; 
-            font-weight: bold; 
-            font-size: 0.9rem; 
+        .filter-group-modern label {
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
         }
 
-        .filter-select-modern, .filter-input-modern { 
-            width: 100%; 
-            height: 45px; 
-            padding: 0 15px; 
-            border-radius: 5px; 
-            border: 1px solid #555; 
-            background-color: white; 
-            color: #000; 
+        .filter-select-modern, .filter-input-modern {
+            width: 100%;
+            height: 45px;
+            padding: 0 15px;
+            border-radius: 5px;
+            border: 1px solid #555;
+            background-color: white;
+            color: #000;
             font-size: 1rem;
             outline: none;
             -webkit-appearance: none;
@@ -489,17 +489,17 @@
             background-repeat: no-repeat;
             background-position: right 10px center;
             background-size: 15px;
-            padding-right: 40px; 
+            padding-right: 40px;
             cursor: pointer;
         }
 
         .filter-input-modern::placeholder { color: #666; }
 
-        .filter-divider { 
-            width: 1px; 
-            height: 45px; 
-            background-color: #555; 
-            display: none; 
+        .filter-divider {
+            width: 1px;
+            height: 45px;
+            background-color: #555;
+            display: none;
         }
 
         @media(min-width: 768px) { .filter-divider { display: block; } }

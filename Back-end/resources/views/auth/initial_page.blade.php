@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sua Jornada - Loja</title>
-    
+
     <link rel="stylesheet" href="{{ asset('assets/css/estiloMain.css') }}">
     <link rel="stylesheet" href="{{ asset('components/atoms/button.css') }}">
     <link rel="stylesheet" href="{{ asset('components/atoms/input.css') }}">
@@ -51,21 +51,21 @@
                             @endif
                         </a>
                     @endif
-                    </div>    
+                    </div>
                     @auth
                         <a href="{{ Auth::user()->tipo === 'sim' ? route('dashboard') : route('profile.edit') }}">                            @if(Auth::user()->imagemPerfil)
-                                <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}" 
-                                     alt="Perfil do usuário" 
+                                <img src="{{ asset('storage/' . Auth::user()->imagemPerfil) }}?v={{ time() }}"
+                                     alt="Perfil do usuário"
                                      style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;"
                                      onerror="this.onerror=null; this.src='{{ asset('assets/img/user-icon.png') }}';">
                             @else
-                                <img src="{{ asset('assets/img/user-icon.png') }}" 
-                                     alt="Perfil do usuário" 
+                                <img src="{{ asset('assets/img/user-icon.png') }}"
+                                     alt="Perfil do usuário"
                                      style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover; border: 2px solid white;">
                             @endif
                         </a>
-                        
-                        <a href="{{ route('logout') }}" 
+
+                        <a href="{{ route('logout') }}"
                            onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
                            style="color: white; text-decoration: none; margin-left: 15px;">
                             Sair
@@ -76,7 +76,7 @@
 
                     @else
                         <a href="{{ route('login') }}">
-                            <img src="{{ asset('assets/img/user-icon.png') }}" 
+                            <img src="{{ asset('assets/img/user-icon.png') }}"
                                  alt="Perfil do usuário"
                                  style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                         </a>
@@ -90,7 +90,7 @@
     <main class="main-content">
         <section class="hero-banner">
             <div class="banner-image">
-                <img src="{{ asset('assets/img/Banner inicial.png') }}" alt="Banner com personagens de RPG">
+                <img src="{{ asset('assets/img/Banner_Inicial.png') }}" alt="Banner com personagens de RPG">
                 <h1 class="banner-title">Monte a sua nova<br>jornada aqui!</h1>
             </div>
 
@@ -103,7 +103,7 @@
             <section id="store-section" class="store">
                 <form method="GET" action="{{ route('initial') }}" id="filter-form" class="store-filter">
                     <div class="filter-bar-modern">
-                        
+
                         <div class="filter-header-modern">
                             <span class="filter-icon"></span>
                             <h3 class="filter-title-modern">Filtro</h3>
@@ -114,7 +114,7 @@
                         </div>
 
                         <div class="filter-content-modern">
-                            
+
                             <div class="filter-group-modern">
                                 <label for="nome">Nome:</label>
                                 <div style="display: flex; align-items: center; background: white; border-radius: 5px; border: 1px solid #ccc; padding-right: 5px; height: 38px;">
@@ -153,8 +153,8 @@
                 <div class="product-card">
                     <a href="{{ route('product.show', $product->id) }}" style="text-decoration: none; color: inherit;">
                         <div class="card-header">
-                            <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}" 
-                                 alt="{{ $product->name }}" 
+                            <img src="{{ Str::startsWith($product->image1, ['http', 'https']) ? $product->image1 : asset('storage/' . $product->image1) }}"
+                                 alt="{{ $product->name }}"
                                  class="product-image">
                         </div>
                         <h3 class="product-title">{{ $product->name }}</h3>
@@ -193,7 +193,7 @@
     <style>
         /* Container do dropdown */
         .custom-dropdown { position: relative; min-width: 200px; }
-        
+
         /* Botão do dropdown */
         .dropdown-trigger {
             background-color: white !important;
@@ -250,15 +250,15 @@
         <div id="success-modal" style="display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.8); z-index: 9999; justify-content: center; align-items: center;">
             <div style="position: relative; background: linear-gradient(135deg, #CD004A 0%, #8B0032 100%); border-radius: 20px; padding: 40px; max-width: 500px; text-align: center; box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);">
                 <button onclick="closeModal()" style="position: absolute; top: -20px; right: -20px; width: 50px; height: 50px; border-radius: 50%; background-color: #CD004A; border: 3px solid white; color: white; font-size: 24px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-weight: bold;">✕</button>
-                
+
                 <h1 style="color: white; font-size: 3rem; margin: 0 0 10px 0; font-weight: bold;">EBA!</h1>
                 <h2 style="color: white; font-size: 1.5rem; margin: 0 0 30px 0; font-weight: bold;">COMPRA FINALIZADA COM SUCESSO!</h2>
-                <img src="{{ asset('assets/img/pocaoMagica.gif') }}" 
-                     alt="Mago fazendo porção" 
+                <img src="{{ asset('assets/img/pocaoMagica.gif') }}"
+                     alt="Mago fazendo porção"
                      style="width: 150px; height: 150px; margin: 20px auto; display: block; border-radius: 50%; object-fit: cover; border: 4px solid white; box-shadow: 0 0 15px rgba(0,0,0,0.3);">
 
                 <p style="color: white; font-size: 1.1rem; line-height: 1.6; margin: 20px 0;">Nossos magos já estão preparando a porção<br>para que, magicamente, seu pedido chegue até<br>você!</p>
-                
+
                 <a href="{{ route('profile.edit') }}">
                     <button class="buy-button" style="margin-top: 30px; padding: 15px 40px; font-size: 1.1rem;">Voltar para perfil</button>
                 </a>
@@ -320,7 +320,7 @@
 
         document.addEventListener('DOMContentLoaded', function() {
             updateDropdownText();
-            
+
             const successModal = document.getElementById('success-modal');
             if (successModal) {
                 successModal.addEventListener('click', function(e) {
