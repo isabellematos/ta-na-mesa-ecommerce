@@ -1,6 +1,6 @@
-<h1>
- <span> 🛒 Tá na Mesa E-commerce - Loja de Acessórios de RPG </span> 
-</h1>
+
+<h1> <span> 🛒 Tá na Mesa E-commerce - Loja de Acessórios de RPG </span> </h1>
+<img width="1920" height="1034" alt="image" src="https://github.com/user-attachments/assets/69273772-182a-49bb-bb52-745d4551ccd2" />
 
 <p align="center"> <img src="https://img.shields.io/badge/Status-In_Development-yellow?style=for-the-badge" /> <img src="https://img.shields.io/github/languages/top/isabellematos/ta-na-mesa-ecommerce?style=for-the-badge&color=blue" /> <img src="https://img.shields.io/github/repo-size/isabellematos/ta-na-mesa-ecommerce?style=for-the-badge&color=red" /> </p>
 
@@ -31,7 +31,6 @@ Bibliotecas e Ferramentas Frontend
 ✨ Páginas renderizadas com o template engine Blade, facilitando a organização do código HTML e a injeção de dados do PHP.
 
 ✨ Interatividade e validações front-end implementadas com JavaScript.
-
 
 <h1>
  <span> 🛒 Tá na Mesa E-commerce - RPG Accessories Store </span> 
@@ -64,3 +63,6 @@ Frontend Libraries and Tools
 ✨ Pages are rendered with the Blade template engine, facilitating HTML code organization and PHP data injection.
 
 ✨ Interactivity and front-end validations are implemented with JavaScript.
+
+
+
